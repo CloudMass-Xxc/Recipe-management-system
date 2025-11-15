@@ -1,0 +1,2 @@
+"app_user" "md571664424d500e260a58545c876e1698e"  # 密码: app_password
+"postgres" "md571664424d500e260a58545c876e1698e"  # 密码: app_password
