@@ -9,7 +9,8 @@ from app.ai_service.schemas import (
     RecipeResponse,
     RecipeEnhancementRequest,
     SaveRecipeRequest,
-    AIServiceStatus
+    AIServiceStatus,
+    Cuisine
 )
 from app.ai_service.ai_client import ai_client
 from app.ai_service.exceptions import (
@@ -31,10 +32,15 @@ async def get_ai_service_status():
     """
     settings = get_ai_settings()
     
-    # 简单检查API密钥是否配置
-    is_available = bool(settings.OPENAI_API_KEY)
-    status = "available" if is_available else "unavailable"
-    message = "AI service is ready to use" if is_available else "API key not configured"
+    # 根据不同的API提供商检查相应的API密钥
+    if settings.API_PROVIDER == "alipan":
+        is_available = bool(settings.QWEN_API_KEY)
+        status = "available" if is_available else "unavailable"
+        message = "AI service is ready to use" if is_available else "QWEN API key not configured"
+    else:
+        is_available = bool(settings.OPENAI_API_KEY)
+        status = "available" if is_available else "unavailable"
+        message = "AI service is ready to use" if is_available else "OpenAI API key not configured"
     
     return AIServiceStatus(
         status=status,
@@ -61,7 +67,8 @@ async def generate_recipe(
             "health_conditions": ", ".join(request.health_conditions),
             "nutrition_goals": ", ".join(request.nutrition_goals),
             "cooking_time_limit": str(request.cooking_time_limit) if request.cooking_time_limit else "无限制",
-            "difficulty": request.difficulty.value if request.difficulty else "任意"
+            "difficulty": request.difficulty.value if request.difficulty else "任意",
+            "cuisine": request.cuisine.value if request.cuisine != Cuisine.NONE else "不限"
         }
         
         # 调用AI客户端生成食谱

@@ -26,6 +26,23 @@ class Difficulty(str, Enum):
     HARD = "hard"
 
 
+class Cuisine(str, Enum):
+    """
+    菜系枚举
+    """
+    CHINESE = "chinese"
+    WESTERN = "western"
+    JAPANESE = "japanese"
+    KOREAN = "korean"
+    INDIAN = "indian"
+    THAI = "thai"
+    VIETNAMESE = "vietnamese"
+    ITALIAN = "italian"
+    FRENCH = "french"
+    SPANISH = "spanish"
+    NONE = "none"
+
+
 class Ingredient(BaseModel):
     """
     食材模型
@@ -64,6 +81,7 @@ class RecipeGenerationRequest(BaseModel):
     nutrition_goals: List[str] = Field(default=[], description="营养目标")
     cooking_time_limit: Optional[int] = Field(None, description="烹饪时间限制(分钟)")
     difficulty: Optional[Difficulty] = Field(None, description="难度级别")
+    cuisine: Optional[Cuisine] = Field(Cuisine.NONE, description="菜系选择")
     
     @validator('cooking_time_limit')
     def validate_cooking_time(cls, v):

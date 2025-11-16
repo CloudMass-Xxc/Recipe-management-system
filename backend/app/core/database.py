@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.schema import CreateSchema
 from .config import settings
 
 # 创建数据库引擎
@@ -9,11 +10,17 @@ if settings.USE_PGBOUNCER:
 else:
     engine = create_engine(settings.DATABASE_URL)
 
+# 确保schema存在
+with engine.connect() as conn:
+    conn.execute(CreateSchema(settings.DATABASE_SCHEMA, if_not_exists=True))
+    conn.commit()
+
 # 创建会话工厂
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# 创建基类
+# 创建基类，指定schema
 Base = declarative_base()
+Base.metadata.schema = settings.DATABASE_SCHEMA
 
 # 依赖注入函数，用于获取数据库会话
 def get_db():

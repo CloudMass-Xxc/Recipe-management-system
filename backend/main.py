@@ -14,7 +14,7 @@ Base.metadata.create_all(bind=engine)
 # 创建FastAPI应用实例
 app = FastAPI(
     title=settings.PROJECT_NAME,
-    version=settings.PROJECT_VERSION,
+    version=settings.VERSION,
     description="AI食谱推荐系统API",
     docs_url="/docs",
     redoc_url="/redoc"

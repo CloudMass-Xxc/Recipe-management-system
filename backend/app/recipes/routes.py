@@ -11,7 +11,6 @@ from app.recipes.schemas import (
     NutritionInfoResponse
 )
 from app.recipes.services import RecipeService
-from app.recipes.schemas import IngredientResponse
 
 router = APIRouter(prefix="/recipes", tags=["recipes"])
 

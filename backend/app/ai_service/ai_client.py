@@ -16,15 +16,30 @@ logger = logging.getLogger(__name__)
 
 class AIClient:
     """
-    AI客户端类，负责与LLM API交互
+    AI客户端类，负责与LLM API交互，支持通义千问和OpenAI
     """
     
     def __init__(self):
         self.settings = get_ai_settings()
-        self.api_key = self.settings.OPENAI_API_KEY
-        self.api_base_url = self.settings.OPENAI_API_BASE_URL
-        self.model = self.settings.OPENAI_MODEL
+        self.api_provider = self.settings.API_PROVIDER
         self.timeout = httpx.Timeout(30.0)
+        
+        # 初始化API配置
+        if self.api_provider == "alipan":
+            # 通义千问配置
+            self.api_key = self.settings.QWEN_API_KEY
+            self.api_secret = self.settings.QWEN_API_SECRET
+            self.api_base_url = self.settings.QWEN_API_BASE_URL
+            self.model = self.settings.QWEN_MODEL
+            self.max_tokens = self.settings.QWEN_MAX_TOKENS
+            self.temperature = self.settings.QWEN_TEMPERATURE
+        else:
+            # OpenAI配置
+            self.api_key = self.settings.OPENAI_API_KEY
+            self.api_base_url = self.settings.OPENAI_API_BASE_URL
+            self.model = self.settings.OPENAI_MODEL
+            self.max_tokens = self.settings.OPENAI_MAX_TOKENS
+            self.temperature = self.settings.OPENAI_TEMPERATURE
     
     def _prepare_request_headers(self) -> Dict[str, str]:
         """
@@ -33,10 +48,18 @@ class AIClient:
         Returns:
             请求头字典
         """
-        return {
-            "Authorization": f"Bearer {self.api_key}",
-            "Content-Type": "application/json"
-        }
+        if self.api_provider == "alipan":
+            # 通义千问请求头
+            return {
+                "Authorization": f"Bearer {self.api_key}",
+                "Content-Type": "application/json"
+            }
+        else:
+            # OpenAI请求头
+            return {
+                "Authorization": f"Bearer {self.api_key}",
+                "Content-Type": "application/json"
+            }
     
     def _prepare_chat_completion_request(
         self,
@@ -55,27 +78,45 @@ class AIClient:
         Returns:
             请求体字典
         """
-        return {
-            "model": self.model,
-            "messages": [
-                {"role": "system", "content": self.settings.SYSTEM_PROMPT},
-                {"role": "user", "content": prompt}
-            ],
-            "max_tokens": max_tokens or self.settings.OPENAI_MAX_TOKENS,
-            "temperature": temperature or self.settings.OPENAI_TEMPERATURE,
-            "response_format": {"type": "json_object"}  # 要求JSON响应
-        }
+        if self.api_provider == "alipan":
+            # 通义千问请求格式
+            system_prompt = self.settings.SYSTEM_PROMPT
+            full_prompt = f"{system_prompt}\n\n{prompt}\n\n请严格按照JSON格式输出，不要添加任何额外的解释或文本。"
+            
+            return {
+                "model": self.model,
+                "input": {
+                    "messages": [
+                        {"role": "user", "content": full_prompt}
+                    ]
+                },
+                "parameters": {
+                    "max_tokens": max_tokens or self.max_tokens,
+                    "temperature": temperature or self.temperature,
+                    "result_format": "text"
+                }
+            }
+        else:
+            # OpenAI请求格式
+            return {
+                "model": self.model,
+                "messages": [
+                    {"role": "system", "content": self.settings.SYSTEM_PROMPT},
+                    {"role": "user", "content": prompt}
+                ],
+                "max_tokens": max_tokens or self.max_tokens,
+                "temperature": temperature or self.temperature,
+                "response_format": {"type": "json_object"}  # 要求JSON响应
+            }
     
     async def _make_async_request(
         self,
-        endpoint: str,
         request_body: Dict[str, Any]
     ) -> Dict[str, Any]:
         """
         发送异步HTTP请求
         
         Args:
-            endpoint: API端点
             request_body: 请求体
         
         Returns:
@@ -88,13 +129,12 @@ class AIClient:
             RateLimitError: 速率限制错误
             AuthenticationError: 认证错误
         """
-        url = f"{self.api_base_url}{endpoint}"
         headers = self._prepare_request_headers()
         
         try:
             async with httpx.AsyncClient(timeout=self.timeout) as client:
                 response = await client.post(
-                    url=url,
+                    url=self.api_base_url,
                     headers=headers,
                     json=request_body
                 )
@@ -143,16 +183,33 @@ class AIClient:
         
         try:
             # 调用API
-            response = await self._make_async_request("/chat/completions", request_body)
+            response = await self._make_async_request(request_body)
             
-            # 提取和解析响应
-            content = response.get("choices", [{}])[0].get("message", {}).get("content", "")
+            # 根据不同的API提供商解析响应
+            if self.api_provider == "alipan":
+                # 通义千问响应格式
+                content = response.get("output", {}).get("text", "")
+            else:
+                # OpenAI响应格式
+                content = response.get("choices", [{}])[0].get("message", {}).get("content", "")
             
             if not content:
                 raise InvalidResponseError("Empty response from AI API")
             
-            # 解析JSON响应
-            recipe_data = json.loads(content)
+            logger.info(f"Raw AI response: {content}")
+            
+            # 尝试提取JSON部分（如果响应包含额外文本）
+            try:
+                # 尝试直接解析
+                recipe_data = json.loads(content)
+            except json.JSONDecodeError:
+                # 尝试提取JSON格式的部分
+                import re
+                json_match = re.search(r'\{.*\}', content, re.DOTALL)
+                if json_match:
+                    recipe_data = json.loads(json_match.group())
+                else:
+                    raise InvalidResponseError("Could not find valid JSON in AI response")
             
             # 验证必要字段
             required_fields = ["title", "ingredients", "instructions"]
@@ -162,10 +219,10 @@ class AIClient:
             
             return recipe_data
             
-        except json.JSONDecodeError:
+        except json.JSONDecodeError as e:
             # 如果响应不是有效的JSON，记录原始响应并抛出异常
             logger.error(f"Invalid JSON response from AI API: {content}")
-            raise InvalidResponseError("AI API returned invalid JSON")
+            raise InvalidResponseError(f"AI API returned invalid JSON: {str(e)}")
         except Exception as e:
             logger.error(f"Error generating recipe: {str(e)}")
             if isinstance(e, AIServiceError):
@@ -194,16 +251,32 @@ class AIClient:
 
 修改要求：{enhancement_request}
 
-请以相同的JSON格式返回修改后的食谱。
+请严格按照JSON格式返回修改后的食谱，不要添加任何额外的解释或文本。
 """
         
         request_body = self._prepare_chat_completion_request(prompt)
         
         try:
-            response = await self._make_async_request("/chat/completions", request_body)
-            content = response.get("choices", [{}])[0].get("message", {}).get("content", "")
+            response = await self._make_async_request(request_body)
             
-            return json.loads(content)
+            # 根据不同的API提供商解析响应
+            if self.api_provider == "alipan":
+                content = response.get("output", {}).get("text", "")
+            else:
+                content = response.get("choices", [{}])[0].get("message", {}).get("content", "")
+            
+            logger.info(f"Raw AI enhancement response: {content}")
+            
+            # 尝试提取JSON部分
+            try:
+                return json.loads(content)
+            except json.JSONDecodeError:
+                import re
+                json_match = re.search(r'\{.*\}', content, re.DOTALL)
+                if json_match:
+                    return json.loads(json_match.group())
+                else:
+                    raise InvalidResponseError("Could not find valid JSON in AI response")
             
         except Exception as e:
             logger.error(f"Error enhancing recipe: {str(e)}")

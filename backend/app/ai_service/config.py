@@ -9,7 +9,7 @@ class AIServiceSettings(BaseSettings):
     AI服务配置类
     """
     # API提供商配置
-    API_PROVIDER: str = "openai"  # 默认使用OpenAI
+    API_PROVIDER: str = "alipan"  # 默认使用通义千问
     
     # OpenAI配置
     OPENAI_API_KEY: str = ""  # 从环境变量读取
@@ -17,6 +17,14 @@ class AIServiceSettings(BaseSettings):
     OPENAI_MODEL: str = "gpt-3.5-turbo-1106"  # 使用支持JSON响应的模型
     OPENAI_MAX_TOKENS: int = 2000
     OPENAI_TEMPERATURE: float = 0.7
+    
+    # 通义千问配置
+    QWEN_API_KEY: str = ""  # 从环境变量读取
+    QWEN_API_SECRET: str = ""  # 从环境变量读取
+    QWEN_API_BASE_URL: str = "https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation"  # 通义千问API基础URL
+    QWEN_MODEL: str = "qwen-turbo"  # 通义千问模型
+    QWEN_MAX_TOKENS: int = 2000
+    QWEN_TEMPERATURE: float = 0.7
     
     # 系统提示词
     SYSTEM_PROMPT: str = """
@@ -51,7 +59,7 @@ class AIServiceSettings(BaseSettings):
     
     class Config:
         env_file = ".env"
-        env_prefix = "AI_"
+        extra = "allow"  # 允许额外的环境变量
 
 
 @lru_cache()

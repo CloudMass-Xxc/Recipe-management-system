@@ -14,13 +14,12 @@ class Settings(BaseSettings):
     
     # 数据库配置
     DATABASE_URL: str
+    DATABASE_SCHEMA: str = "app_schema"
     
     # CORS配置
     BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = ["http://localhost:3000"]
     
-    # AI服务配置
-    QIANWEN_API_KEY: str = "your-qianwen-api-key"
-    QIANWEN_API_BASE_URL: str = "https://apiqianwen.com/v1/chat/completions"
+    # AI服务配置 (主要配置在app/ai_service/config.py中)
     
     # PgBouncer配置
     USE_PGBOUNCER: bool = False
@@ -29,6 +28,7 @@ class Settings(BaseSettings):
     class Config:
         env_file = ".env"
         case_sensitive = True
+        extra = "allow"  # 允许额外的环境变量
 
 # 创建全局配置实例
 settings = Settings()
