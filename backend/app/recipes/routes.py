@@ -57,6 +57,38 @@ async def create_recipe(
     )
 
 
+@router.get("/user", response_model=List[RecipeListItem])
+async def get_user_recipes(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_active_user)
+):
+    """
+    获取当前用户的食谱列表
+    """
+    recipes = RecipeService.get_recipes(
+        db=db,
+        author_id=current_user.user_id
+    )
+    
+    # 构建响应
+    return [
+        RecipeListItem(
+            recipe_id=recipe.recipe_id,
+            title=recipe.title,
+            description=recipe.description,
+            prep_time=recipe.prep_time,
+            cooking_time=recipe.cooking_time,
+            difficulty=recipe.difficulty,
+            tags=recipe.tags,
+            image_url=recipe.image_url,
+            author_id=recipe.author_id,
+            author_name=recipe.author.username,
+            created_at=recipe.created_at
+        )
+        for recipe in recipes
+    ]
+
+
 @router.get("/", response_model=List[RecipeListItem])
 async def get_recipes(
     skip: int = Query(0, ge=0),

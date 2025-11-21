@@ -17,7 +17,7 @@ class Settings(BaseSettings):
     DATABASE_SCHEMA: str = "app_schema"
     
     # CORS配置
-    BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = ["http://localhost:3000"]
+    BACKEND_CORS_ORIGINS: List[str] = ["*"]
     
     # AI服务配置 (主要配置在app/ai_service/config.py中)
     

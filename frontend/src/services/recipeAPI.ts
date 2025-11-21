@@ -263,34 +263,34 @@ class RecipeAPI {
   // 获取用户创建的食谱
   static async getUserRecipes(): Promise<Recipe[]> {
     try {
-      // 模拟用户创建的食谱数据
-      const mockUserRecipes: Recipe[] = [
-        {
-          id: '101',
-          title: '我的私房炒面',
-          description: '我自己研发的炒面配方，味道独特。',
-          cookTime: '25分钟',
-          difficulty: '中等',
-          image: 'https://via.placeholder.com/400x300?text=我的私房炒面',
-          isVegetarian: false,
-          isBeginnerFriendly: false,
+      // 从后端API获取用户的食谱
+      const response = await fetch('http://localhost:8000/recipes/user', {
+        method: 'GET',
+        credentials: 'include', // 包含cookie用于认证
+        headers: {
+          'Content-Type': 'application/json',
         },
-        {
-          id: '102',
-          title: '创意蔬菜沙拉',
-          description: '混合多种蔬菜和特制酱料的健康沙拉。',
-          cookTime: '15分钟',
-          difficulty: '简单',
-          image: 'https://via.placeholder.com/400x300?text=创意蔬菜沙拉',
-          isVegetarian: true,
-          isBeginnerFriendly: true,
-        },
-      ];
+      });
 
-      // 模拟网络延迟
-      await new Promise(resolve => setTimeout(resolve, 500));
+      if (!response.ok) {
+        throw new Error(`获取用户食谱失败: ${response.status}`);
+      }
+
+      const recipesData = await response.json();
       
-      return mockUserRecipes;
+      // 将后端返回的数据转换为前端需要的Recipe类型
+      return recipesData.map((recipe: any) => ({
+        id: recipe.recipe_id,
+        title: recipe.title,
+        description: recipe.description,
+        cookTime: `${recipe.cooking_time}分钟`,
+        difficulty: recipe.difficulty,
+        image: recipe.image || `https://via.placeholder.com/400x300?text=${encodeURIComponent(recipe.title)}`,
+        isVegetarian: recipe.tags?.includes('素食') || false,
+        isBeginnerFriendly: recipe.difficulty === 'easy' || recipe.difficulty === '简单',
+        servings: recipe.servings,
+        tags: recipe.tags || []
+      }));
     } catch (error) {
       console.error('获取用户食谱失败:', error);
       throw error;

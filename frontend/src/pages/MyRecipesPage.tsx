@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Container, 
   Typography, 
@@ -16,6 +16,7 @@ import {
   Divider
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import * as recipeAPI from '../services/recipeAPI';
 
 
 interface Recipe {
@@ -31,43 +32,63 @@ interface Recipe {
 
 const MyRecipesPage: React.FC = () => {
   const navigate = useNavigate();
-  const [userRecipes, setUserRecipes] = useState<Recipe[]>([
-    {
-      id: '101',
-      title: '我的私房炒面',
-      description: '我自己研发的炒面配方，味道独特。',
-      cookTime: '25分钟',
-      difficulty: '中等',
-      image: 'https://via.placeholder.com/400x300?text=我的私房炒面',
-      isVegetarian: false,
-      isBeginnerFriendly: false,
-    },
-    {
-      id: '102',
-      title: '创意蔬菜沙拉',
-      description: '混合多种蔬菜和特制酱料的健康沙拉。',
-      cookTime: '15分钟',
-      difficulty: '简单',
-      image: 'https://via.placeholder.com/400x300?text=创意蔬菜沙拉',
-      isVegetarian: true,
-      isBeginnerFriendly: true,
-    },
-    {
-      id: '103',
-      title: '香煎牛排配黑椒酱',
-      description: '外焦里嫩的牛排，搭配自制黑椒酱。',
-      cookTime: '35分钟',
-      difficulty: '中等',
-      image: 'https://via.placeholder.com/400x300?text=香煎牛排配黑椒酱',
-      isVegetarian: false,
-      isBeginnerFriendly: false,
-    },
-  ]);
+  const [userRecipes, setUserRecipes] = useState<Recipe[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
   
   const [openEditDialog, setOpenEditDialog] = useState(false);
   const [editingRecipe, setEditingRecipe] = useState<Recipe | null>(null);
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [deletingRecipeId, setDeletingRecipeId] = useState<string | null>(null);
+
+  // 加载用户食谱
+  const loadUserRecipes = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const recipes = await recipeAPI.getUserRecipes();
+      setUserRecipes(recipes);
+    } catch (err) {
+      console.error('加载用户食谱失败:', err);
+      setError('加载食谱失败，请稍后重试');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // 组件加载时获取食谱
+  useEffect(() => {
+    loadUserRecipes();
+  }, []);
+
+  // 处理删除食谱后的刷新
+  const confirmDeleteRecipe = async () => {
+    if (deletingRecipeId) {
+      try {
+        // 调用后端API删除食谱
+        const response = await fetch(`http://localhost:8000/recipes/${deletingRecipeId}`, {
+          method: 'DELETE',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('删除食谱失败');
+        }
+
+        // 从状态中移除已删除的食谱
+        setUserRecipes(prevRecipes => prevRecipes.filter(recipe => recipe.id !== deletingRecipeId));
+      } catch (err) {
+        console.error('删除食谱失败:', err);
+        setError('删除食谱失败，请稍后重试');
+      } finally {
+        setOpenDeleteDialog(false);
+        setDeletingRecipeId(null);
+      }
+    }
+  };
 
   const handleRecipeClick = (recipeId: string) => {
     navigate(`/recipe/${recipeId}`);
@@ -83,24 +104,46 @@ const MyRecipesPage: React.FC = () => {
     setOpenDeleteDialog(true);
   };
 
-  const confirmDeleteRecipe = () => {
-    if (deletingRecipeId) {
-      setUserRecipes(prevRecipes => prevRecipes.filter(recipe => recipe.id !== deletingRecipeId));
-      setOpenDeleteDialog(false);
-      setDeletingRecipeId(null);
-    }
-  };
 
-  const handleSaveEdit = () => {
+
+  const handleSaveEdit = async () => {
     // 保存编辑后的食谱
     if (editingRecipe) {
-      setUserRecipes(prevRecipes => 
-        prevRecipes.map(recipe => 
-          recipe.id === editingRecipe.id ? editingRecipe : recipe
-        )
-      );
-      setOpenEditDialog(false);
-      setEditingRecipe(null);
+      try {
+        // 调用后端API更新食谱
+        const response = await fetch(`http://localhost:8000/recipes/${editingRecipe.id}`, {
+          method: 'PUT',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            title: editingRecipe.title,
+            description: editingRecipe.description,
+            tags: [
+              ...(editingRecipe.isVegetarian ? ['素食'] : []),
+              ...(editingRecipe.isBeginnerFriendly ? ['适合新手'] : [])
+            ]
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error('更新食谱失败');
+        }
+
+        // 更新本地状态
+        setUserRecipes(prevRecipes => 
+          prevRecipes.map(recipe => 
+            recipe.id === editingRecipe.id ? editingRecipe : recipe
+          )
+        );
+      } catch (err) {
+        console.error('更新食谱失败:', err);
+        setError('更新食谱失败，请稍后重试');
+      } finally {
+        setOpenEditDialog(false);
+        setEditingRecipe(null);
+      }
     }
   };
 
@@ -131,10 +174,31 @@ const MyRecipesPage: React.FC = () => {
           </Button>
       </Box>
 
-      {userRecipes.length === 0 ? (
+      {loading ? (
+        <Box sx={{ textAlign: 'center', py: 8 }}>
+          <Typography variant="h6" color="text.secondary">
+            加载食谱中...
+          </Typography>
+        </Box>
+      ) : error ? (
+        <Box sx={{ textAlign: 'center', py: 8 }}>
+          <Typography variant="h6" color="error.main" gutterBottom>
+            {error}
+          </Typography>
+          <Button 
+            variant="contained" 
+            onClick={loadUserRecipes}
+          >
+            重试
+          </Button>
+        </Box>
+      ) : userRecipes.length === 0 ? (
         <Box sx={{ textAlign: 'center', py: 8 }}>
           <Typography variant="h6" color="text.secondary" gutterBottom>
-            您还没有创建任何食谱
+            您还没有保存任何食谱
+          </Typography>
+          <Typography variant="body1" color="text.secondary" gutterBottom sx={{ mb: 2 }}>
+            生成新食谱后，点击"添加到我的食谱"按钮保存
           </Typography>
           <Button 
             variant="contained" 
