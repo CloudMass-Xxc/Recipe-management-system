@@ -2,7 +2,10 @@ from passlib.context import CryptContext
 from typing import Optional
 
 # 创建密码上下文
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+pwd_context = CryptContext(schemes=["pbkdf2_sha256"], 
+                          default="pbkdf2_sha256",
+                          pbkdf2_sha256__default_rounds=100000,  # 保持安全的迭代轮数
+                          deprecated="auto")
 
 def get_password_hash(password: str) -> str:
     """
@@ -27,34 +30,7 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
     Returns:
         密码是否匹配
     """
-    return pwd_context.verify(plain_password, hashed_password)
-
-def generate_user_id() -> str:
-    """
-    生成用户ID（UUID）
-    
-    Returns:
-        用户ID
-    """
-    import uuid
-    return str(uuid.uuid4())
-
-def generate_recipe_id() -> str:
-    """
-    生成食谱ID（UUID）
-    
-    Returns:
-        食谱ID
-    """
-    import uuid
-    return str(uuid.uuid4())
-
-def generate_plan_id() -> str:
-    """
-    生成饮食计划ID（UUID）
-    
-    Returns:
-        饮食计划ID
-    """
-    import uuid
-    return str(uuid.uuid4())
+    try:
+        return pwd_context.verify(plain_password, hashed_password)
+    except Exception:
+        return False

@@ -23,7 +23,6 @@ const RecipeDetailPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
 
   useEffect(() => {
     // 模拟获取食谱详情

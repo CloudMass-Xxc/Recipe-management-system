@@ -16,7 +16,6 @@ interface Recipe {
 const RecipeListPage: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const isTablet = useMediaQuery(theme.breakpoints.down('md'));
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [filteredRecipes, setFilteredRecipes] = useState<Recipe[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -220,10 +219,13 @@ const RecipeListPage: React.FC = () => {
             <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
               <CardMedia
                 component="img"
-                height={{ xs: 160, sm: 180, md: 200 }}
+                height="200"
                 image={recipe.image}
                 alt={recipe.title}
-                sx={{ objectFit: 'cover' }}
+                sx={{ 
+                  objectFit: 'cover',
+                  height: { xs: 160, sm: 180, md: 200 }
+                }}
               />
               <CardContent sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                 <Typography 
@@ -291,11 +293,15 @@ const RecipeListPage: React.FC = () => {
         >
           <CardMedia
             component="img"
-            width={{ xs: '100%', md: 200 }}
-            height={{ xs: 180, md: 'auto' }}
+            width="200"
+            height="180"
             image={recipe.image}
             alt={recipe.title}
-            sx={{ objectFit: 'cover' }}
+            sx={{ 
+              objectFit: 'cover',
+              width: { xs: '100%', md: 200 },
+              height: { xs: 180, md: 'auto' }
+            }}
           />
           <CardContent sx={{ 
             flex: 1, 

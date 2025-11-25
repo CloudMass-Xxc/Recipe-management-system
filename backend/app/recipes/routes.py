@@ -2,8 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 from typing import List, Optional
 from app.core.database import get_db
-from app.auth.dependencies import get_current_user, get_current_active_user
-from app.auth.exceptions import PermissionDeniedException
+from app.auth.dependencies import get_current_user
 from app.models.user import User
 from app.recipes.schemas import (
     RecipeBase, RecipeCreate, RecipeUpdate, RecipeResponse, RecipeListItem,
@@ -19,7 +18,7 @@ router = APIRouter(prefix="/recipes", tags=["recipes"])
 async def create_recipe(
     recipe: RecipeCreate,
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_active_user)
+    current_user: User = Depends(get_current_user)
 ):
     """
     创建新食谱
@@ -60,7 +59,7 @@ async def create_recipe(
 @router.get("/user", response_model=List[RecipeListItem])
 async def get_user_recipes(
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_active_user)
+    current_user: User = Depends(get_current_user)
 ):
     """
     获取当前用户的食谱列表
@@ -181,7 +180,7 @@ async def update_recipe(
     recipe_id: str,
     recipe_update: RecipeUpdate,
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_active_user)
+    current_user: User = Depends(get_current_user)
 ):
     """
     更新食谱
@@ -193,7 +192,7 @@ async def update_recipe(
     
     # 检查权限
     if recipe.author_id != current_user.user_id and not current_user.is_superuser:
-        raise PermissionDeniedException("You can only update your own recipes")
+        raise HTTPException(status_code=403, detail="You can only update your own recipes")
     
     # 更新食谱
     recipe_data = recipe_update.model_dump(exclude_unset=True)
@@ -235,7 +234,7 @@ async def update_recipe(
 async def delete_recipe(
     recipe_id: str,
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_active_user)
+    current_user: User = Depends(get_current_user)
 ):
     """
     删除食谱
@@ -247,7 +246,7 @@ async def delete_recipe(
     
     # 检查权限
     if recipe.author_id != current_user.user_id and not current_user.is_superuser:
-        raise PermissionDeniedException("You can only delete your own recipes")
+        raise HTTPException(status_code=403, detail="You can only delete your own recipes")
     
     # 删除食谱
     success = RecipeService.delete_recipe(db, recipe_id)
@@ -261,7 +260,7 @@ async def delete_recipe(
 async def favorite_recipe(
     recipe_id: str,
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_active_user)
+    current_user: User = Depends(get_current_user)
 ):
     """
     收藏食谱
@@ -287,7 +286,7 @@ async def favorite_recipe(
 async def unfavorite_recipe(
     recipe_id: str,
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_active_user)
+    current_user: User = Depends(get_current_user)
 ):
     """
     取消收藏食谱
@@ -304,7 +303,7 @@ async def rate_recipe(
     recipe_id: str,
     rating_data: RatingCreate,
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_active_user)
+    current_user: User = Depends(get_current_user)
 ):
     """
     评分食谱
@@ -370,7 +369,7 @@ async def get_user_favorites(
     skip: int = Query(0, ge=0),
     limit: int = Query(20, ge=1, le=100),
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_active_user)
+    current_user: User = Depends(get_current_user)
 ):
     """
     获取用户收藏的食谱列表

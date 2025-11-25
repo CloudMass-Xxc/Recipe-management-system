@@ -24,6 +24,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
     { text: '生成食谱', path: '/generate', icon: <EditIcon /> },
     { text: '我的食谱', path: '/my-recipes', icon: <RecipeIcon /> },
     { text: '收藏夹', path: '/favorites', icon: <FavoriteIcon /> },
+    { text: '个人资料', path: '/profile', icon: <PersonIcon /> },
   ];
 
   const authItems = [

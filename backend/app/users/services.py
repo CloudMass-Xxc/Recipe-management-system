@@ -2,7 +2,6 @@ from sqlalchemy.orm import Session
 from typing import List, Optional
 from app.models.user import User
 from app.auth.password import get_password_hash
-from app.auth.exceptions import UserNotFoundException, UserAlreadyExistsException
 
 class UserService:
     """
@@ -86,11 +85,11 @@ class UserService:
             更新后的用户对象
         
         Raises:
-            UserNotFoundException: 如果用户不存在
+            ValueError: 如果用户不存在
         """
         user = UserService.get_user_by_id(db, user_id)
         if not user:
-            raise UserNotFoundException()
+            raise ValueError(f"User with id {user_id} not found")
         
         # 如果包含密码字段，需要哈希处理
         if "password" in kwargs:
@@ -117,9 +116,6 @@ class UserService:
         
         Returns:
             更新后的用户对象
-        
-        Raises:
-            UserNotFoundException: 如果用户不存在
         """
         return UserService.update_user(db, user_id, is_active=False)
     
@@ -134,9 +130,6 @@ class UserService:
         
         Returns:
             更新后的用户对象
-        
-        Raises:
-            UserNotFoundException: 如果用户不存在
         """
         return UserService.update_user(db, user_id, is_active=True)
     

@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, Request
 from sqlalchemy.orm import Session
 from typing import Dict, Any
 from app.core.database import get_db
-from app.auth.dependencies import get_current_active_user
+from app.auth.dependencies import get_current_user
 from app.models.user import User
 from app.ai_service.schemas import (
     RecipeGenerationRequest,
@@ -57,7 +57,7 @@ async def get_ai_service_status():
 @router.post("/generate-recipe", response_model=RecipeResponse)
 async def generate_recipe(
     request: RecipeGenerationRequest,
-    # current_user: User = Depends(get_current_active_user)
+    current_user: User = Depends(get_current_user)
 ):
     """
     生成个性化食谱
@@ -135,7 +135,7 @@ async def generate_recipe(
 @router.post("/enhance-recipe", response_model=RecipeResponse)
 async def enhance_recipe(
     request: RecipeEnhancementRequest,
-    current_user: User = Depends(get_current_active_user)
+    current_user: User = Depends(get_current_user)
 ):
     """
     增强或修改现有食谱
@@ -160,7 +160,7 @@ async def enhance_recipe(
 async def save_generated_recipe(
     request: SaveRecipeRequest,
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_active_user)
+    current_user: User = Depends(get_current_user)
 ) -> Dict[str, Any]:
     """
     保存AI生成的食谱到用户账户
@@ -199,7 +199,7 @@ async def save_generated_recipe(
 @router.post("/analyze-nutrition")
 async def analyze_nutrition(
     ingredients: list[dict],
-    current_user: User = Depends(get_current_active_user)
+    current_user: User = Depends(get_current_user)
 ) -> Dict[str, Any]:
     """
     分析食材的营养成分

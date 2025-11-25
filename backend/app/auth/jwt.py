@@ -13,7 +13,7 @@ def create_access_token(data: Dict[str, Any], expires_delta: Optional[timedelta]
         expires_delta: 过期时间增量
     
     Returns:
-        JWT令牌
+        JWT访问令牌
     """
     to_encode = data.copy()
     if expires_delta:
@@ -21,7 +21,35 @@ def create_access_token(data: Dict[str, Any], expires_delta: Optional[timedelta]
     else:
         expire = datetime.utcnow() + timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
     
-    to_encode.update({"exp": expire})
+    to_encode.update({
+        "exp": expire,
+        "iat": datetime.utcnow(),
+        "sub": str(data.get("sub"))  # 确保用户ID是字符串类型
+    })
+    
+    encoded_jwt = jwt.encode(to_encode, settings.SECRET_KEY, algorithm=settings.ALGORITHM)
+    return encoded_jwt
+
+# 生成刷新令牌
+def create_refresh_token(data: Dict[str, Any]) -> str:
+    """
+    创建刷新令牌
+    
+    Args:
+        data: 要编码的数据
+    
+    Returns:
+        JWT刷新令牌
+    """
+    to_encode = data.copy()
+    expire = datetime.utcnow() + timedelta(days=settings.REFRESH_TOKEN_EXPIRE_DAYS)
+    
+    to_encode.update({
+        "exp": expire,
+        "iat": datetime.utcnow(),
+        "sub": str(data.get("sub"))  # 确保用户ID是字符串类型
+    })
+    
     encoded_jwt = jwt.encode(to_encode, settings.SECRET_KEY, algorithm=settings.ALGORITHM)
     return encoded_jwt
 
@@ -41,19 +69,23 @@ def verify_token(token: str) -> Optional[Dict[str, Any]]:
         return payload
     except JWTError:
         return None
+    except Exception:
+        return None
 
-# 获取令牌中的用户ID
-def get_user_id_from_token(token: str) -> Optional[str]:
+# 刷新访问令牌
+def refresh_access_token(refresh_token: str) -> Optional[str]:
     """
-    从令牌中获取用户ID
+    使用刷新令牌生成新的访问令牌
     
     Args:
-        token: JWT令牌
+        refresh_token: JWT刷新令牌
     
     Returns:
-        用户ID，如果令牌无效则返回None
+        新的访问令牌，如果刷新令牌无效则返回None
     """
-    payload = verify_token(token)
-    if payload and "sub" in payload:
-        return payload["sub"]
-    return None
+    payload = verify_token(refresh_token)
+    if not payload or "sub" not in payload:
+        return None
+    
+    user_id = payload["sub"]
+    return create_access_token(data={"sub": user_id})

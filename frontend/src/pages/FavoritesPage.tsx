@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../redux/hooks';
-import { fetchRecipes, toggleFavorite } from '../redux/slices/recipeSlice';
+import { fetchRecipes, addToFavorites, removeFromFavorites } from '../redux/slices/recipeSlice';
 // import { Favorite, FavoriteBorder, ArrowBack } from '@mui/icons-material';
 
 interface Recipe {
@@ -52,7 +52,12 @@ const FavoritesPage: React.FC = () => {
 
   const handleToggleFavorite = (event: React.MouseEvent, recipeId: string) => {
     event.stopPropagation();
-    dispatch(toggleFavorite(recipeId));
+    const recipe = recipes.find(r => r.id === recipeId);
+    if (recipe && 'isFavorite' in recipe && recipe.isFavorite) {
+      dispatch(removeFromFavorites(recipeId));
+    } else {
+      dispatch(addToFavorites(recipeId));
+    }
   };
 
   const handleBack = () => {

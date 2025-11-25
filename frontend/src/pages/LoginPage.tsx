@@ -3,14 +3,17 @@ import { Box, TextField, Button, Typography, Container, Paper, useMediaQuery, us
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../redux/hooks';
+import { login } from '../redux/slices/authSlice';
 
 interface LoginFormValues {
-  username: string;
+  identifier: string;
   password: string;
 }
 
 const LoginSchema = Yup.object().shape({
-  username: Yup.string().required('用户名不能为空'),
+  identifier: Yup.string()
+    .required('请输入手机号、邮箱或用户名'),
   password: Yup.string().required('密码不能为空'),
 });
 
@@ -18,15 +21,15 @@ const LoginPage: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const handleSubmit = async (values: LoginFormValues) => {
     try {
-      // 模拟登录请求
-      console.log('登录请求:', values);
-      // 这里将在配置API服务后替换为实际的登录API调用
+      await dispatch(login(values)).unwrap();
       navigate('/');
-    } catch (error) {
-      console.error('登录失败:', error);
+    } catch (error: any) {
+      const errorMessage = error?.message || '登录失败，请检查您的账号和密码';
+      alert(errorMessage);
     }
   };
 
@@ -37,7 +40,7 @@ const LoginPage: React.FC = () => {
             登录
           </Typography>
           <Formik
-            initialValues={{ username: '', password: '' }}
+            initialValues={{ identifier: '', password: '' }}
             validationSchema={LoginSchema}
             onSubmit={handleSubmit}
           >
@@ -47,10 +50,10 @@ const LoginPage: React.FC = () => {
                   <Field
                     as={TextField}
                     fullWidth
-                    label="用户名"
-                    name="username"
-                    error={touched.username && !!errors.username}
-                    helperText={touched.username && errors.username}
+                    label="手机号 / 邮箱 / 用户名"
+                    name="identifier"
+                    error={touched.identifier && !!errors.identifier}
+                    helperText={touched.identifier && errors.identifier}
                     variant="outlined"
                     margin={isMobile ? "dense" : "normal"}
                     size={isMobile ? "small" : "medium"}

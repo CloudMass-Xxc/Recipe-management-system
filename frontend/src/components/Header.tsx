@@ -1,21 +1,45 @@
 import React, { useState } from 'react';
 import { AppBar, Toolbar, Typography, Button, Box, useMediaQuery, useTheme, Drawer, IconButton } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import { logout } from '../redux/slices/authSlice';
 
 const Header: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const isTablet = useMediaQuery(theme.breakpoints.down('md'));
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   const navigate = useNavigate();
+  const dispatch = useDispatch<any>();
   
-  const handleNavigate = (path: string) => {
-    console.log('导航到路径:', path); // 调试日志
+  // 从Redux store获取用户认证状态
+  const { user, isAuthenticated } = useSelector((state: any) => state.auth);
+  
+  // 检查localStorage中的token，作为额外的登录状态判断
+  const isLoggedInFromStorage = localStorage.getItem('auth_token') !== null;
+  
+  // 实际的登录状态，结合Redux和localStorage
+  const isActuallyAuthenticated = isAuthenticated || isLoggedInFromStorage;
+  
+  const handleLogout = () => {
+    // 清除localStorage中的token
+    localStorage.removeItem('auth_token');
+    // 调用Redux的logout action
+    dispatch(logout());
     setMobileMenuOpen(false); // 关闭移动菜单
-    navigate(path); // 使用navigate进行导航
+
+    // 刷新页面以确保状态完全重置
+    window.location.reload();
+  };
+  
+
+  
+  const handleAuthNavigate = (path: string) => {
+    navigate(path);
   };
 
   // 导航链接配置
@@ -23,12 +47,8 @@ const Header: React.FC = () => {
     { label: '首页', path: '/' },
     { label: '生成食谱', path: '/generate' },
     { label: '我的食谱', path: '/my-recipes' },
-  ];
-
-  // 用户操作链接
-  const userLinks = [
-    { label: '登录', path: '/login', variant: 'outlined' },
-    { label: '注册', path: '/register', variant: 'contained' }
+    { label: '收藏夹', path: '/favorites' },
+    { label: '个人资料', path: '/profile' },
   ];
 
   // 移动菜单内容
@@ -60,34 +80,70 @@ const Header: React.FC = () => {
         ))}
       </Box>
       <Box sx={{ p: 2, borderTop: 1, borderColor: 'divider', display: 'flex', flexDirection: 'column', gap: 2 }}>
-        {userLinks.map((link, index) => (
-          <Button 
-            key={index} 
-            component={Link} 
-            to={link.path}
-            onClick={() => setMobileMenuOpen(false)}
-            variant={link.variant}
-            fullWidth
-            sx={{
-              textTransform: 'none',
-              fontWeight: 500,
-              ...(link.variant === 'outlined' && { 
+        {isAuthenticated && user ? (
+          <>
+            <Typography variant="body1" sx={{ mb: 1, color: '#666', textAlign: 'center' }}>
+              欢迎回来，{user.username}
+            </Typography>
+            <Button 
+              variant="outlined"
+              fullWidth
+              onClick={handleLogout}
+              sx={{
+                textTransform: 'none',
+                fontWeight: 500,
                 borderColor: '#1976d2',
                 color: '#1976d2',
                 '&:hover': { 
                   borderColor: '#1565c0',
                   color: '#1565c0'
                 }
-              }),
-              ...(link.variant === 'contained' && { 
-                bgcolor: '#1976d2',
-                '&:hover': { bgcolor: '#1565c0' }
-              })
-            }}
-          >
-            {link.label}
-          </Button>
-        ))}
+              }}
+            >
+              退出登录
+            </Button>
+          </>
+        ) : (
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+            <Button 
+              onClick={() => {
+                setMobileMenuOpen(false);
+                navigate('/login');
+              }}
+              variant="outlined"
+              fullWidth
+              sx={{
+                textTransform: 'none',
+                fontWeight: 500,
+                borderColor: '#1976d2',
+                color: '#1976d2',
+                '&:hover': { 
+                  borderColor: '#1565c0',
+                  color: '#1565c0'
+                }
+              }}
+            >
+              登录
+            </Button>
+            <Button 
+              onClick={() => {
+                setMobileMenuOpen(false);
+                navigate('/register');
+              }}
+              fullWidth
+              sx={{
+                textTransform: 'none',
+                fontWeight: 500,
+                color: '#1976d2',
+                '&:hover': { 
+                  bgcolor: 'rgba(25,118,210,0.08)'
+                }
+              }}
+            >
+              注册
+            </Button>
+          </Box>
+        )}
       </Box>
     </Box>
   );
@@ -160,33 +216,51 @@ const Header: React.FC = () => {
                   {link.label}
                 </Button>
               ))}
-              {userLinks.map((link, index) => (
-                <Button 
-                  key={index}
-                  color="inherit" 
-                  component={Link} 
-                  to={link.path}
-                  variant={link.variant}
-                  size={isTablet ? "small" : "medium"}
-                  sx={{ 
-                    textTransform: 'none',
-                    borderColor: link.variant === 'outlined' ? 'white' : 'transparent',
+              {isActuallyAuthenticated ? (
+                <Box
+                  sx={{
                     color: 'white',
-                    minWidth: { xs: 60, sm: 'auto' },
+                    cursor: 'pointer',
+                    px: 2,
+                    py: 0.5,
+                    borderRadius: 1,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 0.5,
                     '&:hover': { 
-                      ...(link.variant === 'outlined' && { 
-                        borderColor: 'rgba(255,255,255,0.8)',
-                        bgcolor: 'rgba(255,255,255,0.1)' 
-                      }),
-                      ...(link.variant === 'contained' && { 
-                        bgcolor: 'rgba(255,255,255,0.3)' 
-                      })
+                      bgcolor: 'rgba(255,255,255,0.1)',
+                      transition: 'background-color 0.2s'
                     }
                   }}
+                  onClick={() => navigate('/profile')}
                 >
-                  {link.label}
-                </Button>
-              ))}
+                  <Typography variant="body1">
+                    {user.username}
+                  </Typography>
+                </Box>
+              ) : (
+                // 只显示登录按钮，点击直接跳转登录页面
+                <Box>
+                  <Button 
+                    color="inherit"
+                    onClick={() => handleAuthNavigate('/login')}
+                    variant="outlined"
+                    size={isTablet ? "small" : "medium"}
+                    sx={{ 
+                      textTransform: 'none',
+                      borderColor: 'white',
+                      color: 'white',
+                      minWidth: { xs: 60, sm: 'auto' },
+                      '&:hover': { 
+                        borderColor: 'rgba(255,255,255,0.8)',
+                        bgcolor: 'rgba(255,255,255,0.1)'
+                      }
+                    }}
+                  >
+                    登录
+                  </Button>
+                </Box>
+                )}
             </Box>
           )}
         </Toolbar>

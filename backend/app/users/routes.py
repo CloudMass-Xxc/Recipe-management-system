@@ -4,13 +4,22 @@ from typing import List, Optional
 from app.core.database import get_db
 from app.auth.dependencies import get_current_user, get_current_superuser
 from app.models.user import User
-from app.auth.schemas import UserInfo, UserUpdate, Message
+from app.auth.schemas import UserResponse, UserUpdate
 from app.users.services import UserService
 
 router = APIRouter(prefix="/users", tags=["用户管理"])
 
+
+@router.get("/me", response_model=UserResponse)
+async def get_current_user_info(current_user: User = Depends(get_current_user)):
+    """
+    获取当前登录用户信息
+    """
+    current_user.user_id = str(current_user.user_id)
+    return current_user
+
 # 获取用户列表（管理员专用）
-@router.get("", response_model=List[UserInfo])
+@router.get("", response_model=List[UserResponse])
 async def get_users(
     skip: int = Query(0, ge=0, description="跳过的记录数"),
     limit: int = Query(100, ge=1, le=1000, description="返回的记录数"),
@@ -25,7 +34,7 @@ async def get_users(
     return users
 
 # 获取特定用户信息
-@router.get("/{user_id}", response_model=UserInfo)
+@router.get("/{user_id}", response_model=UserResponse)
 async def get_user(
     user_id: str,
     current_user: User = Depends(get_current_user),
@@ -53,7 +62,7 @@ async def get_user(
     return user
 
 # 更新用户信息（管理员专用）
-@router.put("/{user_id}", response_model=UserInfo)
+@router.put("/{user_id}", response_model=UserResponse)
 async def update_user(
     user_id: str,
     user_data: UserUpdate,
@@ -80,7 +89,7 @@ async def update_user(
         )
 
 # 停用用户（管理员专用）
-@router.put("/{user_id}/deactivate", response_model=Message)
+@router.put("/{user_id}/deactivate")
 async def deactivate_user(
     user_id: str,
     current_user: User = Depends(get_current_superuser),
@@ -106,7 +115,7 @@ async def deactivate_user(
         )
 
 # 激活用户（管理员专用）
-@router.put("/{user_id}/activate", response_model=Message)
+@router.put("/{user_id}/activate")
 async def activate_user(
     user_id: str,
     current_user: User = Depends(get_current_superuser),
@@ -125,7 +134,7 @@ async def activate_user(
         )
 
 # 搜索用户
-@router.get("/search/query", response_model=List[UserInfo])
+@router.get("/search/query", response_model=List[UserResponse])
 async def search_users(
     q: str = Query(..., min_length=1, description="搜索关键词"),
     skip: int = Query(0, ge=0, description="跳过的记录数"),

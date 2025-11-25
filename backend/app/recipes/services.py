@@ -8,8 +8,7 @@ from app.models.nutrition_info import NutritionInfo
 from app.models.favorite import Favorite
 from app.models.rating import Rating
 from app.models.user import User
-from app.auth.password import generate_recipe_id
-from app.auth.exceptions import UserNotFoundException
+from app.core.utils import generate_recipe_id
 
 class RecipeService:
     """
