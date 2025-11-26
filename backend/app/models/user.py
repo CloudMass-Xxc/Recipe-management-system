@@ -1,12 +1,14 @@
 from sqlalchemy import Column, String, Text, DateTime, Boolean, JSON, Integer
+from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
 from app.core.database import Base
+import uuid
 
 class User(Base):
     __tablename__ = "users"
     
-    user_id = Column(String(36), primary_key=True, index=True, comment="用户ID")
+    user_id = Column(UUID(as_uuid=True), primary_key=True, index=True, default=uuid.uuid4, comment="用户ID")
     username = Column(String(100), unique=True, index=True, nullable=False, comment="用户名")
     email = Column(String(255), unique=True, index=True, nullable=False, comment="邮箱")
     phone = Column(String(20), unique=True, nullable=True, index=True, comment="手机号")

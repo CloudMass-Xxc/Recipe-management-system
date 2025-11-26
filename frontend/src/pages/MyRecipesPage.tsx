@@ -65,21 +65,13 @@ const MyRecipesPage: React.FC = () => {
   const confirmDeleteRecipe = async () => {
     if (deletingRecipeId) {
       try {
-        // 调用后端API删除食谱
-        const response = await fetch(`http://localhost:8000/recipes/${deletingRecipeId}`, {
-          method: 'DELETE',
-          credentials: 'include',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error('删除食谱失败');
-        }
+        // 调用API删除食谱
+        await recipeAPI.deleteUserRecipe(deletingRecipeId);
 
         // 从状态中移除已删除的食谱
         setUserRecipes(prevRecipes => prevRecipes.filter(recipe => recipe.id !== deletingRecipeId));
+        // 显示删除成功提示
+        setError(null);
       } catch (err) {
         console.error('删除食谱失败:', err);
         setError('删除食谱失败，请稍后重试');

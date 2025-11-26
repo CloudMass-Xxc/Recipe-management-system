@@ -32,24 +32,25 @@ async def create_recipe(
     
     # 构建响应数据
     return RecipeResponse(
-        recipe_id=full_recipe.recipe_id,
+        recipe_id=str(full_recipe.recipe_id),
         title=full_recipe.title,
         description=full_recipe.description,
         instructions=full_recipe.instructions,
-        prep_time=full_recipe.prep_time,
         cooking_time=full_recipe.cooking_time,
         servings=full_recipe.servings,
         difficulty=full_recipe.difficulty,
         tags=full_recipe.tags,
         image_url=full_recipe.image_url,
         nutrition_info=NutritionInfoResponse(
+            nutrition_id=full_recipe.nutrition_info.nutrition_id,
+            recipe_id=str(full_recipe.nutrition_info.recipe_id),
             calories=full_recipe.nutrition_info.calories,
             protein=full_recipe.nutrition_info.protein,
-            carbs=full_recipe.nutrition_info.carbs,
+            carbohydrates=full_recipe.nutrition_info.carbs,
             fat=full_recipe.nutrition_info.fat,
             fiber=full_recipe.nutrition_info.fiber
         ) if full_recipe.nutrition_info else None,
-        author_id=full_recipe.author_id,
+        author_id=str(full_recipe.author_id),
         author_name=full_recipe.author.username,
         created_at=full_recipe.created_at,
         updated_at=full_recipe.updated_at
@@ -72,15 +73,14 @@ async def get_user_recipes(
     # 构建响应
     return [
         RecipeListItem(
-            recipe_id=recipe.recipe_id,
+            recipe_id=str(recipe.recipe_id),
             title=recipe.title,
             description=recipe.description,
-            prep_time=recipe.prep_time,
             cooking_time=recipe.cooking_time,
             difficulty=recipe.difficulty,
             tags=recipe.tags,
             image_url=recipe.image_url,
-            author_id=recipe.author_id,
+            author_id=str(recipe.author_id),
             author_name=recipe.author.username,
             created_at=recipe.created_at
         )
@@ -121,16 +121,13 @@ async def get_recipes(
     # 构建响应
     return [
         RecipeListItem(
-            recipe_id=recipe.recipe_id,
+            recipe_id=str(recipe.recipe_id),
             title=recipe.title,
             description=recipe.description,
-            prep_time=recipe.prep_time,
             cooking_time=recipe.cooking_time,
             difficulty=recipe.difficulty,
-            tags=recipe.tags,
-            image_url=recipe.image_url,
-            author_id=recipe.author_id,
             author_name=recipe.author.username,
+            image_url=recipe.image_url,
             created_at=recipe.created_at
         )
         for recipe in recipes
@@ -151,24 +148,25 @@ async def get_recipe(
     
     # 构建响应数据
     return RecipeResponse(
-        recipe_id=recipe.recipe_id,
+        recipe_id=str(recipe.recipe_id),
         title=recipe.title,
         description=recipe.description,
         instructions=recipe.instructions,
-        prep_time=recipe.prep_time,
         cooking_time=recipe.cooking_time,
         servings=recipe.servings,
         difficulty=recipe.difficulty,
         tags=recipe.tags,
         image_url=recipe.image_url,
         nutrition_info=NutritionInfoResponse(
+            nutrition_id=recipe.nutrition_info.nutrition_id,
+            recipe_id=str(recipe.nutrition_info.recipe_id),
             calories=recipe.nutrition_info.calories,
             protein=recipe.nutrition_info.protein,
-            carbs=recipe.nutrition_info.carbs,
+            carbohydrates=recipe.nutrition_info.carbs,
             fat=recipe.nutrition_info.fat,
             fiber=recipe.nutrition_info.fiber
         ) if recipe.nutrition_info else None,
-        author_id=recipe.author_id,
+        author_id=str(recipe.author_id),
         author_name=recipe.author.username,
         created_at=recipe.created_at,
         updated_at=recipe.updated_at
@@ -206,24 +204,25 @@ async def update_recipe(
     
     # 构建响应
     return RecipeResponse(
-        recipe_id=full_recipe.recipe_id,
+        recipe_id=str(full_recipe.recipe_id),
         title=full_recipe.title,
         description=full_recipe.description,
         instructions=full_recipe.instructions,
-        prep_time=full_recipe.prep_time,
         cooking_time=full_recipe.cooking_time,
         servings=full_recipe.servings,
         difficulty=full_recipe.difficulty,
         tags=full_recipe.tags,
         image_url=full_recipe.image_url,
         nutrition_info=NutritionInfoResponse(
+            nutrition_id=full_recipe.nutrition_info.nutrition_id,
+            recipe_id=str(full_recipe.nutrition_info.recipe_id),
             calories=full_recipe.nutrition_info.calories,
             protein=full_recipe.nutrition_info.protein,
-            carbs=full_recipe.nutrition_info.carbs,
+            carbohydrates=full_recipe.nutrition_info.carbs,
             fat=full_recipe.nutrition_info.fat,
             fiber=full_recipe.nutrition_info.fiber
         ) if full_recipe.nutrition_info else None,
-        author_id=full_recipe.author_id,
+        author_id=str(full_recipe.author_id),
         author_name=full_recipe.author.username,
         created_at=full_recipe.created_at,
         updated_at=full_recipe.updated_at
@@ -276,7 +275,8 @@ async def favorite_recipe(
         raise HTTPException(status_code=400, detail="Already favorited")
     
     return FavoriteResponse(
-        user_id=current_user.user_id,
+        favorite_id=str(favorite.favorite_id),
+        user_id=str(current_user.user_id),
         recipe_id=recipe_id,
         created_at=favorite.created_at
     )
@@ -323,12 +323,13 @@ async def rate_recipe(
     )
     
     return RatingResponse(
-        user_id=current_user.user_id,
+        rating_id=rating.rating_id,
+        user_id=str(current_user.user_id),
         recipe_id=recipe_id,
         score=rating.score,
         comment=rating.comment,
         created_at=rating.created_at,
-        username=current_user.username
+        user_name=current_user.username
     )
 
 
@@ -353,12 +354,13 @@ async def get_recipe_ratings(
     # 构建响应
     return [
         RatingResponse(
-            user_id=rating.user_id,
+            rating_id=rating.rating_id,
+            user_id=str(rating.user_id),
             recipe_id=rating.recipe_id,
             score=rating.score,
             comment=rating.comment,
             created_at=rating.created_at,
-            username=rating.user.username
+            user_name=rating.user.username
         )
         for rating in ratings
     ]
@@ -379,16 +381,13 @@ async def get_user_favorites(
     # 构建响应
     return [
         RecipeListItem(
-            recipe_id=favorite.recipe.recipe_id,
+            recipe_id=str(favorite.recipe.recipe_id),
             title=favorite.recipe.title,
             description=favorite.recipe.description,
-            prep_time=favorite.recipe.prep_time,
             cooking_time=favorite.recipe.cooking_time,
             difficulty=favorite.recipe.difficulty,
-            tags=favorite.recipe.tags,
-            image_url=favorite.recipe.image_url,
-            author_id=favorite.recipe.author_id,
             author_name=favorite.recipe.author.username,
+            image_url=favorite.recipe.image_url,
             created_at=favorite.recipe.created_at
         )
         for favorite in favorites

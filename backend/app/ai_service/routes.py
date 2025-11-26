@@ -21,6 +21,7 @@ from app.ai_service.exceptions import (
 )
 from app.recipes.services import RecipeService
 from app.ai_service.config import get_ai_settings
+from app.models.recipe import Recipe
 import logging
 
 # 配置日志
@@ -179,15 +180,44 @@ async def save_generated_recipe(
         
         # 移除不需要的字段
         recipe_data.pop("tips", None)
+        recipe_data.pop("prep_time", None)
         
         # 保存食谱
         new_recipe = RecipeService.create_recipe(db, current_user.user_id, recipe_data)
         
-        return {
-            "success": True,
-            "recipe_id": new_recipe.recipe_id,
-            "message": "Recipe saved successfully"
+        # 获取完整的食谱数据（包括关联信息）
+        full_recipe = RecipeService.get_recipe_by_id(db, new_recipe.recipe_id)
+        
+        # 将SQLAlchemy模型转换为字典，确保包含所有必要字段
+        result = {
+            "recipe_id": full_recipe.recipe_id,
+            "title": full_recipe.title,
+            "description": full_recipe.description,
+            "difficulty": full_recipe.difficulty,
+            "cooking_time": full_recipe.cooking_time,
+            "servings": full_recipe.servings,
+            "instructions": full_recipe.instructions,
+            "ingredients": full_recipe.ingredients,
+            "created_at": full_recipe.created_at.isoformat() if full_recipe.created_at else None,
+            "updated_at": full_recipe.updated_at.isoformat() if full_recipe.updated_at else None,
+            "author_id": full_recipe.author_id
         }
+        
+        # 添加营养信息
+        if full_recipe.nutrition_info:
+            result["nutrition_info"] = {
+                "calories": full_recipe.nutrition_info.calories,
+                "protein": full_recipe.nutrition_info.protein,
+                "carbs": full_recipe.nutrition_info.carbs,
+                "fat": full_recipe.nutrition_info.fat,
+                "fiber": full_recipe.nutrition_info.fiber
+            }
+        
+        # 添加标签
+        if full_recipe.tags:
+            result["tags"] = full_recipe.tags
+        
+        return result
         
     except Exception as e:
         raise HTTPException(

@@ -1,4 +1,5 @@
 from sqlalchemy import Column, String, Integer, Text, DateTime, ForeignKey, UniqueConstraint
+from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
 from app.core.database import Base
@@ -7,8 +8,8 @@ class Rating(Base):
     __tablename__ = "ratings"
     
     rating_id = Column(Integer, primary_key=True, index=True, autoincrement=True, comment="评分ID")
-    user_id = Column(String(36), ForeignKey("users.user_id", ondelete="CASCADE"), nullable=False, comment="用户ID")
-    recipe_id = Column(String(36), ForeignKey("recipes.recipe_id", ondelete="CASCADE"), nullable=False, comment="食谱ID")
+    user_id = Column(UUID(as_uuid=True), ForeignKey("users.user_id", ondelete="CASCADE"), nullable=False, comment="用户ID")
+    recipe_id = Column(UUID(as_uuid=True), ForeignKey("recipes.recipe_id", ondelete="CASCADE"), nullable=False, comment="食谱ID")
     score = Column(Integer, nullable=False, comment="评分(1-5)")
     comment = Column(Text, nullable=True, comment="评论")
     created_at = Column(DateTime(timezone=True), server_default=func.now(), comment="评分时间")

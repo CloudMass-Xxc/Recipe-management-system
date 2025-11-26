@@ -38,8 +38,9 @@ interface RecipeGenerateParams {
   cuisine?: string;
 }
 
+// 使用更可靠的占位图片服务
 const PLACEHOLDER_IMG = (title: string) =>
-  `https://via.placeholder.com/400x300?text=${encodeURIComponent(title)}`;
+  `https://placehold.co/400x300?text=${encodeURIComponent(title)}`;
 
 const formatCookTime = (minutes?: number) =>
   typeof minutes === 'number' && minutes > 0 ? `${minutes}分钟` : '未知';
@@ -123,7 +124,7 @@ class RecipeAPI {
       }
 
       const response = await api.get('/recipes', { params });
-      return Array.isArray(response) ? response.map(normalizeRecipeSummary) : [];
+      return Array.isArray(response.data) ? response.data.map(normalizeRecipeSummary) : [];
     } catch (error) {
       console.error('获取食谱列表失败:', error);
       throw error;
@@ -134,7 +135,7 @@ class RecipeAPI {
   static async getRecipeById(recipeId: string): Promise<RecipeDetail> {
     try {
       const response = await api.get(`/recipes/${recipeId}`);
-      return normalizeRecipeDetail(response);
+      return normalizeRecipeDetail(response.data);
     } catch (error) {
       console.error(`获取食谱详情失败 (ID: ${recipeId}):`, error);
       throw error;
@@ -156,7 +157,7 @@ class RecipeAPI {
       };
 
       const response = await api.post('/ai/generate-recipe', payload);
-      return normalizeRecipeDetail(response);
+      return normalizeRecipeDetail(response.data);
     } catch (error) {
       console.error('生成食谱失败:', error);
       throw error;
@@ -187,7 +188,7 @@ class RecipeAPI {
   static async getFavoriteRecipes(): Promise<Recipe[]> {
     try {
       const response = await api.get('/recipes/user/favorites');
-      return Array.isArray(response) ? response.map((recipe: any) => normalizeRecipeSummary(recipe.recipe || recipe)) : [];
+      return Array.isArray(response.data) ? response.data.map((recipe: any) => normalizeRecipeSummary(recipe.recipe || recipe)) : [];
     } catch (error) {
       console.error('获取收藏食谱失败:', error);
       throw error;
@@ -198,9 +199,69 @@ class RecipeAPI {
   static async getUserRecipes(): Promise<Recipe[]> {
     try {
       const response = await api.get('/recipes/user');
-      return Array.isArray(response) ? response.map(normalizeRecipeSummary) : [];
+      return Array.isArray(response.data) ? response.data.map(normalizeRecipeSummary) : [];
     } catch (error) {
       console.error('获取用户食谱失败:', error);
+      throw error;
+    }
+  }
+
+  // 删除用户食谱
+  static async deleteUserRecipe(recipeId: string): Promise<void> {
+    try {
+      await api.delete(`/recipes/${recipeId}`);
+    } catch (error) {
+      console.error(`删除食谱失败 (ID: ${recipeId}):`, error);
+      throw error;
+    }
+  }
+
+  // 保存生成的食谱到用户食谱
+  static async saveGeneratedRecipe(recipeData: any): Promise<RecipeDetail> {
+    try {
+      console.log('开始保存食谱，原始数据:', recipeData);
+      
+      // 准备食谱数据，确保与后端RecipeResponse模型兼容
+      const processedRecipeData = {
+        ...recipeData,
+        // 确保instructions是数组格式（后端期望数组而不是字符串）
+        instructions: Array.isArray(recipeData.instructions) 
+          ? recipeData.instructions // 保持数组格式
+          : recipeData.instructions?.split('\n') || [], // 如果是字符串，分割成数组
+        // 确保nutrition_info包含所有必需字段
+        nutrition_info: {
+          calories: recipeData.nutrition_info?.calories || 0,
+          protein: recipeData.nutrition_info?.protein || 0,
+          carbs: recipeData.nutrition_info?.carbs || 0,
+          fat: recipeData.nutrition_info?.fat || 0,
+          fiber: recipeData.nutrition_info?.fiber || 0
+        },
+        // 移除可能导致冲突的tips字段（后端不使用）
+        tips: undefined
+      };
+      
+      console.log('处理后的食谱数据:', processedRecipeData);
+      
+      // 构建符合后端SaveRecipeRequest模型的请求体
+      const requestBody = {
+        recipe_data: processedRecipeData,
+        share_with_community: false
+      };
+      
+      console.log('保存食谱请求URL:', '/ai/save-generated-recipe');
+      console.log('保存食谱请求体:', JSON.stringify(requestBody, null, 2));
+      
+      // 发送请求
+      const response = await api.post('/ai/save-generated-recipe', requestBody);
+      
+      console.log('保存食谱响应状态:', response.status);
+      console.log('保存食谱响应数据:', response.data);
+      
+      return normalizeRecipeDetail(response.data);
+    } catch (error: any) {
+      console.error('保存生成食谱失败:', error);
+      console.error('错误详情:', error.response?.data || error.message || error);
+      // 重新抛出错误，保留原始错误信息
       throw error;
     }
   }
@@ -217,3 +278,5 @@ export const addToFavorites = RecipeAPI.addToFavorites;
 export const removeFromFavorites = RecipeAPI.removeFromFavorites;
 export const getFavoriteRecipes = RecipeAPI.getFavoriteRecipes;
 export const getUserRecipes = RecipeAPI.getUserRecipes;
+export const saveGeneratedRecipe = RecipeAPI.saveGeneratedRecipe;
+export const deleteUserRecipe = RecipeAPI.deleteUserRecipe;

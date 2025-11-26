@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session, joinedload
 from sqlalchemy import or_, and_, func
+from uuid import UUID
 from typing import List, Optional, Dict, Any
 from app.models.recipe import Recipe
 from app.models.ingredient import Ingredient
@@ -16,7 +17,7 @@ class RecipeService:
     """
     
     @staticmethod
-    def create_recipe(db: Session, author_id: str, recipe_data: Dict[str, Any]) -> Recipe:
+    def create_recipe(db: Session, author_id: Any, recipe_data: Dict[str, Any]) -> Recipe:
         """
         创建新食谱
         
@@ -28,58 +29,114 @@ class RecipeService:
         Returns:
             创建的食谱对象
         """
+        import json
+        from sqlalchemy import text
+        
         # 提取营养信息
         nutrition_info = recipe_data.pop("nutrition_info", None)
-        ingredients = recipe_data.pop("ingredients", [])
         
-        # 创建食谱
-        new_recipe = Recipe(
-            recipe_id=generate_recipe_id(),
-            author_id=author_id,
-            **recipe_data
+        # 准备创建食谱的数据
+        title = recipe_data.get("title", "")
+        description = recipe_data.get("description", "")
+        instructions = recipe_data.get("instructions", "")
+        cooking_time = recipe_data.get("cooking_time", 0)
+        servings = recipe_data.get("servings", 1)
+        difficulty = recipe_data.get("difficulty", "easy")
+        ingredients = recipe_data.get("ingredients", [])
+        tags = recipe_data.get("tags", [])
+        image_url = recipe_data.get("image_url")
+        
+        # 转换枚举类型
+        if hasattr(difficulty, "value"):
+            difficulty = difficulty.value
+        
+        # 确保ingredients和tags是列表类型
+        if ingredients is None:
+            ingredients = []
+        if tags is None:
+            tags = []
+        
+        # 生成新的recipe_id
+        from app.core.utils import generate_recipe_id
+        recipe_id = generate_recipe_id()
+        
+        # 使用参数绑定的方式执行INSERT语句
+        # 这样可以确保安全处理JSON数据和所有类型
+        insert_query = text("""
+        INSERT INTO app_schema.recipes (
+            recipe_id, author_id, title, description, instructions, 
+            cooking_time, servings, difficulty, ingredients, tags, 
+            image_url, steps
+        ) VALUES (
+            :recipe_id, :author_id, :title, :description, :instructions, 
+            :cooking_time, :servings, :difficulty, :ingredients, :tags, 
+            :image_url, :steps
         )
-        db.add(new_recipe)
-        db.flush()  # 获取recipe_id但不提交事务
+        """)
+        
+        # 将instructions字符串转换为步骤列表的JSON格式
+        # 按照换行符分割instructions，创建步骤列表
+        steps_list = [step.strip() for step in instructions.split('\n') if step.strip()]
+        steps_json = json.dumps(steps_list)
+        
+        # 执行插入，使用参数绑定
+        db.execute(insert_query, {
+            "recipe_id": recipe_id,
+            "author_id": author_id,
+            "title": title,
+            "description": description,
+            "instructions": instructions,
+            "cooking_time": cooking_time,
+            "servings": servings,
+            "difficulty": difficulty,
+            "ingredients": json.dumps(ingredients),  # 转换为JSON字符串
+            "tags": json.dumps(tags),  # 转换为JSON字符串
+            "image_url": image_url,
+            "steps": steps_json  # steps字段使用JSON格式的步骤列表
+        })
         
         # 创建营养信息
         if nutrition_info:
             new_nutrition = NutritionInfo(
-                recipe_id=new_recipe.recipe_id,
+                recipe_id=recipe_id,
                 **nutrition_info
             )
             db.add(new_nutrition)
         
-        # 处理食材
+        # 处理食材关联表（如果提供了足够的信息）
         for ingredient_data in ingredients:
-            # 查找或创建食材
-            ingredient = db.query(Ingredient).filter(
-                Ingredient.name == ingredient_data["name"]
-            ).first()
-            
-            if not ingredient:
-                ingredient = Ingredient(
-                    name=ingredient_data["name"],
+            # 检查是否有name字段（确保是完整的食材对象）
+            if isinstance(ingredient_data, dict) and "name" in ingredient_data:
+                # 查找或创建食材
+                ingredient = db.query(Ingredient).filter(
+                    Ingredient.name == ingredient_data["name"]
+                ).first()
+                
+                if not ingredient:
+                    ingredient = Ingredient(
+                        name=ingredient_data["name"],
+                        unit=ingredient_data.get("unit")
+                    )
+                    db.add(ingredient)
+                    db.flush()  # 获取ingredient_id
+                
+                # 创建食谱-食材关联
+                recipe_ingredient = RecipeIngredient(
+                    recipe_id=recipe_id,
+                    ingredient_id=ingredient.ingredient_id,
+                    quantity=ingredient_data.get("quantity", 1),
                     unit=ingredient_data.get("unit")
                 )
-                db.add(ingredient)
-                db.flush()  # 获取ingredient_id
-            
-            # 创建食谱-食材关联
-            recipe_ingredient = RecipeIngredient(
-                recipe_id=new_recipe.recipe_id,
-                ingredient_id=ingredient.ingredient_id,
-                quantity=ingredient_data["quantity"],
-                unit=ingredient_data.get("unit"),
-                note=ingredient_data.get("note")
-            )
-            db.add(recipe_ingredient)
+                db.add(recipe_ingredient)
         
         db.commit()
-        db.refresh(new_recipe)
+        
+        # 获取并返回创建的食谱对象
+        new_recipe = RecipeService.get_recipe_by_id(db, recipe_id)
         return new_recipe
     
     @staticmethod
-    def get_recipe_by_id(db: Session, recipe_id: str, load_relationships: bool = True) -> Optional[Recipe]:
+    def get_recipe_by_id(db: Session, recipe_id: Any, load_relationships: bool = True) -> Optional[Recipe]:
         """
         根据ID获取食谱
         
@@ -99,14 +156,22 @@ class RecipeService:
                 joinedload(Recipe.nutrition_info)
             )
         
-        return query.filter(Recipe.recipe_id == recipe_id).first()
+        # 安全地处理recipe_id，无论它是什么类型
+        if isinstance(recipe_id, UUID):
+            # 如果已经是UUID对象，直接使用
+            query = query.filter(Recipe.recipe_id == recipe_id)
+        else:
+            # 否则转换为字符串，然后转换为UUID
+            query = query.filter(Recipe.recipe_id == UUID(str(recipe_id)))
+        
+        return query.first()
     
     @staticmethod
     def get_recipes(
         db: Session,
         skip: int = 0,
         limit: int = 20,
-        author_id: Optional[str] = None,
+        author_id: Optional[Any] = None,
         search_params: Optional[Dict[str, Any]] = None
     ) -> List[Recipe]:
         """
@@ -128,7 +193,11 @@ class RecipeService:
         
         # 按作者筛选
         if author_id:
-            query = query.filter(Recipe.author_id == author_id)
+            # 安全地处理author_id
+            if isinstance(author_id, UUID):
+                query = query.filter(Recipe.author_id == author_id)
+            else:
+                query = query.filter(Recipe.author_id == UUID(str(author_id)))
         
         # 应用搜索条件
         if search_params:
@@ -161,7 +230,7 @@ class RecipeService:
         return query.offset(skip).limit(limit).all()
     
     @staticmethod
-    def update_recipe(db: Session, recipe_id: str, recipe_data: Dict[str, Any]) -> Optional[Recipe]:
+    def update_recipe(db: Session, recipe_id: Any, recipe_data: Dict[str, Any]) -> Optional[Recipe]:
         """
         更新食谱
         
@@ -225,8 +294,7 @@ class RecipeService:
                     recipe_id=recipe.recipe_id,
                     ingredient_id=ingredient.ingredient_id,
                     quantity=ingredient_data["quantity"],
-                    unit=ingredient_data.get("unit"),
-                    note=ingredient_data.get("note")
+                    unit=ingredient_data.get("unit")
                 )
                 db.add(recipe_ingredient)
         
@@ -235,7 +303,7 @@ class RecipeService:
         return recipe
     
     @staticmethod
-    def delete_recipe(db: Session, recipe_id: str) -> bool:
+    def delete_recipe(db: Session, recipe_id: Any) -> bool:
         """
         删除食谱
         
@@ -255,7 +323,7 @@ class RecipeService:
         return True
     
     @staticmethod
-    def favorite_recipe(db: Session, user_id: str, recipe_id: str) -> Optional[Favorite]:
+    def favorite_recipe(db: Session, user_id: Any, recipe_id: Any) -> Optional[Favorite]:
         """
         收藏食谱
         
@@ -267,10 +335,15 @@ class RecipeService:
         Returns:
             创建的收藏记录，如果已收藏则返回None
         """
+        # 安全地转换为UUID类型
+        from uuid import UUID
+        user_id_uuid = user_id if isinstance(user_id, UUID) else UUID(str(user_id))
+        recipe_id_uuid = recipe_id if isinstance(recipe_id, UUID) else UUID(str(recipe_id))
+        
         # 检查是否已收藏
         existing = db.query(Favorite).filter(
-            Favorite.user_id == user_id,
-            Favorite.recipe_id == recipe_id
+            Favorite.user_id == user_id_uuid,
+            Favorite.recipe_id == recipe_id_uuid
         ).first()
         
         if existing:
@@ -278,8 +351,8 @@ class RecipeService:
         
         # 创建收藏记录
         favorite = Favorite(
-            user_id=user_id,
-            recipe_id=recipe_id
+            user_id=user_id_uuid,
+            recipe_id=recipe_id_uuid
         )
         
         db.add(favorite)
@@ -288,7 +361,7 @@ class RecipeService:
         return favorite
     
     @staticmethod
-    def unfavorite_recipe(db: Session, user_id: str, recipe_id: str) -> bool:
+    def unfavorite_recipe(db: Session, user_id: Any, recipe_id: Any) -> bool:
         """
         取消收藏
         
@@ -300,9 +373,14 @@ class RecipeService:
         Returns:
             是否取消成功
         """
+        # 安全地转换为UUID类型
+        from uuid import UUID
+        user_id_uuid = user_id if isinstance(user_id, UUID) else UUID(str(user_id))
+        recipe_id_uuid = recipe_id if isinstance(recipe_id, UUID) else UUID(str(recipe_id))
+        
         favorite = db.query(Favorite).filter(
-            Favorite.user_id == user_id,
-            Favorite.recipe_id == recipe_id
+            Favorite.user_id == user_id_uuid,
+            Favorite.recipe_id == recipe_id_uuid
         ).first()
         
         if not favorite:
@@ -313,7 +391,7 @@ class RecipeService:
         return True
     
     @staticmethod
-    def rate_recipe(db: Session, user_id: str, recipe_id: str, score: int, comment: Optional[str] = None) -> Rating:
+    def rate_recipe(db: Session, user_id: Any, recipe_id: Any, score: int, comment: Optional[str] = None) -> Rating:
         """
         评分食谱
         
@@ -352,7 +430,7 @@ class RecipeService:
         return rating
     
     @staticmethod
-    def get_user_favorites(db: Session, user_id: str, skip: int = 0, limit: int = 20) -> List[Favorite]:
+    def get_user_favorites(db: Session, user_id: Any, skip: int = 0, limit: int = 20) -> List[Favorite]:
         """
         获取用户收藏列表
         
@@ -372,7 +450,7 @@ class RecipeService:
         ).order_by(Favorite.created_at.desc()).offset(skip).limit(limit).all()
     
     @staticmethod
-    def get_recipe_ratings(db: Session, recipe_id: str, skip: int = 0, limit: int = 20) -> List[Rating]:
+    def get_recipe_ratings(db: Session, recipe_id: Any, skip: int = 0, limit: int = 20) -> List[Rating]:
         """
         获取食谱评分列表
         
@@ -392,7 +470,7 @@ class RecipeService:
         ).order_by(Rating.created_at.desc()).offset(skip).limit(limit).all()
     
     @staticmethod
-    def get_average_rating(db: Session, recipe_id: str) -> Optional[float]:
+    def get_average_rating(db: Session, recipe_id: Any) -> Optional[float]:
         """
         获取食谱平均评分
         

@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, Field, field_validator
 from typing import List, Optional, Dict, Any
 from enum import Enum
 
@@ -63,7 +63,8 @@ class NutritionInfo(BaseModel):
     fat: float = Field(..., description="脂肪(克)")
     fiber: float = Field(..., description="膳食纤维(克)")
     
-    @validator('calories', 'protein', 'carbs', 'fat', 'fiber')
+    @field_validator('calories', 'protein', 'carbs', 'fat', 'fiber')
+    @classmethod
     def non_negative(cls, v):
         if v < 0:
             raise ValueError('营养值不能为负数')
@@ -83,7 +84,8 @@ class RecipeGenerationRequest(BaseModel):
     difficulty: Optional[Difficulty] = Field(None, description="难度级别")
     cuisine: Optional[Cuisine] = Field(Cuisine.NONE, description="菜系选择")
     
-    @validator('cooking_time_limit')
+    @field_validator('cooking_time_limit')
+    @classmethod
     def validate_cooking_time(cls, v):
         if v is not None and v <= 0:
             raise ValueError('烹饪时间限制必须大于0')
@@ -96,7 +98,7 @@ class RecipeResponse(BaseModel):
     """
     title: str = Field(..., description="食谱标题")
     description: str = Field(..., description="食谱描述")
-    prep_time: int = Field(..., description="准备时间(分钟)")
+    prep_time: Optional[int] = Field(None, description="准备时间(分钟)")
     cooking_time: int = Field(..., description="烹饪时间(分钟)")
     servings: int = Field(..., description="份量")
     difficulty: Difficulty = Field(..., description="难度级别")
@@ -106,7 +108,8 @@ class RecipeResponse(BaseModel):
     tips: Optional[List[str]] = Field(None, description="烹饪小贴士")
     tags: Optional[List[str]] = Field(None, description="标签")
     
-    @validator('prep_time', 'cooking_time', 'servings')
+    @field_validator('cooking_time', 'servings')
+    @classmethod
     def positive_values(cls, v):
         if v <= 0:
             raise ValueError('时间和份量必须为正数')
@@ -120,7 +123,8 @@ class RecipeEnhancementRequest(BaseModel):
     recipe_data: Dict[str, Any] = Field(..., description="原始食谱数据")
     enhancement_request: str = Field(..., description="增强要求描述")
     
-    @validator('enhancement_request')
+    @field_validator('enhancement_request')
+    @classmethod
     def not_empty(cls, v):
         if not v or not v.strip():
             raise ValueError('增强要求不能为空')

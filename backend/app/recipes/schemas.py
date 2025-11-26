@@ -111,7 +111,7 @@ class RecipeSearchParams(BaseModel):
 
 # 收藏响应模型
 class FavoriteResponse(BaseModel):
-    favorite_id: int = Field(..., description="收藏ID")
+    favorite_id: str = Field(..., description="收藏ID")
     user_id: str = Field(..., description="用户ID")
     recipe_id: str = Field(..., description="食谱ID")
     recipe: Optional[RecipeListItem] = Field(None, description="食谱信息")

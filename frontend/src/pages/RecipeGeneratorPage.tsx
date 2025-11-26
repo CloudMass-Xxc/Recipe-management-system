@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, Input, Select, message } from "antd";
 import api from "../services/api";
+import * as recipeAPI from "../services/recipeAPI";
 const { TextArea } = Input;
 import type { RecipeGenerationRequest, RecipeResponse } from '../types/recipe';
 
@@ -86,7 +87,7 @@ const RecipeGeneratorPage: React.FC = () => {
 
       // 使用原生fetch API直接请求，避免axios拦截器可能的问题
       console.log('准备使用fetch API发送POST请求');
-      const fetchResponse = await fetch('http://localhost:8000/ai/generate-recipe', {
+      const fetchResponse = await fetch('http://localhost:8001/ai/generate-recipe', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -357,7 +358,7 @@ const RecipeGeneratorPage: React.FC = () => {
                 try {
                   // 测试状态API
                   console.log('测试状态API: GET /ai/status');
-                  const statusFetchResponse = await fetch('http://localhost:8000/ai/status');
+                  const statusFetchResponse = await fetch('http://localhost:8001/ai/status');
                   console.log('状态API响应状态:', statusFetchResponse.status);
                   
                   if (statusFetchResponse.ok) {
@@ -381,7 +382,7 @@ const RecipeGeneratorPage: React.FC = () => {
                   };
                   
                   console.log('测试食谱生成API: POST /ai/generate-recipe');
-                  const recipeFetchResponse = await fetch('http://localhost:8000/ai/generate-recipe', {
+                  const recipeFetchResponse = await fetch('http://localhost:8001/ai/generate-recipe', {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/json'
@@ -475,39 +476,237 @@ const RecipeGeneratorPage: React.FC = () => {
           )}
           
           <div className="save-recipe-section">
-            <Button
-              type="primary"
-              onClick={async () => {
-                try {
-                  message.info('正在保存食谱...');
-                  const response = await fetch('http://localhost:8000/ai/save-generated-recipe', {
-                    method: 'POST',
-                    headers: {
-                      'Content-Type': 'application/json',
-                      ...(localStorage.getItem('token') ? {
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`
-                      } : {})
-                    },
-                    body: JSON.stringify({
-                      recipe_data: recipe
-                    })
-                  });
-                  
-                  if (!response.ok) {
-                    throw new Error('保存失败');
+            <div style={{ display: 'flex', gap: '10px', marginTop: '20px' }}>
+              <Button
+                type="primary"
+                onClick={async () => {
+                  try {
+                    console.log('点击了"添加到我的食谱"按钮，开始处理...');
+                    message.info('正在保存食谱...');
+                    
+                    // 检查recipe对象是否存在且有效
+                    if (!recipe) {
+                      console.error('错误：recipe对象不存在');
+                      message.error('无法获取食谱数据，请重新生成食谱');
+                      return;
+                    }
+                    
+                    console.log('recipe对象内容:', JSON.stringify(recipe, null, 2));
+                    
+                    // 检查用户是否已登录
+                    const token = localStorage.getItem('token');
+                    if (!token) {
+                      console.error('错误：用户未登录，localStorage中没有token');
+                      message.error('用户未登录，请先登录');
+                      return;
+                    }
+                    console.log('用户认证token:', token.substring(0, 20) + '...' + token.substring(token.length - 10));
+                    
+                    // 映射difficulty值到后端期望的枚举值
+                    const mapDifficulty = (difficulty: string): string => {
+                      const difficultyMap: { [key: string]: string } = {
+                        'easy': 'easy',
+                        'medium': 'medium',
+                        'hard': 'hard',
+                        '简单': 'easy',
+                        '中等': 'medium',
+                        '困难': 'hard'
+                      };
+                      return difficultyMap[difficulty.toLowerCase()] || 'medium';
+                    };
+                    
+                    // 转换食谱数据为后端期望的格式
+                    const formattedRecipeData = {
+                      title: recipe.title || '未命名食谱',
+                      description: recipe.description || '',
+                      difficulty: mapDifficulty(recipe.difficulty),
+                      cooking_time: parseInt(recipe.cooking_time) || 0,
+                      prep_time: parseInt(recipe.preparation_time) || 0,
+                      servings: parseInt(recipe.servings) || 1,
+                      instructions: Array.isArray(recipe.instructions) ? recipe.instructions : [recipe.instructions].filter(Boolean),
+                      nutrition_info: {
+                        calories: parseInt(recipe.nutritional_info?.calories) || 0,
+                        protein: parseFloat(recipe.nutritional_info?.protein) || 0,
+                        carbs: parseFloat(recipe.nutritional_info?.carbs) || 0,
+                        fat: parseFloat(recipe.nutritional_info?.fat) || 0,
+                        fiber: parseFloat(recipe.nutritional_info?.fiber) || 0
+                      },
+                      ingredients: Array.isArray(recipe.ingredients) ? 
+                        recipe.ingredients.map((ingredient: string) => {
+                          // 简单拆分食材字符串为name, quantity, unit
+                          const match = ingredient.match(/^(.*?)\s+(\d*\.?\d+)\s+(.*)$/);
+                          if (match) {
+                            return {
+                              name: match[1].trim(),
+                              quantity: parseFloat(match[2]),
+                              unit: match[3].trim(),
+                              note: ''
+                            };
+                          } else {
+                            return {
+                              name: ingredient.trim(),
+                              quantity: 1,
+                              unit: '份',
+                              note: ''
+                            };
+                          }
+                        })
+                        : [],
+                      tags: recipe.tags || []
+                    };
+                    
+                    console.log('准备保存的食谱数据:', JSON.stringify(formattedRecipeData, null, 2));
+                    
+                    // 使用原生fetch API发送请求
+                    const API_BASE_URL = 'http://localhost:8000';
+                    const API_ENDPOINT = `${API_BASE_URL}/ai/save-generated-recipe`;
+                    
+                    console.log('API基础URL:', API_BASE_URL);
+                    console.log('保存食谱API路径:', API_ENDPOINT);
+                    
+                    // 构建请求体
+                    const requestBody = {
+                      recipe_data: formattedRecipeData,
+                      share_with_community: false
+                    };
+                    
+                    console.log('发送fetch请求，请求体:', JSON.stringify(requestBody, null, 2));
+                    
+                    // 发送fetch请求
+                    const response = await fetch(API_ENDPOINT, {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
+                        'Accept': 'application/json'
+                      },
+                      body: JSON.stringify(requestBody),
+                      credentials: 'include'
+                    });
+                    
+                    console.log('fetch请求响应状态:', response.status);
+                    
+                    // 获取响应数据
+                    const responseData = await response.json();
+                    console.log('fetch请求响应数据:', responseData);
+                    
+                    // 检查响应状态
+                    if (response.ok) {
+                      console.log('保存食谱成功！');
+                      message.success('食谱已添加到我的食谱！');
+                    } else {
+                      console.error('保存食谱失败，响应状态码:', response.status);
+                      console.error('错误详情:', responseData);
+                      
+                      // 根据状态码显示不同的错误信息
+                      if (response.status === 401) {
+                        message.error('登录已过期，请重新登录');
+                      } else if (response.status === 400) {
+                        message.error('食谱数据格式错误，请检查数据');
+                      } else if (response.status === 404) {
+                        message.error('API接口不存在，请检查后端服务');
+                      } else {
+                        message.error(`保存食谱失败 (${response.status})`);
+                      }
+                    }
+                  } catch (error: any) {
+                    console.error('添加食谱失败:', error);
+                    console.error('错误详情:', error.message || error);
+                    
+                    // 根据错误类型显示不同的提示信息
+                    if (!localStorage.getItem('token')) {
+                      message.error('用户未登录，请先登录');
+                    } else if (error.name === 'TypeError' && error.message.includes('fetch')) {
+                      message.error('网络错误，无法连接到服务器');
+                    } else {
+                      message.error('添加食谱失败，请稍后重试');
+                    }
                   }
-                  
-                  // 不需要使用response.json()的结果
-                  message.success('食谱已添加到您的收藏！');
-                } catch (error) {
-                  console.error('保存食谱失败:', error);
-                  message.error('保存失败，请重试');
-                }
-              }}
-              style={{ marginTop: '20px', width: '100%' }}
-            >
-              添加到我的食谱
-            </Button>
+                }}
+                style={{ flex: 1 }}
+              >
+                添加到我的食谱
+              </Button>
+              <Button
+                type="default"
+                onClick={async () => {
+                  try {
+                    message.info('正在添加到收藏...');
+                    
+                    // 映射difficulty值到后端期望的枚举值
+                    const mapDifficulty = (difficulty: string): string => {
+                      const difficultyMap: { [key: string]: string } = {
+                        'easy': 'easy',
+                        'medium': 'medium',
+                        'hard': 'hard',
+                        '简单': 'easy',
+                        '中等': 'medium',
+                        '困难': 'hard'
+                      };
+                      return difficultyMap[difficulty.toLowerCase()] || 'medium';
+                    };
+                    
+                    // 转换食谱数据为后端期望的格式
+                    const formattedRecipeData = {
+                      title: recipe.title,
+                      description: recipe.description,
+                      difficulty: mapDifficulty(recipe.difficulty),
+                      cooking_time: recipe.cooking_time,
+                      prep_time: recipe.preparation_time || 0,
+                      servings: recipe.servings || 1,
+                      instructions: Array.isArray(recipe.instructions) ? recipe.instructions : [recipe.instructions],
+                      tips: Array.isArray(recipe.tips) ? recipe.tips : [recipe.tips].filter(Boolean),
+                      nutrition_info: recipe.nutritional_info ? {
+                        calories: recipe.nutritional_info.calories || 0,
+                        protein: recipe.nutritional_info.protein || 0,
+                        carbs: recipe.nutritional_info.carbs || 0,
+                        fat: recipe.nutritional_info.fat || 0,
+                        fiber: recipe.nutritional_info.fiber || 0
+                      } : {
+                        calories: 0,
+                        protein: 0,
+                        carbs: 0,
+                        fat: 0,
+                        fiber: 0
+                      },
+                      ingredients: Array.isArray(recipe.ingredients) ? 
+                        recipe.ingredients.map((ingredient: string) => {
+                          // 简单拆分食材字符串为name, quantity, unit
+                          const match = ingredient.match(/^(.*?)\s+(\d*\.?\d+)\s+(.*)$/);
+                          if (match) {
+                            return {
+                              name: match[1].trim(),
+                              quantity: parseFloat(match[2]),
+                              unit: match[3].trim(),
+                              note: ''
+                            };
+                          } else {
+                            return {
+                              name: ingredient.trim(),
+                              quantity: 1,
+                              unit: '份',
+                              note: ''
+                            };
+                          }
+                        })
+                        : [],
+                      tags: []
+                    };
+                    
+                    // 先保存到食谱，然后添加到收藏
+                    await recipeAPI.saveGeneratedRecipe(formattedRecipeData);
+                    // 显示成功消息
+                    message.success('添加成功');
+                  } catch (error) {
+                    console.error('添加到收藏失败:', error);
+                    message.error('添加到收藏失败，请重试');
+                  }
+                }}
+                style={{ flex: 1 }}
+              >
+                添加到我的收藏
+              </Button>
+            </div>
           </div>
         </div>
       )}

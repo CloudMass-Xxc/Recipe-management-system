@@ -12,7 +12,7 @@ import ProfilePage from './pages/ProfilePage';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Layout children={null} />,
+    element: <Layout />,
     children: [
       {
         path: '',

@@ -20,14 +20,14 @@ const Header: React.FC = () => {
   const { user, isAuthenticated } = useSelector((state: any) => state.auth);
   
   // 检查localStorage中的token，作为额外的登录状态判断
-  const isLoggedInFromStorage = localStorage.getItem('auth_token') !== null;
+  const isLoggedInFromStorage = localStorage.getItem('token') !== null;
   
   // 实际的登录状态，结合Redux和localStorage
   const isActuallyAuthenticated = isAuthenticated || isLoggedInFromStorage;
   
   const handleLogout = () => {
     // 清除localStorage中的token
-    localStorage.removeItem('auth_token');
+    localStorage.removeItem('token');
     // 调用Redux的logout action
     dispatch(logout());
     setMobileMenuOpen(false); // 关闭移动菜单
@@ -80,11 +80,11 @@ const Header: React.FC = () => {
         ))}
       </Box>
       <Box sx={{ p: 2, borderTop: 1, borderColor: 'divider', display: 'flex', flexDirection: 'column', gap: 2 }}>
-        {isAuthenticated && user ? (
-          <>
-            <Typography variant="body1" sx={{ mb: 1, color: '#666', textAlign: 'center' }}>
-              欢迎回来，{user.username}
-            </Typography>
+        {isActuallyAuthenticated && user && user.username ? (
+            <>
+              <Typography variant="body1" sx={{ mb: 1, color: '#666', textAlign: 'center' }}>
+                欢迎回来，{user.username}
+              </Typography>
             <Button 
               variant="outlined"
               fullWidth
@@ -216,7 +216,7 @@ const Header: React.FC = () => {
                   {link.label}
                 </Button>
               ))}
-              {isActuallyAuthenticated ? (
+              {isActuallyAuthenticated && user && user.username ? (
                 <Box
                   sx={{
                     color: 'white',

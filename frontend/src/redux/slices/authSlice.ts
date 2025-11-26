@@ -34,7 +34,7 @@ interface User {
   username: string;
   email: string;
   phone?: string;
-  displayName?: string;
+  displayName: string;
   recipeCount: number;
 }
 
@@ -52,12 +52,12 @@ const initialState: AuthState = {
   error: null,
 };
 
-const adaptUser = (payload: Partial<AuthenticatedUser>): User => ({
+export const adaptUser = (payload: Partial<AuthenticatedUser>): User => ({
   id: payload.user_id || '',
   username: payload.username || '',
   email: payload.email || '',
   phone: payload.phone,
-  displayName: payload.display_name || payload.username,
+  displayName: payload.display_name || payload.username || '',
   recipeCount: 0,
 });
 

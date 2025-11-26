@@ -1,4 +1,5 @@
-from sqlalchemy import Column, String, DateTime, ForeignKey, UniqueConstraint, Integer
+from sqlalchemy import Column, String, DateTime, ForeignKey, UniqueConstraint
+from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
 from app.core.database import Base
@@ -6,9 +7,9 @@ from app.core.database import Base
 class Favorite(Base):
     __tablename__ = "favorites"
     
-    favorite_id = Column(Integer, primary_key=True, index=True, autoincrement=True, comment="收藏ID")
-    user_id = Column(String(36), ForeignKey("users.user_id", ondelete="CASCADE"), nullable=False, comment="用户ID")
-    recipe_id = Column(String(36), ForeignKey("recipes.recipe_id", ondelete="CASCADE"), nullable=False, comment="食谱ID")
+    favorite_id = Column(UUID(as_uuid=True), primary_key=True, index=True, default=func.uuid_generate_v4(), comment="收藏ID")
+    user_id = Column(UUID(as_uuid=True), ForeignKey("users.user_id", ondelete="CASCADE"), nullable=False, comment="用户ID")
+    recipe_id = Column(UUID(as_uuid=True), ForeignKey("recipes.recipe_id", ondelete="CASCADE"), nullable=False, comment="食谱ID")
     created_at = Column(DateTime(timezone=True), server_default=func.now(), comment="收藏时间")
     
     # 关系

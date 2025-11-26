@@ -1,13 +1,15 @@
 from sqlalchemy import Column, String, Text, DateTime, ForeignKey, JSON
+from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
 from app.core.database import Base
+import uuid
 
 class DietPlan(Base):
     __tablename__ = "diet_plans"
     
-    plan_id = Column(String(36), primary_key=True, index=True, comment="饮食计划ID")
-    user_id = Column(String(36), ForeignKey("users.user_id", ondelete="CASCADE"), nullable=False, comment="用户ID")
+    plan_id = Column(UUID(as_uuid=True), primary_key=True, index=True, default=uuid.uuid4, comment="饮食计划ID")
+    user_id = Column(UUID(as_uuid=True), ForeignKey("users.user_id", ondelete="CASCADE"), nullable=False, comment="用户ID")
     name = Column(String(255), nullable=False, comment="计划名称")
     description = Column(Text, nullable=True, comment="计划描述")
     start_date = Column(DateTime(timezone=True), nullable=False, comment="开始日期")

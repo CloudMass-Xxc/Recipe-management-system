@@ -1,19 +1,21 @@
 from sqlalchemy import Column, String, Text, Integer, DateTime, ForeignKey, JSON
+from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
 from app.core.database import Base
+import uuid
 
 class Recipe(Base):
     __tablename__ = "recipes"
     
-    recipe_id = Column(String(36), primary_key=True, index=True, comment="食谱ID")
+    recipe_id = Column(UUID(as_uuid=True), primary_key=True, index=True, default=uuid.uuid4, comment="食谱ID")
     title = Column(String(255), nullable=False, index=True, comment="标题")
     description = Column(Text, nullable=True, comment="描述")
     instructions = Column(Text, nullable=False, comment="烹饪步骤")
     cooking_time = Column(Integer, nullable=False, comment="烹饪时间(分钟)")
     servings = Column(Integer, nullable=False, comment="份量")
     difficulty = Column(String(50), nullable=False, index=True, comment="难度")
-    author_id = Column(String(36), ForeignKey("users.user_id", ondelete="CASCADE"), nullable=False, comment="作者ID")
+    author_id = Column(UUID(as_uuid=True), ForeignKey("users.user_id", ondelete="CASCADE"), nullable=False, comment="作者ID")
     ingredients = Column(JSON, nullable=True, comment="食材列表(JSON)")
     tags = Column(JSON, nullable=True, index=True, comment="标签列表(JSON)")
     image_url = Column(String(500), nullable=True, comment="图片URL")
