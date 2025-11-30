@@ -37,15 +37,10 @@ async def get_ai_service_status():
     """
     settings = get_ai_settings()
     
-    # 根据不同的API提供商检查相应的API密钥
-    if settings.API_PROVIDER == "alipan":
-        is_available = bool(settings.QWEN_API_KEY)
-        status = "available" if is_available else "unavailable"
-        message = "AI service is ready to use" if is_available else "QWEN API key not configured"
-    else:
-        is_available = bool(settings.OPENAI_API_KEY)
-        status = "available" if is_available else "unavailable"
-        message = "AI service is ready to use" if is_available else "OpenAI API key not configured"
+    # 检查通义千问API密钥
+    is_available = bool(settings.QWEN_API_KEY)
+    status = "available" if is_available else "unavailable"
+    message = "AI service is ready to use" if is_available else "QWEN API key not configured"
     
     return AIServiceStatus(
         status=status,
@@ -58,10 +53,11 @@ async def get_ai_service_status():
 @router.post("/generate-recipe", response_model=RecipeResponse)
 async def generate_recipe(
     request: RecipeGenerationRequest,
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
 ):
     """
-    生成个性化食谱
+    生成个性化食谱并自动保存到公共食谱列表
     """
     try:
         # 记录完整请求参数，包括具体的值
@@ -70,59 +66,42 @@ async def generate_recipe(
         logger.info(f"饮食偏好值: {[p.value for p in request.dietary_preferences]}")
         logger.info(f"难度级别值: {request.difficulty.value if request.difficulty else None}")
         logger.info(f"菜系值: {request.cuisine.value}")
-        
-        # 准备食谱生成参数
-        dietary_preferences = ", ".join([p.value for p in request.dietary_preferences])
-        logger.info(f"处理后饮食偏好: {dietary_preferences}")
-        
-        food_likes = ", ".join(request.food_likes)
-        food_dislikes = ", ".join(request.food_dislikes)
-        health_conditions = ", ".join(request.health_conditions)
-        nutrition_goals = ", ".join(request.nutrition_goals)
-        
-        # 确保cooking_time_limit是整数类型
-        cooking_time_limit_value = request.cooking_time_limit
-        if cooking_time_limit_value is not None:
-            cooking_time_limit_value = int(cooking_time_limit_value)
-        cooking_time_limit = str(cooking_time_limit_value) if cooking_time_limit_value else "无限制"
-        logger.info(f"处理后烹饪时间限制: {cooking_time_limit}")
-        
-        difficulty = request.difficulty.value if request.difficulty else "任意"
-        logger.info(f"处理后难度级别: {difficulty}")
-        
-        cuisine = request.cuisine.value if request.cuisine != Cuisine.NONE else "不限"
-        logger.info(f"处理后菜系: {cuisine}")
-        
-        recipe_params = {
-            "dietary_preferences": dietary_preferences,
-            "food_likes": food_likes,
-            "food_dislikes": food_dislikes,
-            "health_conditions": health_conditions,
-            "nutrition_goals": nutrition_goals,
-            "cooking_time_limit": cooking_time_limit,
-            "difficulty": difficulty,
-            "cuisine": cuisine
-        }
+        logger.info(f"用户选择的食材: {request.ingredients}")
         
         # 调用AI客户端生成食谱
         logger.info("调用AI客户端生成食谱")
-        # 确保传递原始的cooking_time_limit_value（数值类型）给AI客户端
-        ai_params = {
-            "dietary_preferences": dietary_preferences,
-            "food_likes": food_likes,
-            "food_dislikes": food_dislikes,
-            "health_conditions": health_conditions,
-            "nutrition_goals": nutrition_goals,
-            "cooking_time_limit": cooking_time_limit_value,  # 使用数值类型
-            "difficulty": difficulty,
-            "cuisine": cuisine
-        }
-        recipe_data = await ai_client.generate_recipe(ai_params)
+        
+        # 直接传递请求对象的model_dump()给AI客户端，确保包含所有必要参数
+        recipe_data = await ai_client.generate_recipe(request.model_dump())
         logger.info(f"AI客户端返回食谱数据，标题: {recipe_data.get('title', '未命名')}")
+        
+        # 自动将生成的食谱保存到公共食谱列表
+        logger.info("自动保存生成的食谱到公共食谱列表")
+        
+        # 准备食谱数据用于保存
+        save_data = {
+            "title": recipe_data.get("title"),
+            "description": recipe_data.get("description"),
+            "instructions": "\n".join(recipe_data.get("instructions", [])),
+            "ingredients": recipe_data.get("ingredients", []),
+            "cooking_time": recipe_data.get("cooking_time", 0),
+            "servings": recipe_data.get("servings", 1),
+            "difficulty": recipe_data.get("difficulty", "easy"),
+            "tags": recipe_data.get("tags", []),
+            "image_url": recipe_data.get("image_url"),
+            "nutrition_info": recipe_data.get("nutrition_info")
+        }
+        
+        # 保存食谱到数据库（作为公共食谱）
+        new_recipe = RecipeService.create_recipe(db, current_user.user_id, save_data)
+        logger.info(f"食谱已成功保存到公共列表，ID: {new_recipe.recipe_id}")
+        
+        # 更新响应中的recipe_id为保存后的ID
+        recipe_data["recipe_id"] = str(new_recipe.recipe_id)
         
         # 转换为响应模型
         response = RecipeResponse(**recipe_data)
-        logger.info(f"食谱生成成功，标题: {response.title}")
+        logger.info(f"食谱生成和保存成功，标题: {response.title}")
         return response
         
     except AIServiceError as e:
@@ -164,7 +143,7 @@ async def save_generated_recipe(
     current_user: User = Depends(get_current_user)
 ) -> Dict[str, Any]:
     """
-    保存AI生成的食谱到用户账户
+    保存AI生成的食谱到用户账户，包括食谱配图
     """
     try:
         # 准备食谱数据
@@ -182,6 +161,12 @@ async def save_generated_recipe(
         recipe_data.pop("tips", None)
         recipe_data.pop("prep_time", None)
         
+        # 检查是否有图片URL
+        if "image_url" in recipe_data:
+            logger.info(f"食谱包含图片URL: {recipe_data['image_url']}")
+        else:
+            logger.warning("食谱不包含图片URL")
+        
         # 保存食谱
         new_recipe = RecipeService.create_recipe(db, current_user.user_id, recipe_data)
         
@@ -198,6 +183,7 @@ async def save_generated_recipe(
             "servings": full_recipe.servings,
             "instructions": full_recipe.instructions,
             "ingredients": full_recipe.ingredients,
+            "image": full_recipe.image_url,  # 返回image字段供前端使用
             "created_at": full_recipe.created_at.isoformat() if full_recipe.created_at else None,
             "updated_at": full_recipe.updated_at.isoformat() if full_recipe.updated_at else None,
             "author_id": full_recipe.author_id

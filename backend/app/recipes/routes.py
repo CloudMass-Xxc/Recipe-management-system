@@ -7,7 +7,7 @@ from app.models.user import User
 from app.recipes.schemas import (
     RecipeBase, RecipeCreate, RecipeUpdate, RecipeResponse, RecipeListItem,
     RecipeSearchParams, FavoriteResponse, RatingCreate, RatingResponse,
-    NutritionInfoResponse
+    NutritionInfoResponse, RecipeListResponse
 )
 from app.recipes.services import RecipeService
 
@@ -30,15 +30,44 @@ async def create_recipe(
     # 加载关联数据以构建完整响应
     full_recipe = RecipeService.get_recipe_by_id(db, new_recipe.recipe_id)
     
+    # 处理食材信息，确保转换为List[SimpleIngredient]类型
+    ingredients = []
+    if full_recipe.ingredients:
+        import json
+        try:
+            # 只有当ingredients是字符串类型时才进行JSON解析
+            if isinstance(full_recipe.ingredients, str):
+                parsed_ingredients = json.loads(full_recipe.ingredients)
+            else:
+                # 如果已经是列表类型，直接使用
+                parsed_ingredients = full_recipe.ingredients
+            
+            # 确保ingredients是List[SimpleIngredient]类型
+            for ing in parsed_ingredients:
+                if isinstance(ing, dict) and 'name' in ing and 'quantity' in ing:
+                    ingredients.append({
+                        'name': ing['name'],
+                        'quantity': ing['quantity'],
+                        'unit': ing.get('unit')
+                    })
+        except (json.JSONDecodeError, TypeError):
+            ingredients = []
+    
     # 构建响应数据
+    # 处理instructions，将字符串转换为数组
+    instructions = full_recipe.instructions or ""
+    if isinstance(instructions, str):
+        instructions = [step.strip() for step in instructions.split('\n') if step.strip()]
+    
     return RecipeResponse(
         recipe_id=str(full_recipe.recipe_id),
         title=full_recipe.title,
         description=full_recipe.description,
-        instructions=full_recipe.instructions,
+        instructions=instructions,
         cooking_time=full_recipe.cooking_time,
         servings=full_recipe.servings,
         difficulty=full_recipe.difficulty,
+        ingredients=ingredients,
         tags=full_recipe.tags,
         image_url=full_recipe.image_url,
         nutrition_info=NutritionInfoResponse(
@@ -88,10 +117,12 @@ async def get_user_recipes(
     ]
 
 
-@router.get("/", response_model=List[RecipeListItem])
+@router.get("/", response_model=RecipeListResponse)
 async def get_recipes(
     skip: int = Query(0, ge=0),
     limit: int = Query(20, ge=1, le=100),
+    page: Optional[int] = Query(None, ge=1),  # 新增：支持page参数
+    tags: Optional[List[str]] = Query(None),  # 新增：支持tags参数
     author_id: Optional[str] = None,
     query: Optional[str] = None,
     difficulty: Optional[str] = None,
@@ -109,7 +140,14 @@ async def get_recipes(
         search_params["difficulty"] = difficulty
     if max_cooking_time is not None:
         search_params["max_cooking_time"] = max_cooking_time
+    if tags:  # 新增：支持tags参数
+        search_params["tags"] = tags
     
+    # 如果提供了page参数，计算skip值
+    if page is not None:
+        skip = (page - 1) * limit
+    
+    # 获取食谱列表和总数
     recipes = RecipeService.get_recipes(
         db=db,
         skip=skip,
@@ -118,8 +156,14 @@ async def get_recipes(
         search_params=search_params if search_params else None
     )
     
-    # 构建响应
-    return [
+    total = RecipeService.get_recipes_count(
+        db=db,
+        author_id=author_id,
+        search_params=search_params if search_params else None
+    )
+    
+    # 构建食谱列表项
+    recipe_list_items = [
         RecipeListItem(
             recipe_id=str(recipe.recipe_id),
             title=recipe.title,
@@ -132,6 +176,14 @@ async def get_recipes(
         )
         for recipe in recipes
     ]
+    
+    # 构建响应
+    return RecipeListResponse(
+        recipes=recipe_list_items,
+        page=page,
+        limit=limit,
+        total=total
+    )
 
 
 @router.get("/{recipe_id}", response_model=RecipeResponse)
@@ -147,14 +199,44 @@ async def get_recipe(
         raise HTTPException(status_code=404, detail="Recipe not found")
     
     # 构建响应数据
+    # 将instructions字符串按换行符分割为数组，以匹配前端期望的格式
+    instructions = recipe.instructions or ""
+    # 如果是字符串，按换行符分割成数组；如果已经是数组，直接使用
+    if isinstance(instructions, str):
+        instructions = [step.strip() for step in instructions.split('\n') if step.strip()]
+    
+    # 处理食材信息，确保转换为List[SimpleIngredient]类型
+    ingredients = []
+    if recipe.ingredients:
+        import json
+        try:
+            # 只有当ingredients是字符串类型时才进行JSON解析
+            if isinstance(recipe.ingredients, str):
+                parsed_ingredients = json.loads(recipe.ingredients)
+            else:
+                # 如果已经是列表类型，直接使用
+                parsed_ingredients = recipe.ingredients
+            
+            # 确保ingredients是List[SimpleIngredient]类型
+            for ing in parsed_ingredients:
+                if isinstance(ing, dict) and 'name' in ing and 'quantity' in ing:
+                    ingredients.append({
+                        'name': ing['name'],
+                        'quantity': ing['quantity'],
+                        'unit': ing.get('unit')
+                    })
+        except (json.JSONDecodeError, TypeError):
+            ingredients = []
+    
     return RecipeResponse(
         recipe_id=str(recipe.recipe_id),
         title=recipe.title,
         description=recipe.description,
-        instructions=recipe.instructions,
+        instructions=instructions,
         cooking_time=recipe.cooking_time,
         servings=recipe.servings,
         difficulty=recipe.difficulty,
+        ingredients=ingredients,
         tags=recipe.tags,
         image_url=recipe.image_url,
         nutrition_info=NutritionInfoResponse(
@@ -162,7 +244,7 @@ async def get_recipe(
             recipe_id=str(recipe.nutrition_info.recipe_id),
             calories=recipe.nutrition_info.calories,
             protein=recipe.nutrition_info.protein,
-            carbohydrates=recipe.nutrition_info.carbs,
+            carbs=recipe.nutrition_info.carbs,
             fat=recipe.nutrition_info.fat,
             fiber=recipe.nutrition_info.fiber
         ) if recipe.nutrition_info else None,
@@ -202,15 +284,44 @@ async def update_recipe(
     # 重新获取完整数据
     full_recipe = RecipeService.get_recipe_by_id(db, recipe_id)
     
+    # 处理食材信息，确保转换为List[SimpleIngredient]类型
+    ingredients = []
+    if full_recipe.ingredients:
+        import json
+        try:
+            # 只有当ingredients是字符串类型时才进行JSON解析
+            if isinstance(full_recipe.ingredients, str):
+                parsed_ingredients = json.loads(full_recipe.ingredients)
+            else:
+                # 如果已经是列表类型，直接使用
+                parsed_ingredients = full_recipe.ingredients
+            
+            # 确保ingredients是List[SimpleIngredient]类型
+            for ing in parsed_ingredients:
+                if isinstance(ing, dict) and 'name' in ing and 'quantity' in ing:
+                    ingredients.append({
+                        'name': ing['name'],
+                        'quantity': ing['quantity'],
+                        'unit': ing.get('unit')
+                    })
+        except (json.JSONDecodeError, TypeError):
+            ingredients = []
+    
     # 构建响应
+    # 处理instructions，将字符串转换为数组
+    instructions = full_recipe.instructions or ""
+    if isinstance(instructions, str):
+        instructions = [step.strip() for step in instructions.split('\n') if step.strip()]
+    
     return RecipeResponse(
         recipe_id=str(full_recipe.recipe_id),
         title=full_recipe.title,
         description=full_recipe.description,
-        instructions=full_recipe.instructions,
+        instructions=instructions,
         cooking_time=full_recipe.cooking_time,
         servings=full_recipe.servings,
         difficulty=full_recipe.difficulty,
+        ingredients=ingredients,
         tags=full_recipe.tags,
         image_url=full_recipe.image_url,
         nutrition_info=NutritionInfoResponse(

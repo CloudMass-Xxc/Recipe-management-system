@@ -157,12 +157,21 @@ class RecipeService:
             )
         
         # 安全地处理recipe_id，无论它是什么类型
-        if isinstance(recipe_id, UUID):
-            # 如果已经是UUID对象，直接使用
-            query = query.filter(Recipe.recipe_id == recipe_id)
-        else:
-            # 否则转换为字符串，然后转换为UUID
-            query = query.filter(Recipe.recipe_id == UUID(str(recipe_id)))
+        try:
+            if isinstance(recipe_id, UUID):
+                # 如果已经是UUID对象，直接使用
+                query = query.filter(Recipe.recipe_id == recipe_id)
+            else:
+                # 否则转换为字符串，然后尝试转换为UUID
+                try:
+                    recipe_id_uuid = UUID(str(recipe_id))
+                    query = query.filter(Recipe.recipe_id == recipe_id_uuid)
+                except ValueError:
+                    # 如果不是有效UUID格式，直接返回None
+                    return None
+        except Exception as e:
+            # 捕获任何其他可能的异常，返回None
+            return None
         
         return query.first()
     
@@ -214,7 +223,13 @@ class RecipeService:
             # 按标签筛选
             if search_params.get("tags"):
                 for tag in search_params["tags"]:
-                    query = query.filter(Recipe.tags.contains([tag]))
+                    # 使用PostgreSQL的JSONB操作符正确查询JSON数组
+                    query = query.filter(
+                        and_(
+                            Recipe.tags.isnot(None),
+                            func.jsonb_contains(Recipe.tags, func.to_jsonb([tag]))
+                        )
+                    )
             
             # 按难度筛选
             if search_params.get("difficulty"):
@@ -228,6 +243,66 @@ class RecipeService:
         query = query.order_by(Recipe.created_at.desc())
         
         return query.offset(skip).limit(limit).all()
+    
+    @staticmethod
+    def get_recipes_count(
+        db: Session,
+        author_id: Optional[Any] = None,
+        search_params: Optional[Dict[str, Any]] = None
+    ) -> int:
+        """
+        获取食谱总数
+        
+        Args:
+            db: 数据库会话
+            author_id: 作者ID（可选）
+            search_params: 搜索参数（可选）
+        
+        Returns:
+            食谱总数
+        """
+        query = db.query(func.count(Recipe.recipe_id))
+        
+        # 按作者筛选
+        if author_id:
+            # 安全地处理author_id
+            if isinstance(author_id, UUID):
+                query = query.filter(Recipe.author_id == author_id)
+            else:
+                query = query.filter(Recipe.author_id == UUID(str(author_id)))
+        
+        # 应用搜索条件
+        if search_params:
+            # 关键词搜索
+            if search_params.get("query"):
+                search_text = f"%{search_params['query']}%"
+                query = query.filter(
+                    or_(
+                        Recipe.title.ilike(search_text),
+                        Recipe.description.ilike(search_text)
+                    )
+                )
+            
+            # 按标签筛选
+            if search_params.get("tags"):
+                for tag in search_params["tags"]:
+                    # 使用PostgreSQL的JSONB操作符正确查询JSON数组
+                    query = query.filter(
+                        and_(
+                            Recipe.tags.isnot(None),
+                            func.jsonb_contains(Recipe.tags, func.to_jsonb([tag]))
+                        )
+                    )
+            
+            # 按难度筛选
+            if search_params.get("difficulty"):
+                query = query.filter(Recipe.difficulty == search_params["difficulty"])
+            
+            # 按烹饪时间筛选
+            if search_params.get("max_cooking_time"):
+                query = query.filter(Recipe.cooking_time <= search_params["max_cooking_time"])
+        
+        return query.scalar() or 0
     
     @staticmethod
     def update_recipe(db: Session, recipe_id: Any, recipe_data: Dict[str, Any]) -> Optional[Recipe]:

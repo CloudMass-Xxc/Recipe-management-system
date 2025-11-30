@@ -11,15 +11,8 @@ class AIServiceSettings(BaseSettings):
     # API提供商配置
     API_PROVIDER: str = "alipan"  # 默认使用通义千问
     
-    # OpenAI配置
-    OPENAI_API_KEY: str = ""  # 从环境变量读取
-    OPENAI_API_BASE_URL: str = "https://api.openai.com/v1"
-    OPENAI_MODEL: str = "gpt-3.5-turbo-1106"  # 使用支持JSON响应的模型
-    OPENAI_MAX_TOKENS: int = 2000
-    OPENAI_TEMPERATURE: float = 0.7
-    
     # 通义千问配置
-    QWEN_API_KEY: str = ""  # 从环境变量读取
+    QWEN_API_KEY: str = "sk-233a61a93ef24cc5863ce6916d455973"  # 通义千问API密钥
     QWEN_API_SECRET: str = ""  # 从环境变量读取
     QWEN_API_BASE_URL: str = "https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation"  # 通义千问API基础URL
     QWEN_MODEL: str = "qwen-turbo"  # 通义千问模型
@@ -43,6 +36,8 @@ class AIServiceSettings(BaseSettings):
 营养目标：{nutrition_goals}
 烹饪时间限制：{cooking_time_limit}
 难度级别：{difficulty}
+菜系：{cuisine}
+必须使用的食材：{ingredients}
 
 请以JSON格式输出，包含以下字段：
 - title: 食谱标题
@@ -55,6 +50,8 @@ class AIServiceSettings(BaseSettings):
 - instructions: 烹饪步骤
 - nutrition_info: 营养信息，包含calories, protein, carbs, fat, fiber
 - tips: 烹饪小贴士
+- tags: 标签列表
+- image_url: 请根据食谱内容生成一张匹配的食谱照片URL，例如如果是番茄鸡蛋炒饭，就生成番茄鸡蛋炒饭的照片
 """
     
     class Config:

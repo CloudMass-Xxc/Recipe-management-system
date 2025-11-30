@@ -17,30 +17,21 @@ logger = logging.getLogger(__name__)
 
 class AIClient:
     """
-    AI客户端类，负责与LLM API交互，支持通义千问和OpenAI
+    AI客户端类，负责与通义千问API交互
     """
     
     def __init__(self):
         self.settings = get_ai_settings()
-        self.api_provider = self.settings.API_PROVIDER
+        self.api_provider = "alipan"  # 固定使用通义千问
         self.timeout = httpx.Timeout(30.0)
         
-        # 初始化API配置
-        if self.api_provider == "alipan":
-            # 通义千问配置
-            self.api_key = self.settings.QWEN_API_KEY
-            self.api_secret = self.settings.QWEN_API_SECRET
-            self.api_base_url = self.settings.QWEN_API_BASE_URL
-            self.model = self.settings.QWEN_MODEL
-            self.max_tokens = self.settings.QWEN_MAX_TOKENS
-            self.temperature = self.settings.QWEN_TEMPERATURE
-        else:
-            # OpenAI配置
-            self.api_key = self.settings.OPENAI_API_KEY
-            self.api_base_url = self.settings.OPENAI_API_BASE_URL
-            self.model = self.settings.OPENAI_MODEL
-            self.max_tokens = self.settings.OPENAI_MAX_TOKENS
-            self.temperature = self.settings.OPENAI_TEMPERATURE
+        # 初始化通义千问配置
+        self.api_key = self.settings.QWEN_API_KEY
+        self.api_secret = self.settings.QWEN_API_SECRET
+        self.api_base_url = self.settings.QWEN_API_BASE_URL
+        self.model = self.settings.QWEN_MODEL
+        self.max_tokens = self.settings.QWEN_MAX_TOKENS
+        self.temperature = self.settings.QWEN_TEMPERATURE
     
     def _prepare_request_headers(self) -> Dict[str, str]:
         """
@@ -49,18 +40,11 @@ class AIClient:
         Returns:
             请求头字典
         """
-        if self.api_provider == "alipan":
-            # 通义千问请求头
-            return {
-                "Authorization": f"Bearer {self.api_key}",
-                "Content-Type": "application/json"
-            }
-        else:
-            # OpenAI请求头
-            return {
-                "Authorization": f"Bearer {self.api_key}",
-                "Content-Type": "application/json"
-            }
+        # 灵光AI和OpenAI使用相同的请求头格式
+        return {
+            "Authorization": f"Bearer {self.api_key}",
+            "Content-Type": "application/json"
+        }
     
     def _prepare_chat_completion_request(
         self,
@@ -79,36 +63,23 @@ class AIClient:
         Returns:
             请求体字典
         """
-        if self.api_provider == "alipan":
-            # 通义千问请求格式
-            system_prompt = self.settings.SYSTEM_PROMPT
-            full_prompt = f"{system_prompt}\n\n{prompt}\n\n请严格按照JSON格式输出，不要添加任何额外的解释或文本。"
-            
-            return {
-                "model": self.model,
-                "input": {
-                    "messages": [
-                        {"role": "user", "content": full_prompt}
-                    ]
-                },
-                "parameters": {
-                    "max_tokens": max_tokens or self.max_tokens,
-                    "temperature": temperature or self.temperature,
-                    "result_format": "text"
-                }
-            }
-        else:
-            # OpenAI请求格式
-            return {
-                "model": self.model,
+        # 通义千问请求格式
+        system_prompt = self.settings.SYSTEM_PROMPT
+        
+        return {
+            "model": self.model,
+            "input": {
                 "messages": [
-                    {"role": "system", "content": self.settings.SYSTEM_PROMPT},
+                    {"role": "system", "content": system_prompt},
                     {"role": "user", "content": prompt}
-                ],
+                ]
+            },
+            "parameters": {
                 "max_tokens": max_tokens or self.max_tokens,
                 "temperature": temperature or self.temperature,
-                "response_format": {"type": "json_object"}  # 要求JSON响应
+                "result_format": "text"
             }
+        }
     
     async def _make_async_request(
         self,
@@ -190,13 +161,19 @@ class AIClient:
             recipe_params: 食谱生成参数
         
         Returns:
-            生成的食谱数据
+            生成的食谱数据，包含食谱内容和配图URL
         
         Raises:
             AIServiceError: AI服务错误
         """
-        logger.info(f"开始生成食谱，API提供商: {self.api_provider}")
+        logger.info(f"=== 开始生成食谱，API提供商: {self.api_provider} ===")
+        logger.info(f"食谱参数类型: {type(recipe_params)}")
         logger.info(f"食谱参数详情: {recipe_params}")
+        logger.info(f"食谱参数包含的键: {list(recipe_params.keys())}")
+        
+        # 检查cuisine参数是否存在
+        cuisine_value = recipe_params.get("cuisine")
+        logger.info(f"cuisine参数值: {cuisine_value}, 类型: {type(cuisine_value)}")
         
         # 格式化提示词
         prompt = self.settings.RECIPE_GENERATION_PROMPT_TEMPLATE.format(**recipe_params)
@@ -219,14 +196,38 @@ class AIClient:
             # 验证食谱数据
             self._validate_recipe_data(recipe_data)
             
+            # 生成食谱配图
+            logger.info("=== 开始生成食谱配图 ===")
+            cuisine = recipe_params.get("cuisine", "")
+            title = recipe_data.get("title", "")
+            logger.info(f"使用食谱标题: '{title}'，菜系: '{cuisine}' 生成配图")
+            
+            # 调用generate_recipe_image方法
+            image_url = self.generate_recipe_image(cuisine, title)
+            logger.info(f"generate_recipe_image返回结果: {image_url}")
+            
+            if image_url:
+                recipe_data["image_url"] = image_url
+                logger.info(f"✅ 成功为食谱生成配图，图片URL: {image_url}")
+            else:
+                logger.warning("❌ 未生成食谱配图")
+            
+            # 确保食谱数据包含cuisine字段
+            recipe_data["cuisine"] = cuisine
+            
+            # 确保食谱数据包含tags字段
+            if "tags" not in recipe_data:
+                recipe_data["tags"] = []
+            
+            # 添加最终食谱数据的日志记录
+            logger.info(f"最终食谱数据结构: {list(recipe_data.keys())}")
+            logger.info(f"食谱数据是否包含image_url: {'image_url' in recipe_data}")
+            logger.info(f"食谱数据是否包含cuisine: {'cuisine' in recipe_data}")
+            logger.info(f"食谱数据是否包含tags: {'tags' in recipe_data}")
+            
             logger.info(f"食谱生成成功，标题: {recipe_data.get('title', '未命名')}")
             return recipe_data
             
-        except json.JSONDecodeError as e:
-            # 如果响应不是有效的JSON，记录原始响应并抛出异常
-            raw_content = response.text if hasattr(response, 'text') else str(response)
-            logger.error(f"Invalid JSON response from AI API: {raw_content[:300]}...")
-            raise InvalidResponseError(f"AI API returned invalid JSON: {str(e)}")
         except Exception as e:
             logger.error(f"Error generating recipe: {str(e)}", exc_info=True)
             if isinstance(e, AIServiceError):
@@ -289,15 +290,9 @@ class AIClient:
         logger.info(f"开始解析{self.api_provider} API响应")
         logger.info(f"原始响应内容预览: {str(response)[:300]}...")
         
-        # 获取响应内容
-        if self.api_provider == "alipan":
-            # 通义千问响应格式
-            content = response.get("output", {}).get("text", "")
-            logger.info(f"通义千问响应解析: output存在={bool(response.get('output'))}, text长度={len(content)} 字符")
-        else:
-            # OpenAI响应格式
-            content = response.get("choices", [{}])[0].get("message", {}).get("content", "")
-            logger.info(f"OpenAI响应解析: choices数量={len(response.get('choices', []))}, text长度={len(content)} 字符")
+        # 获取通义千问响应内容
+        content = response.get("output", {}).get("text", "")
+        logger.info(f"通义千问响应解析: output存在={bool(response.get('output'))}, text长度={len(content)} 字符")
         
         if not content:
             logger.error("AI API返回空响应")
@@ -315,14 +310,64 @@ class AIClient:
         except json.JSONDecodeError:
             # 尝试提取JSON格式的部分
             logger.warning("直接解析失败，尝试提取JSON部分")
-            json_match = re.search(r'\{.*\}', content, re.DOTALL)
-            if json_match:
-                result = json.loads(json_match.group())
-                logger.info(f"提取JSON成功，数据结构: {list(result.keys())}")
-                return result
+            
+            # 使用更可靠的方式提取JSON
+            # 查找第一个'{'和最后一个'}'
+            start_idx = content.find('{')
+            end_idx = content.rfind('}')
+            
+            if start_idx != -1 and end_idx != -1 and start_idx < end_idx:
+                json_str = content[start_idx:end_idx + 1]
+                try:
+                    result = json.loads(json_str)
+                    logger.info(f"提取JSON成功，数据结构: {list(result.keys())}")
+                    return result
+                except json.JSONDecodeError:
+                    logger.error(f"提取的JSON字符串解析失败: {json_str[:100]}...")
+                    raise InvalidResponseError("Could not parse extracted JSON from AI response")
             else:
                 logger.error(f"响应内容不是有效的JSON格式: {content[:100]}...")
                 raise InvalidResponseError("Could not find valid JSON in AI response")
+    
+    def generate_recipe_image(
+        self, 
+        cuisine: str, 
+        recipe_title: str
+    ) -> Optional[str]:
+        """
+        生成食谱配图
+        
+        Args:
+            cuisine: 菜系
+            recipe_title: 食谱标题
+        
+        Returns:
+            生成的图片URL，如果生成失败则返回None
+        """
+        try:
+            logger.info(f"=== 开始执行generate_recipe_image方法 ===")
+            logger.info(f"输入参数 - 标题: '{recipe_title}' (类型: {type(recipe_title)}), 菜系: '{cuisine}' (类型: {type(cuisine)})")
+            
+            # 使用更智能的方式生成与食谱相关的图片
+            # 使用unsplash.com的免费API，根据关键词生成相关图片
+            import urllib.parse
+            
+            # 构建与食谱相关的关键词
+            food_keywords = "food dish meal cuisine recipe cooking ingredients"
+            keywords = f"{recipe_title} {cuisine} {food_keywords}"
+            logger.info(f"构建的图片搜索关键词: '{keywords}'")
+            
+            # 生成图片URL
+            encoded_keywords = urllib.parse.quote(keywords)
+            image_url = f"https://source.unsplash.com/800x600/?{encoded_keywords}"
+            
+            logger.info(f"✅ 成功生成图片URL: {image_url}")
+            return image_url
+            
+        except Exception as e:
+            logger.error(f"生成食谱配图失败: {str(e)}", exc_info=True)
+            # 图片生成失败不应该影响食谱生成的整体流程，所以返回None
+            return None
     
     def _validate_recipe_data(self, recipe_data: Dict[str, Any]) -> bool:
         """

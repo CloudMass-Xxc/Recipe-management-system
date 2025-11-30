@@ -28,6 +28,7 @@ class Token(BaseModel):
 class TokenData(BaseModel):
     """令牌数据"""
     user_id: Optional[str] = Field(None, description="用户ID")
+    token_type: Optional[str] = Field(None, description="令牌类型")
 
 class UserResponse(UserBase):
     """用户响应模型"""
@@ -53,3 +54,7 @@ class LoginResponse(BaseModel):
     access_token: str = Field(..., description="访问令牌")
     token_type: str = Field(default="bearer", description="令牌类型")
     user: UserResponse
+
+class TokenRefresh(BaseModel):
+    """令牌刷新请求"""
+    refresh_token: str = Field(..., description="刷新令牌")

@@ -1,3 +1,4 @@
+import uuid
 from pydantic import BaseModel, Field, field_validator
 from typing import List, Optional, Dict, Any
 from enum import Enum
@@ -83,6 +84,7 @@ class RecipeGenerationRequest(BaseModel):
     cooking_time_limit: Optional[int] = Field(None, description="烹饪时间限制(分钟)")
     difficulty: Optional[Difficulty] = Field(None, description="难度级别")
     cuisine: Optional[Cuisine] = Field(Cuisine.NONE, description="菜系选择")
+    ingredients: List[str] = Field(default=[], description="用户选择的食材")
     
     @field_validator('cooking_time_limit')
     @classmethod
@@ -96,8 +98,10 @@ class RecipeResponse(BaseModel):
     """
     食谱响应模型
     """
+    recipe_id: str = Field(default_factory=lambda: str(uuid.uuid4()), description="食谱ID")
     title: str = Field(..., description="食谱标题")
     description: str = Field(..., description="食谱描述")
+    cuisine: str = Field(..., description="菜系")
     prep_time: Optional[int] = Field(None, description="准备时间(分钟)")
     cooking_time: int = Field(..., description="烹饪时间(分钟)")
     servings: int = Field(..., description="份量")
@@ -107,6 +111,7 @@ class RecipeResponse(BaseModel):
     nutrition_info: NutritionInfo = Field(..., description="营养信息")
     tips: Optional[List[str]] = Field(None, description="烹饪小贴士")
     tags: Optional[List[str]] = Field(None, description="标签")
+    image_url: Optional[str] = Field(None, description="食谱配图URL")
     
     @field_validator('cooking_time', 'servings')
     @classmethod

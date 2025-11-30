@@ -1,0 +1,244 @@
+import React, { useEffect } from 'react';
+import { Box, Typography, Paper, Avatar, TextField, Button, CircularProgress, Alert } from '@mui/material';
+import { Edit, Close } from '@mui/icons-material';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchProfile, updateProfile, clearError } from '../../store/slices/userSlice';
+import type { RootState, AppDispatch } from '../../store';
+import Layout from '../../components/layout/Layout';
+
+const UserProfilePage: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { profile, loading, error } = useSelector((state: RootState) => state.user);
+
+  // 在组件挂载时获取用户资料
+  useEffect(() => {
+    dispatch(fetchProfile());
+  }, [dispatch]);
+
+  // 表单状态管理
+  const [formData, setFormData] = React.useState({
+    username: profile?.username || '',
+    email: profile?.email || '',
+    phone: profile?.phone || '',
+    bio: profile?.bio || ''
+  });
+
+  // 当profile变化时更新表单数据
+  React.useEffect(() => {
+    if (profile) {
+      setFormData({
+        username: profile.username || '',
+        email: profile.email || '',
+        phone: profile.phone || '',
+        bio: profile.bio || ''
+      });
+    }
+  }, [profile]);
+
+  // 处理表单输入变化
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  // 处理表单提交
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    dispatch(updateProfile(formData));
+  };
+
+  return (
+    <Layout>
+      <Box sx={{ mb: 4 }}>
+        <Typography variant="h3" sx={{ fontWeight: 'bold', color: '#333', mb: 1 }}>
+          个人资料
+        </Typography>
+        <Typography variant="body1" color="text.secondary">
+          查看和编辑您的个人信息
+        </Typography>
+      </Box>
+
+      {/* 错误提示 */}
+      {error && (
+        <Alert severity="error" sx={{ mb: 3, display: 'flex', alignItems: 'center' }}>
+          {error}
+          <Button
+            startIcon={<Close />}
+            onClick={() => dispatch(clearError())}
+            sx={{ ml: 2, p: 0, minWidth: 0 }}
+          />
+        </Alert>
+      )}
+
+      {/* 加载状态 */}
+      {loading && !profile ? (
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '300px' }}>
+          <CircularProgress />
+        </Box>
+      ) : (
+        <Box>
+          <Paper sx={{ p: 4, borderRadius: 2 }}>
+            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 4 }}>
+              {/* 左侧：头像和基本信息 */}
+              <Box sx={{ flex: '1 1 100%', md: '0 0 30%' }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 4 }}>
+                  <Avatar sx={{ width: 120, height: 120, bgcolor: '#4caf50', fontSize: '3rem' }}>
+                    {profile?.username?.charAt(0) || 'U'}
+                  </Avatar>
+                  <Typography variant="h5" sx={{ mt: 2, fontWeight: 'bold' }}>
+                    {profile?.username || '用户名'}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+                    {profile?.email || 'user@example.com'}
+                  </Typography>
+                  <Button
+                    variant="outlined"
+                    startIcon={<Edit />}
+                    sx={{ mt: 3, borderRadius: 2 }}
+                  >
+                    更换头像
+                  </Button>
+                </Box>
+              </Box>
+
+              {/* 右侧：详细信息和编辑表单 */}
+              <Box sx={{ flex: '1 1 100%', md: '0 0 70%' }}>
+                <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 3 }}>
+                  个人信息
+                </Typography>
+                <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                  <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)' }, gap: 3 }}>
+                    <Box>
+                      <TextField
+                        fullWidth
+                        label="用户名"
+                        name="username"
+                        value={formData.username}
+                        onChange={handleInputChange}
+                        sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                      />
+                    </Box>
+                    <Box>
+                      <TextField
+                        fullWidth
+                        label="邮箱"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                      />
+                    </Box>
+                    <Box>
+                      <TextField
+                        fullWidth
+                        label="电话"
+                        name="phone"
+                        type="tel"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                      />
+                    </Box>
+                    <Box sx={{ gridColumn: '1 / -1' }}>
+                      <TextField
+                        fullWidth
+                        label="简介"
+                        name="bio"
+                        multiline
+                        rows={4}
+                        value={formData.bio}
+                        onChange={handleInputChange}
+                        sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                      />
+                    </Box>
+                    <Box sx={{ gridColumn: '1 / -1' }}>
+                      <Button
+                        variant="contained"
+                        type="submit"
+                        sx={{ backgroundColor: '#4caf50', borderRadius: 2, textTransform: 'none', px: 4 }}
+                      >
+                        保存修改
+                      </Button>
+                    </Box>
+                  </Box>
+                </Box>
+              </Box>
+            </Box>
+          </Paper>
+
+          {/* 最近访问的食谱 */}
+          <Paper sx={{ p: 4, borderRadius: 2, mt: 4 }}>
+            <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 3 }}>
+              最近访问的食谱
+            </Typography>
+            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }, gap: 3 }}>
+              {/* 模拟数据 - 实际项目中应从API获取 */}
+              {[1, 2, 3].map((item) => (
+                <Box key={item} sx={{ p: 2, border: '1px solid #e0e0e0', borderRadius: 2, cursor: 'pointer', transition: 'all 0.3s ease', '&:hover': { boxShadow: '0 2px 8px rgba(0,0,0,0.1)' } }}>
+                  <Box sx={{ width: '100%', height: 120, bgcolor: '#f5f5f5', borderRadius: 1, mb: 2, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <Typography variant="h4" color="text.secondary">🍳</Typography>
+                  </Box>
+                  <Typography variant="subtitle1" sx={{ fontWeight: 'bold', mb: 1 }}>
+                    食谱名称 {item}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                    最近访问于 {new Date().toLocaleDateString()}
+                  </Typography>
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <Typography variant="body2" color="text.secondary">⏱️</Typography>
+                      <Typography variant="body2">30分钟</Typography>
+                    </Box>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <Typography variant="body2" color="text.secondary">⭐</Typography>
+                      <Typography variant="body2">4.5</Typography>
+                    </Box>
+                  </Box>
+                </Box>
+              ))}
+            </Box>
+          </Paper>
+
+          {/* 最近生成的食谱 */}
+          <Paper sx={{ p: 4, borderRadius: 2, mt: 4 }}>
+            <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 3 }}>
+              最近生成的食谱
+            </Typography>
+            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }, gap: 3 }}>
+              {/* 模拟数据 - 实际项目中应从API获取 */}
+              {[1, 2, 3].map((item) => (
+                <Box key={item} sx={{ p: 2, border: '1px solid #e0e0e0', borderRadius: 2, cursor: 'pointer', transition: 'all 0.3s ease', '&:hover': { boxShadow: '0 2px 8px rgba(0,0,0,0.1)' } }}>
+                  <Box sx={{ width: '100%', height: 120, bgcolor: '#f5f5f5', borderRadius: 1, mb: 2, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <Typography variant="h4" color="text.secondary">🍝</Typography>
+                  </Box>
+                  <Typography variant="subtitle1" sx={{ fontWeight: 'bold', mb: 1 }}>
+                    生成食谱 {item}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                    生成于 {new Date().toLocaleDateString()}
+                  </Typography>
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <Typography variant="body2" color="text.secondary">👥</Typography>
+                      <Typography variant="body2">2人份</Typography>
+                    </Box>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <Typography variant="body2" color="text.secondary">🔥</Typography>
+                      <Typography variant="body2">中热量</Typography>
+                    </Box>
+                  </Box>
+                </Box>
+              ))}
+            </Box>
+          </Paper>
+        </Box>
+      )}
+    </Layout>
+  );
+};
+
+export default UserProfilePage;

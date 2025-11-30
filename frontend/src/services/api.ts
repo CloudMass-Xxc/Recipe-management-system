@@ -1,144 +1,81 @@
 import axios from 'axios';
-
-const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:8001';
+import { getFromSessionStorage } from '../utils/localStorage';
+import AuthService from './auth.service';
 
 // 创建axios实例
 const api = axios.create({
-  baseURL: API_BASE_URL, // 后端API基础URL
-  timeout: 15000, // 增加超时时间
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000',
   headers: {
-    'Content-Type': 'application/json',
-    Accept: 'application/json',
-    'X-Requested-With': 'XMLHttpRequest',
-  },
-  withCredentials: true, // 确保跨域请求时携带cookies
+    'Content-Type': 'application/json'
+  }
 });
 
-const existingToken = localStorage.getItem('token');
-if (existingToken) {
-  api.defaults.headers.common['Authorization'] = `Bearer ${existingToken}`;
-}
-
-// 请求拦截器
-api.interceptors.request.use(
-  (config) => {
-    // 从localStorage获取token
-    const token = localStorage.getItem('token');
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+// 无论开发还是生产环境，都实际发送请求到后端
+// 这样可以测试前端与后端的实际连接
+// if (import.meta.env.DEV) {
+//   // 请求拦截器 - 在开发环境下不实际发送请求
+//   api.interceptors.request.use(
+//     (config) => {
+//       // 从localStorage获取token（如果有）
+//       const token = getLocalStorageItem('access_token');
+//       if (token) {
+//         config.headers['Authorization'] = `Bearer ${token}`;
+//       }
+//       
+//       // 在开发环境下，我们的服务文件已经提供了模拟数据，所以这里不需要实际发送请求
+//       // 直接返回一个解析的Promise，让服务层的模拟数据生效
+//       return Promise.resolve({
+//         ...config,
+//         adapter: (config) => {
+//           // 这里返回一个被拒绝的Promise，这样服务层的模拟数据实现才会被使用
+//           return Promise.reject({
+//             message: 'Mock mode - Request intercepted',
+//             config
+//           });
+//         }
+//       });
+//     },
+//     (error) => {
+//       return Promise.reject(error);
+//     }
+//   );
+// } else {
+  // 所有环境下的请求拦截器
+  api.interceptors.request.use(
+    (config) => {
+      // 从sessionStorage获取access_token
+      const token = getFromSessionStorage<string>('access_token');
+      if (token) {
+        console.log('API Request: Adding Authorization header with token');
+        config.headers['Authorization'] = `Bearer ${token}`;
+      }
+      return config;
+    },
+    (error) => {
+      console.error('API Request Error:', error);
+      return Promise.reject(error);
     }
-    
-    // 添加时间戳防止缓存
-    if (config.method === 'get') {
-      config.params = {
-        ...config.params,
-        _t: Date.now(),
-      };
-    }
-    
-    return config;
-  },
-  (error) => {
-    console.error('请求配置错误:', error);
-    return Promise.reject(error);
-  }
-);
+  );
+//}
 
-// 响应拦截器
+// 响应拦截器 - 处理错误
 api.interceptors.response.use(
-  (response) => {
-    // 直接返回完整的响应对象，让调用者自行处理data
-    return response;
-  },
+  (response) => response,
   (error) => {
-    // 统一错误处理
-    console.error('API响应错误:', error.response?.data);
+    // 在开发环境下，忽略模拟请求的错误（如果还在使用模拟模式）
+    // if (import.meta.env.DEV && error.message === 'Mock mode - Request intercepted') {
+    //   return Promise.reject(error);
+    // }
     
-    if (error.response) {
-      // 服务器响应了但状态码不是2xx
-      const { status, data } = error.response;
-      
-      // 提取并格式化错误信息
-      let errorMessage = '';
-      
-      if (typeof data === 'string') {
-        errorMessage = data;
-      } else if (data.message) {
-        errorMessage = data.message;
-      } else if (data.detail) {
-        errorMessage = typeof data.detail === 'string' ? data.detail : JSON.stringify(data.detail);
-      } else if (data.errors) {
-        const errorMessages = [];
-        for (const [field, msgs] of Object.entries(data.errors)) {
-          if (Array.isArray(msgs)) {
-            errorMessages.push(`${field}: ${msgs.join(', ')}`);
-          } else {
-            errorMessages.push(`${field}: ${msgs}`);
-          }
-        }
-        errorMessage = errorMessages.join('; ');
-      } else if (data.username) {
-        errorMessage = data.username.join('; ');
-      } else if (data.email) {
-        errorMessage = data.email.join('; ');
-      } else if (data.password) {
-        errorMessage = data.password.join('; ');
-      } else {
-        try {
-          errorMessage = JSON.stringify(data);
-        } catch (e) {
-          errorMessage = `未知错误 (状态码: ${status})`;
-        }
-      }
-      
-      // 根据状态码进行特定处理
-      switch (status) {
-        case 401:
-          // 未授权，清除token并重定向到登录页
-          localStorage.removeItem('token');
-          // 避免循环重定向
-          if (window.location.pathname !== '/login') {
-            window.location.href = '/login';
-          }
-          errorMessage = errorMessage || '登录已过期，请重新登录';
-          break;
-        case 403:
-          console.error('权限错误:', errorMessage);
-          errorMessage = errorMessage || '没有权限访问此资源';
-          break;
-        case 404:
-          console.error('资源不存在:', errorMessage);
-          errorMessage = errorMessage || '请求的资源不存在';
-          break;
-        case 429:
-          console.error('请求频率过高，请稍后再试');
-          errorMessage = '请求频率过高，请稍后再试';
-          break;
-        case 500:
-        case 502:
-        case 503:
-        case 504:
-          console.error('服务器错误:', errorMessage);
-          errorMessage = errorMessage || '服务器暂时无法处理请求';
-          break;
-        default:
-          console.error(`请求失败 (状态码: ${status}):`, errorMessage);
-      }
-      
-      // 设置错误消息
-      error.message = errorMessage;
-    } else if (error.request) {
-      // 请求已发出但没有收到响应
-      console.error('网络错误:', '无法连接到服务器，请检查您的网络连接');
-      error.message = '无法连接到服务器，请检查您的网络连接';
-    } else {
-      // 设置请求时发生了错误
-      console.error('请求错误:', error.message);
-      error.message = error.message || '请求配置错误';
+    // 处理实际的401错误
+    if (error.response && error.response.status === 401) {
+      console.log('API Response: 401 Unauthorized, clearing auth data and redirecting to login');
+      // 清除认证数据
+      AuthService.clearAuth();
+      // 重定向到登录页面
+      window.location.href = '/login';
     }
     
-    // 保留原始错误结构，同时确保有正确的message属性
     return Promise.reject(error);
   }
 );

@@ -7,7 +7,7 @@ from decimal import Decimal
 class NutritionInfoBase(BaseModel):
     calories: float = Field(..., gt=0, description="卡路里")
     protein: float = Field(..., ge=0, description="蛋白质(g)")
-    carbohydrates: float = Field(..., ge=0, description="碳水化合物(g)")
+    carbs: float = Field(..., ge=0, description="碳水化合物(g)")
     fat: float = Field(..., ge=0, description="脂肪(g)")
     fiber: Optional[float] = Field(None, ge=0, description="纤维(g)")
     sugar: Optional[float] = Field(None, ge=0, description="糖(g)")
@@ -78,7 +78,7 @@ class RecipeResponse(RecipeBase):
     recipe_id: str = Field(..., description="食谱ID")
     author_id: str = Field(..., description="作者ID")
     author_name: Optional[str] = Field(None, description="作者名称")
-    instructions: str = Field(..., description="烹饪步骤")
+    instructions: List[str] = Field(..., description="烹饪步骤列表")
     nutrition_info: Optional[NutritionInfoResponse] = Field(None, description="营养信息")
     created_at: datetime = Field(..., description="创建时间")
     updated_at: datetime = Field(..., description="更新时间")
@@ -139,3 +139,10 @@ class RatingResponse(RatingBase):
     
     class Config:
         from_attributes = True
+
+# 食谱列表响应模型（包含分页信息）
+class RecipeListResponse(BaseModel):
+    recipes: List[RecipeListItem] = Field(..., description="食谱列表")
+    page: int = Field(..., description="当前页码")
+    limit: int = Field(..., description="每页记录数")
+    total: int = Field(..., description="总记录数")
