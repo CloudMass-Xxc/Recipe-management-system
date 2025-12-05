@@ -19,7 +19,7 @@ import {
 } from '@mui/material';
 import { 
   ArrowBack, 
-  FavoriteBorder, 
+
   Share, 
   AccessTime, 
   Star, 
@@ -265,7 +265,7 @@ const RecipeDetailPage: React.FC = () => {
         }
       }
     }
-  }, [recipeId]); // 移除函数引用，避免因函数引用变化导致的重复执行
+  }, [recipeId, currentRecipe, fetchRecipeDetail, getGeneratedRecipeById, setGeneratedRecipeDetail, clearError]);
 
   // 当食谱数据加载完成后，记录instructions的数量
   useEffect(() => {
@@ -883,7 +883,6 @@ const RecipeDetailPage: React.FC = () => {
           }}>
             <Button
               variant="contained"
-              startIcon={<FavoriteBorder />}
               sx={{ 
                 flexGrow: 1, 
                 backgroundColor: '#4caf50',

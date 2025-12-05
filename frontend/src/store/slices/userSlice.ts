@@ -7,7 +7,6 @@ import { getFromLocalStorage, setToLocalStorage, removeFromLocalStorage } from '
 interface UserState {
   profile: UserProfile | null;
   preferences: UserPreferences | null;
-  favorites: any[];
   loading: boolean;
   error: string | null;
 }
@@ -15,7 +14,6 @@ interface UserState {
 const initialState: UserState = {
   profile: getFromLocalStorage<UserProfile>('userProfile'),
   preferences: getFromLocalStorage<UserPreferences>('userPreferences'),
-  favorites: getFromLocalStorage<any[]>('userFavorites') || [],
   loading: false,
   error: null
 };
@@ -56,17 +54,7 @@ export const updatePreferences = createAsyncThunk(
   }
 );
 
-export const fetchFavorites = createAsyncThunk(
-  'user/fetchFavorites',
-  async (params: { page?: number; limit?: number }, { rejectWithValue }) => {
-    try {
-      const favorites = await userService.getFavorites(params.page, params.limit);
-      return favorites;
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data?.detail || '获取收藏失败');
-    }
-  }
-);
+
 
 const userSlice = createSlice({
   name: 'user',
@@ -123,21 +111,7 @@ const userSlice = createSlice({
         state.loading = false;
         state.error = action.payload as string;
       })
-      // Fetch Favorites
-      .addCase(fetchFavorites.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(fetchFavorites.fulfilled, (state, action) => {
-        state.loading = false;
-        state.favorites = action.payload.recipes || [];
-        state.error = null;
-        setToLocalStorage('userFavorites', action.payload.recipes || []);
-      })
-      .addCase(fetchFavorites.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload as string;
-      })
+
       // Clear error
       .addCase(clearError, (state) => {
         state.error = null;
@@ -146,10 +120,8 @@ const userSlice = createSlice({
       .addCase('auth/logout/fulfilled', (state) => {
         state.profile = null;
         state.preferences = null;
-        state.favorites = [];
         removeFromLocalStorage('userProfile');
         removeFromLocalStorage('userPreferences');
-        removeFromLocalStorage('userFavorites');
       });
   }
 });

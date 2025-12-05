@@ -51,7 +51,6 @@ class AIServiceSettings(BaseSettings):
 - nutrition_info: 营养信息，包含calories, protein, carbs, fat, fiber
 - tips: 烹饪小贴士
 - tags: 标签列表
-- image_url: 请根据食谱内容生成一张匹配的食谱照片URL，例如如果是番茄鸡蛋炒饭，就生成番茄鸡蛋炒饭的照片
 """
     
     class Config:

@@ -1,39 +1,78 @@
-import React, { useEffect } from 'react';
-import { Box, Typography, Paper, Avatar, TextField, Button, CircularProgress, Alert } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Box, Typography, Paper, Avatar, TextField, Button, CircularProgress, Alert, Snackbar } from '@mui/material';
 import { Edit, Close } from '@mui/icons-material';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProfile, updateProfile, clearError } from '../../store/slices/userSlice';
 import type { RootState, AppDispatch } from '../../store';
 import Layout from '../../components/layout/Layout';
+import useAuth from '../../hooks/useAuth';
 
 const UserProfilePage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { profile, loading, error } = useSelector((state: RootState) => state.user);
+  const { isAuthenticated, user: authUser } = useAuth();
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarSeverity, setSnackbarSeverity] = useState<'success' | 'error' | 'warning' | 'info'>('info');
+
+  // 显示通知
+  const showSnackbar = (message: string, severity: 'success' | 'error' | 'warning' | 'info' = 'info') => {
+    setSnackbarMessage(message);
+    setSnackbarSeverity(severity);
+    setSnackbarOpen(true);
+  };
+
+  // 关闭通知
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+  };
 
   // 在组件挂载时获取用户资料
   useEffect(() => {
-    dispatch(fetchProfile());
-  }, [dispatch]);
+    console.log('UserProfilePage 组件挂载，认证状态:', isAuthenticated);
+    console.log('认证用户信息:', authUser);
+    console.log('Redux 用户资料:', profile);
+    
+    if (isAuthenticated) {
+      console.log('用户已认证，正在获取用户资料...');
+      dispatch(fetchProfile());
+    } else {
+      console.log('用户未认证，无法获取用户资料');
+      showSnackbar('请先登录以查看个人资料', 'warning');
+    }
+  }, [dispatch, isAuthenticated]);
 
-  // 表单状态管理
+  // 监听错误状态变化
+  useEffect(() => {
+    if (error) {
+      console.error('获取用户资料错误:', error);
+      showSnackbar(error, 'error');
+    }
+  }, [error]);
+
+  // 表单状态管理 - 初始值优先使用authUser，然后是profile
   const [formData, setFormData] = React.useState({
-    username: profile?.username || '',
-    email: profile?.email || '',
-    phone: profile?.phone || '',
+    username: profile?.username || authUser?.username || '',
+    email: profile?.email || authUser?.email || '',
+    phone: profile?.phone || authUser?.phone || '',
     bio: profile?.bio || ''
   });
 
-  // 当profile变化时更新表单数据
+  // 当profile或authUser变化时更新表单数据
   React.useEffect(() => {
-    if (profile) {
+    // 优先使用profile数据，如果没有则使用authUser
+    const userData = profile || authUser;
+    if (userData) {
+      console.log('用户资料更新，更新表单数据:', userData);
       setFormData({
-        username: profile.username || '',
-        email: profile.email || '',
-        phone: profile.phone || '',
-        bio: profile.bio || ''
+        username: userData.username || '',
+        email: userData.email || '',
+        phone: userData.phone || '',
+        bio: profile?.bio || ''
       });
+      showSnackbar('用户资料加载成功', 'success');
     }
-  }, [profile]);
+  }, [profile, authUser]);
 
   // 处理表单输入变化
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -59,6 +98,15 @@ const UserProfilePage: React.FC = () => {
         <Typography variant="body1" color="text.secondary">
           查看和编辑您的个人信息
         </Typography>
+        
+        {/* 认证状态指示器 */}
+        <Alert 
+          severity={isAuthenticated ? "success" : "warning"} 
+          sx={{ mt: 2, mb: 3 }}
+        >
+          当前认证状态: {isAuthenticated ? '已认证' : '未认证'}
+          {authUser && ` (用户ID: ${authUser.user_id})`}
+        </Alert>
       </Box>
 
       {/* 错误提示 */}
@@ -77,8 +125,23 @@ const UserProfilePage: React.FC = () => {
       {loading && !profile ? (
         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '300px' }}>
           <CircularProgress />
+          <Typography variant="h6" sx={{ ml: 2 }}>加载用户资料中...</Typography>
         </Box>
       ) : (
+        !isAuthenticated ? (
+          <Box sx={{ textAlign: 'center', py: 8 }}>
+            <Typography variant="h5" color="text.secondary" sx={{ mb: 2 }}>
+              请先登录以查看个人资料
+            </Typography>
+            <Button 
+              variant="contained" 
+              onClick={() => window.location.href = '/login'}
+              sx={{ backgroundColor: '#4caf50' }}
+            >
+              前往登录
+            </Button>
+          </Box>
+        ) : (
         <Box>
           <Paper sx={{ p: 4, borderRadius: 2 }}>
             <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 4 }}>
@@ -236,7 +299,20 @@ const UserProfilePage: React.FC = () => {
             </Box>
           </Paper>
         </Box>
+        )
       )}
+
+      {/* 通知 */}
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={6000}
+        onClose={handleSnackbarClose}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert onClose={handleSnackbarClose} severity={snackbarSeverity} sx={{ width: '100%' }}>
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </Layout>
   );
 };

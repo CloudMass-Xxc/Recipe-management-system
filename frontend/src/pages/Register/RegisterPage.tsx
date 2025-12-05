@@ -73,7 +73,7 @@ const RegisterPage: React.FC = () => {
           
           {(error || formError) && (
             <Alert severity="error" sx={{ mb: 2 }}>
-              {typeof error === 'string' ? error : JSON.stringify(error) || formError}
+              {error || formError}
             </Alert>
           )}
           

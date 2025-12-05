@@ -1,0 +1,474 @@
+2025-12-02 19:38:19,557 - clear_database_simple - INFO - 开始清除数据库所有表数据的操作
+2025-12-02 19:38:19,557 - clear_database_simple - INFO - 数据库URL: postgresql://app_user:******@localhost:5432/recipe_system
+2025-12-02 19:38:19,557 - clear_database_simple - INFO - 正在创建数据库引擎...
+2025-12-02 19:38:19,613 - clear_database_simple - INFO - 数据库会话创建成功
+2025-12-02 19:38:19,784 - clear_database_simple - INFO - 找到 8 个表
+2025-12-02 19:38:19,784 - clear_database_simple - INFO - 找到的表: ingredients, nutrition_info, recipes, users, diet_plans, favorites, ratings, recipe_ingredients
+2025-12-02 19:38:19,784 - clear_database_simple - INFO - 开始删除表数据...
+2025-12-02 19:38:19,788 - clear_database_simple - INFO - 正在删除 recipe_ingredients 表数据...
+2025-12-02 19:38:19,794 - clear_database_simple - ERROR - 删除 recipe_ingredients 表数据失败: (psycopg2.errors.InsufficientPrivilege) permission denied for table recipe_ingredients
+
+[SQL: DELETE FROM public.recipe_ingredients]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-12-02 19:38:19,802 - clear_database_simple - ERROR - Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.InsufficientPrivilege: permission denied for table recipe_ingredients
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\clear_database_simple.py", line 98, in <module>
+    session.query(table).delete()
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\query.py", line 3181, in delete
+    result: CursorResult[Any] = self.session.execute(
+                                ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2308, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2199, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.InsufficientPrivilege) permission denied for table recipe_ingredients
+
+[SQL: DELETE FROM public.recipe_ingredients]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+
+2025-12-02 19:38:19,805 - clear_database_simple - INFO - 正在删除 ratings 表数据...
+2025-12-02 19:38:19,810 - clear_database_simple - ERROR - 删除 ratings 表数据失败: (psycopg2.errors.InsufficientPrivilege) permission denied for table ratings
+
+[SQL: DELETE FROM public.ratings]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-12-02 19:38:19,813 - clear_database_simple - ERROR - Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.InsufficientPrivilege: permission denied for table ratings
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\clear_database_simple.py", line 98, in <module>
+    session.query(table).delete()
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\query.py", line 3181, in delete
+    result: CursorResult[Any] = self.session.execute(
+                                ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2308, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2199, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.InsufficientPrivilege) permission denied for table ratings
+
+[SQL: DELETE FROM public.ratings]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+
+2025-12-02 19:38:19,817 - clear_database_simple - INFO - 正在删除 favorites 表数据...
+2025-12-02 19:38:19,825 - clear_database_simple - ERROR - 删除 favorites 表数据失败: (psycopg2.errors.InsufficientPrivilege) permission denied for table favorites
+
+[SQL: DELETE FROM public.favorites]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-12-02 19:38:19,825 - clear_database_simple - ERROR - Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.InsufficientPrivilege: permission denied for table favorites
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\clear_database_simple.py", line 98, in <module>
+    session.query(table).delete()
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\query.py", line 3181, in delete
+    result: CursorResult[Any] = self.session.execute(
+                                ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2308, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2199, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.InsufficientPrivilege) permission denied for table favorites
+
+[SQL: DELETE FROM public.favorites]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+
+2025-12-02 19:38:19,830 - clear_database_simple - INFO - 正在删除 diet_plans 表数据...
+2025-12-02 19:38:19,833 - clear_database_simple - ERROR - 删除 diet_plans 表数据失败: (psycopg2.errors.InsufficientPrivilege) permission denied for table diet_plans
+
+[SQL: DELETE FROM public.diet_plans]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-12-02 19:38:19,835 - clear_database_simple - ERROR - Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.InsufficientPrivilege: permission denied for table diet_plans
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\clear_database_simple.py", line 98, in <module>
+    session.query(table).delete()
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\query.py", line 3181, in delete
+    result: CursorResult[Any] = self.session.execute(
+                                ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2308, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2199, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.InsufficientPrivilege) permission denied for table diet_plans
+
+[SQL: DELETE FROM public.diet_plans]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+
+2025-12-02 19:38:19,839 - clear_database_simple - INFO - 正在删除 users 表数据...
+2025-12-02 19:38:19,847 - clear_database_simple - ERROR - 删除 users 表数据失败: (psycopg2.errors.InsufficientPrivilege) permission denied for table users
+
+[SQL: DELETE FROM public.users]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-12-02 19:38:19,849 - clear_database_simple - ERROR - Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.InsufficientPrivilege: permission denied for table users
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\clear_database_simple.py", line 98, in <module>
+    session.query(table).delete()
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\query.py", line 3181, in delete
+    result: CursorResult[Any] = self.session.execute(
+                                ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2308, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2199, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.InsufficientPrivilege) permission denied for table users
+
+[SQL: DELETE FROM public.users]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+
+2025-12-02 19:38:19,853 - clear_database_simple - INFO - 正在删除 recipes 表数据...
+2025-12-02 19:38:19,857 - clear_database_simple - ERROR - 删除 recipes 表数据失败: (psycopg2.errors.InsufficientPrivilege) permission denied for table recipes
+
+[SQL: DELETE FROM public.recipes]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-12-02 19:38:19,863 - clear_database_simple - ERROR - Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.InsufficientPrivilege: permission denied for table recipes
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\clear_database_simple.py", line 98, in <module>
+    session.query(table).delete()
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\query.py", line 3181, in delete
+    result: CursorResult[Any] = self.session.execute(
+                                ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2308, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2199, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.InsufficientPrivilege) permission denied for table recipes
+
+[SQL: DELETE FROM public.recipes]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+
+2025-12-02 19:38:19,867 - clear_database_simple - INFO - 正在删除 nutrition_info 表数据...
+2025-12-02 19:38:19,869 - clear_database_simple - ERROR - 删除 nutrition_info 表数据失败: (psycopg2.errors.InsufficientPrivilege) permission denied for table nutrition_info
+
+[SQL: DELETE FROM public.nutrition_info]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-12-02 19:38:19,871 - clear_database_simple - ERROR - Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.InsufficientPrivilege: permission denied for table nutrition_info
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\clear_database_simple.py", line 98, in <module>
+    session.query(table).delete()
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\query.py", line 3181, in delete
+    result: CursorResult[Any] = self.session.execute(
+                                ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2308, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2199, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.InsufficientPrivilege) permission denied for table nutrition_info
+
+[SQL: DELETE FROM public.nutrition_info]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+
+2025-12-02 19:38:19,876 - clear_database_simple - INFO - 正在删除 ingredients 表数据...
+2025-12-02 19:38:19,881 - clear_database_simple - ERROR - 删除 ingredients 表数据失败: (psycopg2.errors.InsufficientPrivilege) permission denied for table ingredients
+
+[SQL: DELETE FROM public.ingredients]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-12-02 19:38:19,881 - clear_database_simple - ERROR - Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.InsufficientPrivilege: permission denied for table ingredients
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\clear_database_simple.py", line 98, in <module>
+    session.query(table).delete()
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\query.py", line 3181, in delete
+    result: CursorResult[Any] = self.session.execute(
+                                ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2308, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2199, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.InsufficientPrivilege) permission denied for table ingredients
+
+[SQL: DELETE FROM public.ingredients]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+
+2025-12-02 19:38:19,885 - clear_database_simple - INFO - 开始验证数据清除结果...
+2025-12-02 19:38:19,889 - clear_database_simple - ERROR - 验证 recipe_ingredients 表时出错: (psycopg2.errors.InsufficientPrivilege) permission denied for table recipe_ingredients
+
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT public.recipe_ingredients.id AS public_recipe_ingredients_id, public.recipe_ingredients.recipe_id AS public_recipe_ingredients_recipe_id, public.recipe_ingredients.ingredient_id AS public_recipe_ingredients_ingredient_id, public.recipe_ingredients.quantity AS public_recipe_ingredients_quantity, public.recipe_ingredients.unit AS public_recipe_ingredients_unit 
+FROM public.recipe_ingredients) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-12-02 19:38:19,895 - clear_database_simple - ERROR - 验证 ratings 表时出错: (psycopg2.errors.InFailedSqlTransaction) current transaction is aborted, commands ignored until end of transaction block
+
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT public.ratings.rating_id AS public_ratings_rating_id, public.ratings.user_id AS public_ratings_user_id, public.ratings.recipe_id AS public_ratings_recipe_id, public.ratings.score AS public_ratings_score, public.ratings.comment AS public_ratings_comment, public.ratings.created_at AS public_ratings_created_at 
+FROM public.ratings) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/2j85)
+2025-12-02 19:38:19,899 - clear_database_simple - ERROR - 验证 favorites 表时出错: (psycopg2.errors.InFailedSqlTransaction) current transaction is aborted, commands ignored until end of transaction block
+
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT public.favorites.favorite_id AS public_favorites_favorite_id, public.favorites.user_id AS public_favorites_user_id, public.favorites.recipe_id AS public_favorites_recipe_id, public.favorites.created_at AS public_favorites_created_at 
+FROM public.favorites) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/2j85)
+2025-12-02 19:38:19,901 - clear_database_simple - ERROR - 验证 diet_plans 表时出错: (psycopg2.errors.InFailedSqlTransaction) current transaction is aborted, commands ignored until end of transaction block
+
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT public.diet_plans.plan_id AS public_diet_plans_plan_id, public.diet_plans.user_id AS public_diet_plans_user_id, public.diet_plans.name AS public_diet_plans_name, public.diet_plans.start_date AS public_diet_plans_start_date, public.diet_plans.end_date AS public_diet_plans_end_date, public.diet_plans.recipes AS public_diet_plans_recipes, public.diet_plans.created_at AS public_diet_plans_created_at, public.diet_plans.updated_at AS public_diet_plans_updated_at 
+FROM public.diet_plans) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/2j85)
+2025-12-02 19:38:19,905 - clear_database_simple - ERROR - 验证 users 表时出错: (psycopg2.errors.InFailedSqlTransaction) current transaction is aborted, commands ignored until end of transaction block
+
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT public.users.user_id AS public_users_user_id, public.users.username AS public_users_username, public.users.email AS public_users_email, public.users.password_hash AS public_users_password_hash, public.users.diet_preferences AS public_users_diet_preferences, public.users.is_active AS public_users_is_active, public.users.created_at AS public_users_created_at, public.users.updated_at AS public_users_updated_at, public.users.phone AS public_users_phone 
+FROM public.users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/2j85)
+2025-12-02 19:38:19,912 - clear_database_simple - ERROR - 验证 recipes 表时出错: (psycopg2.errors.InFailedSqlTransaction) current transaction is aborted, commands ignored until end of transaction block
+
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT public.recipes.recipe_id AS public_recipes_recipe_id, public.recipes.title AS public_recipes_title, public.recipes.description AS public_recipes_description, public.recipes.ingredients AS public_recipes_ingredients, public.recipes.steps AS public_recipes_steps, public.recipes.cooking_time AS public_recipes_cooking_time, public.recipes.difficulty AS public_recipes_difficulty, public.recipes.nutrition_info AS public_recipes_nutrition_info, public.recipes.image_url AS public_recipes_image_url, public.recipes.tags AS public_recipes_tags, public.recipes.created_at AS public_recipes_created_at, public.recipes.updated_at AS public_recipes_updated_at 
+FROM public.recipes) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/2j85)
+2025-12-02 19:38:19,915 - clear_database_simple - ERROR - 验证 nutrition_info 表时出错: (psycopg2.errors.InFailedSqlTransaction) current transaction is aborted, commands ignored until end of transaction block
+
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT public.nutrition_info.nutrition_id AS public_nutrition_info_nutrition_id, public.nutrition_info.calories AS public_nutrition_info_calories, public.nutrition_info.protein AS public_nutrition_info_protein, public.nutrition_info.carbs AS public_nutrition_info_carbs, public.nutrition_info.fat AS public_nutrition_info_fat, public.nutrition_info.fiber AS public_nutrition_info_fiber, public.nutrition_info.vitamins AS public_nutrition_info_vitamins, public.nutrition_info.minerals AS public_nutrition_info_minerals 
+FROM public.nutrition_info) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/2j85)
+2025-12-02 19:38:19,919 - clear_database_simple - ERROR - 验证 ingredients 表时出错: (psycopg2.errors.InFailedSqlTransaction) current transaction is aborted, commands ignored until end of transaction block
+
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT public.ingredients.ingredient_id AS public_ingredients_ingredient_id, public.ingredients.name AS public_ingredients_name, public.ingredients.category AS public_ingredients_category, public.ingredients.unit AS public_ingredients_unit, public.ingredients.nutrition_data AS public_ingredients_nutrition_data, public.ingredients.created_at AS public_ingredients_created_at 
+FROM public.ingredients) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/2j85)
+2025-12-02 19:38:19,945 - clear_database_simple - INFO - 数据库会话已关闭
+2025-12-02 19:38:19,945 - clear_database_simple - INFO - 数据清除脚本执行完毕

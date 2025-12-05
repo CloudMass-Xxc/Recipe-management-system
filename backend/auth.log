@@ -1,0 +1,1414 @@
+2025-12-02 19:47:32,208 - app.auth.routes - INFO - 收到注册请求 - 用户名: 徐小昌, 邮箱: xxiaochang@qq.com, IP: 127.0.0.1
+2025-12-02 19:47:32,287 - app.auth.routes - INFO - 用户注册成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 19:48:05,481 - app.auth.routes - INFO - 收到注册请求 - 用户名: test_user_api, 邮箱: test_api@example.com, IP: 127.0.0.1
+2025-12-02 19:48:05,514 - app.auth.routes - INFO - 用户注册成功: test_user_api, 用户ID: bb7620ec-7bc1-43bd-ab25-8d30bfe88f3c, IP: 127.0.0.1
+2025-12-02 19:52:03,554 - app.auth.routes - INFO - 收到注册请求 - 用户名: test_user_fix, 邮箱: test_fix@example.com, IP: 127.0.0.1
+2025-12-02 19:52:03,620 - app.auth.routes - INFO - 用户注册成功: test_user_fix, 用户ID: 6e589b65-f5dc-4f8e-bec2-c5f6ecfc4e67, IP: 127.0.0.1
+2025-12-02 19:52:06,661 - app.auth.routes - INFO - 收到登录请求 - 标识符: test_user_fix, IP: 127.0.0.1
+2025-12-02 19:52:06,699 - app.auth.routes - INFO - 用户登录成功: test_user_fix, 用户ID: 6e589b65-f5dc-4f8e-bec2-c5f6ecfc4e67, IP: 127.0.0.1
+2025-12-02 19:52:08,741 - app.auth.routes - INFO - 收到登录请求 - 标识符: test_fix@example.com, IP: 127.0.0.1
+2025-12-02 19:52:08,774 - app.auth.routes - INFO - 用户登录成功: test_user_fix, 用户ID: 6e589b65-f5dc-4f8e-bec2-c5f6ecfc4e67, IP: 127.0.0.1
+2025-12-02 19:52:10,807 - app.auth.routes - INFO - 收到登录请求 - 标识符: 13800138001, IP: 127.0.0.1
+2025-12-02 19:52:10,840 - app.auth.routes - INFO - 用户登录成功: test_user_fix, 用户ID: 6e589b65-f5dc-4f8e-bec2-c5f6ecfc4e67, IP: 127.0.0.1
+2025-12-02 19:53:26,585 - app.auth.routes - INFO - 收到注册请求 - 用户名: test_register_api, 邮箱: test_register_api@example.com, IP: 127.0.0.1
+2025-12-02 19:53:26,619 - app.auth.routes - INFO - 用户注册成功: test_register_api, 用户ID: fd496406-30fa-42e6-ab19-f8d441384f5e, IP: 127.0.0.1
+2025-12-02 19:54:17,943 - app.auth.routes - INFO - 收到注册请求 - 用户名: test_full_flow, 邮箱: test_full_flow@example.com, IP: 127.0.0.1
+2025-12-02 19:54:17,976 - app.auth.routes - INFO - 用户注册成功: test_full_flow, 用户ID: 918f13a5-935d-4b75-bfab-18e3a6b60c07, IP: 127.0.0.1
+2025-12-02 19:54:20,002 - app.auth.routes - INFO - 收到登录请求 - 标识符: test_full_flow, IP: 127.0.0.1
+2025-12-02 19:54:20,036 - app.auth.routes - INFO - 用户登录成功: test_full_flow, 用户ID: 918f13a5-935d-4b75-bfab-18e3a6b60c07, IP: 127.0.0.1
+2025-12-02 19:54:22,078 - app.auth.routes - INFO - 收到登录请求 - 标识符: test_full_flow@example.com, IP: 127.0.0.1
+2025-12-02 19:54:22,110 - app.auth.routes - INFO - 用户登录成功: test_full_flow, 用户ID: 918f13a5-935d-4b75-bfab-18e3a6b60c07, IP: 127.0.0.1
+2025-12-02 19:54:24,168 - app.auth.routes - INFO - 收到登录请求 - 标识符: 13800138003, IP: 127.0.0.1
+2025-12-02 19:54:24,199 - app.auth.routes - INFO - 用户登录成功: test_full_flow, 用户ID: 918f13a5-935d-4b75-bfab-18e3a6b60c07, IP: 127.0.0.1
+2025-12-02 19:57:37,735 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser_fix_123, 邮箱: testuser_fix_123@example.com, IP: 127.0.0.1
+2025-12-02 19:57:37,769 - app.auth.routes - INFO - 用户注册成功: testuser_fix_123, 用户ID: 18b5a474-a6ef-4748-8ab0-0bb5cfb76951, IP: 127.0.0.1
+2025-12-02 19:57:39,825 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser_fix_123, IP: 127.0.0.1
+2025-12-02 19:57:39,856 - app.auth.routes - INFO - 用户登录成功: testuser_fix_123, 用户ID: 18b5a474-a6ef-4748-8ab0-0bb5cfb76951, IP: 127.0.0.1
+2025-12-02 19:59:18,326 - app.auth.routes - INFO - 收到注册请求 - 用户名: frontend_test_7c579f1b, 邮箱: frontend_test_7c579f1b@example.com, IP: 127.0.0.1
+2025-12-02 19:59:18,359 - app.auth.routes - INFO - 用户注册成功: frontend_test_7c579f1b, 用户ID: 0e421319-2821-485a-bef9-365c9b30050f, IP: 127.0.0.1
+2025-12-02 19:59:20,400 - app.auth.routes - INFO - 收到登录请求 - 标识符: frontend_test_7c579f1b, IP: 127.0.0.1
+2025-12-02 19:59:20,430 - app.auth.routes - INFO - 用户登录成功: frontend_test_7c579f1b, 用户ID: 0e421319-2821-485a-bef9-365c9b30050f, IP: 127.0.0.1
+2025-12-02 19:59:22,474 - app.auth.routes - INFO - 收到登录请求 - 标识符: frontend_test_7c579f1b, IP: 127.0.0.1
+2025-12-02 19:59:22,508 - app.auth.routes - INFO - 用户登录成功: frontend_test_7c579f1b, 用户ID: 0e421319-2821-485a-bef9-365c9b30050f, IP: 127.0.0.1
+2025-12-02 19:59:24,578 - app.auth.routes - INFO - 收到登录请求 - 标识符: frontend_test_7c579f1b@example.com, IP: 127.0.0.1
+2025-12-02 19:59:24,612 - app.auth.routes - INFO - 用户登录成功: frontend_test_7c579f1b, 用户ID: 0e421319-2821-485a-bef9-365c9b30050f, IP: 127.0.0.1
+2025-12-02 19:59:26,679 - app.auth.routes - INFO - 收到登录请求 - 标识符: 13124148178, IP: 127.0.0.1
+2025-12-02 19:59:26,711 - app.auth.routes - INFO - 用户登录成功: frontend_test_7c579f1b, 用户ID: 0e421319-2821-485a-bef9-365c9b30050f, IP: 127.0.0.1
+2025-12-02 20:01:58,651 - app.auth.routes - INFO - 收到注册请求 - 用户名: 徐小昌, 邮箱: xxiaochang@qq.com, IP: 127.0.0.1
+2025-12-02 20:01:58,652 - app.auth.routes - WARNING - 注册失败 - 用户名已存在: 徐小昌, IP: 127.0.0.1
+2025-12-02 20:02:05,477 - app.auth.routes - INFO - 收到注册请求 - 用户名: 徐小昌, 邮箱: xxiaochang@qq.com, IP: 127.0.0.1
+2025-12-02 20:02:05,477 - app.auth.routes - WARNING - 注册失败 - 用户名已存在: 徐小昌, IP: 127.0.0.1
+2025-12-02 20:03:27,725 - app.auth.routes - INFO - 收到注册请求 - 用户名: test_register_api, 邮箱: test_register_api@example.com, IP: 127.0.0.1
+2025-12-02 20:03:27,727 - app.auth.routes - WARNING - 注册失败 - 用户名已存在: test_register_api, IP: 127.0.0.1
+2025-12-02 20:07:45,769 - app.auth.routes - INFO - 收到注册请求 - 用户名: test_register_api, 邮箱: test_register_api@example.com, IP: 127.0.0.1
+2025-12-02 20:07:45,771 - app.auth.routes - WARNING - 注册失败 - 用户名已存在: test_register_api, IP: 127.0.0.1
+2025-12-02 20:09:35,169 - app.auth.routes - INFO - 收到注册请求 - 用户名: test_register_api, 邮箱: test_register_api@example.com, IP: 127.0.0.1
+2025-12-02 20:09:35,201 - app.auth.routes - WARNING - 注册失败 - 用户名已存在: test_register_api, IP: 127.0.0.1
+2025-12-02 20:10:03,596 - app.auth.routes - INFO - 收到注册请求 - 用户名: test_user_hhz8asze, 邮箱: test_user_hhz8asze@example.com, IP: 127.0.0.1
+2025-12-02 20:10:03,633 - app.auth.routes - ERROR - 用户注册失败: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "users_phone_key"
+DETAIL:  Key (phone)=(13800138002) already exists.
+
+[SQL: INSERT INTO app_schema.users (user_id, username, email, phone, password_hash, display_name, avatar_url, bio, is_active, is_superuser, failed_login_attempts, locked_until) VALUES (%(user_id)s::UUID, %(username)s, %(email)s, %(phone)s, %(password_hash)s, %(display_name)s, %(avatar_url)s, %(bio)s, %(is_active)s, %(is_superuser)s, %(failed_login_attempts)s, %(locked_until)s) RETURNING app_schema.users.created_at, app_schema.users.updated_at]
+[parameters: {'user_id': UUID('32c188ca-ef80-48b6-834b-5d0532ca9851'), 'username': 'test_user_hhz8asze', 'email': 'test_user_hhz8asze@example.com', 'phone': '13800138002', 'password_hash': '$pbkdf2-sha256$29000$iJGSslbqPScEQCglhFBKqQ$Y3.ryVdY7o5vzhi2NTL9mLzeWZKs2d9tVzoCdYOT6a8', 'display_name': 'test_user_hhz8asze', 'avatar_url': None, 'bio': None, 'is_active': 'Y', 'is_superuser': False, 'failed_login_attempts': 0, 'locked_until': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj), 用户名: test_user_hhz8asze, IP: 127.0.0.1
+2025-12-02 20:10:03,685 - app.auth.routes - ERROR - 错误堆栈: Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "users_phone_key"
+DETAIL:  Key (phone)=(13800138002) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\backend\app\auth\routes.py", line 86, in register
+    db.commit()
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 1969, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 1256, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 1231, in _prepare_impl
+    self.session.flush()
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 4312, in flush
+    self._flush(objects)
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 4447, in _flush
+    with util.safe_reraise():
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 4408, in _flush
+    flush_context.execute()
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\persistence.py", line 1226, in _emit_insert_statements
+    result = connection.execute(
+             ^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "users_phone_key"
+DETAIL:  Key (phone)=(13800138002) already exists.
+
+[SQL: INSERT INTO app_schema.users (user_id, username, email, phone, password_hash, display_name, avatar_url, bio, is_active, is_superuser, failed_login_attempts, locked_until) VALUES (%(user_id)s::UUID, %(username)s, %(email)s, %(phone)s, %(password_hash)s, %(display_name)s, %(avatar_url)s, %(bio)s, %(is_active)s, %(is_superuser)s, %(failed_login_attempts)s, %(locked_until)s) RETURNING app_schema.users.created_at, app_schema.users.updated_at]
+[parameters: {'user_id': UUID('32c188ca-ef80-48b6-834b-5d0532ca9851'), 'username': 'test_user_hhz8asze', 'email': 'test_user_hhz8asze@example.com', 'phone': '13800138002', 'password_hash': '$pbkdf2-sha256$29000$iJGSslbqPScEQCglhFBKqQ$Y3.ryVdY7o5vzhi2NTL9mLzeWZKs2d9tVzoCdYOT6a8', 'display_name': 'test_user_hhz8asze', 'avatar_url': None, 'bio': None, 'is_active': 'Y', 'is_superuser': False, 'failed_login_attempts': 0, 'locked_until': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+
+2025-12-02 20:10:49,603 - app.auth.routes - INFO - 收到注册请求 - 用户名: test_user_98i4gkop, 邮箱: test_user_98i4gkop@example.com, IP: 127.0.0.1
+2025-12-02 20:10:49,636 - app.auth.routes - INFO - 用户注册成功: test_user_98i4gkop, 用户ID: 7c1e2cf5-0143-4f53-8f98-427f9b029920, IP: 127.0.0.1
+2025-12-02 20:11:14,235 - app.auth.routes - INFO - 收到注册请求 - 用户名: test_user_7rdkqwhe, 邮箱: test_user_7rdkqwhe@example.com, IP: 127.0.0.1
+2025-12-02 20:11:14,267 - app.auth.routes - INFO - 用户注册成功: test_user_7rdkqwhe, 用户ID: 2099e456-30b5-4efa-902e-79a7d9b7b7c6, IP: 127.0.0.1
+2025-12-02 20:13:03,447 - app.auth.routes - INFO - 收到注册请求 - 用户名: test_user_baw9wq5b, 邮箱: test_user_baw9wq5b@example.com, IP: 127.0.0.1
+2025-12-02 20:13:03,480 - app.auth.routes - INFO - 用户注册成功: test_user_baw9wq5b, 用户ID: 8083e35c-e6de-43f3-b49a-41a3aaa418b9, IP: 127.0.0.1
+2025-12-02 20:14:49,391 - app.auth.routes - INFO - 收到注册请求 - 用户名: test_user_179289bc, 邮箱: test_user_179289bc@example.com, IP: 127.0.0.1
+2025-12-02 20:14:49,428 - app.auth.routes - INFO - 用户注册成功: test_user_179289bc, 用户ID: 01ed911c-6418-48ef-9d18-7af9852cb01c, IP: 127.0.0.1
+2025-12-02 20:14:51,480 - app.auth.routes - INFO - 收到注册请求 - 用户名: test_user_179289bc, 邮箱: test_user_179289bc@example.com, IP: 127.0.0.1
+2025-12-02 20:14:51,482 - app.auth.routes - WARNING - 注册失败 - 用户名已存在: test_user_179289bc, IP: 127.0.0.1
+2025-12-02 20:15:49,910 - app.auth.routes - INFO - 收到注册请求 - 用户名: test_user_179289bc, 邮箱: test@example.com, IP: 127.0.0.1
+2025-12-02 20:15:49,913 - app.auth.routes - WARNING - 注册失败 - 用户名已存在: test_user_179289bc, IP: 127.0.0.1
+2025-12-02 20:16:39,841 - app.auth.routes - INFO - 收到注册请求 - 用户名: 徐小昌, 邮箱: xxiaochang@qq.com, IP: 127.0.0.1
+2025-12-02 20:16:39,844 - app.auth.routes - WARNING - 注册失败 - 用户名已存在: 徐小昌, IP: 127.0.0.1
+2025-12-02 20:17:05,477 - app.auth.routes - INFO - 收到注册请求 - 用户名: 徐小昌, 邮箱: xxiaochang@qq.com, IP: 127.0.0.1
+2025-12-02 20:17:05,480 - app.auth.routes - WARNING - 注册失败 - 用户名已存在: 徐小昌, IP: 127.0.0.1
+2025-12-02 20:19:41,371 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser_fix_123, 邮箱: testuser_fix_123@example.com, IP: 127.0.0.1
+2025-12-02 20:19:41,376 - app.auth.routes - WARNING - 注册失败 - 用户名已存在: testuser_fix_123, IP: 127.0.0.1
+2025-12-02 20:20:45,015 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser_fix_123, 邮箱: testuser_fix_123@example.com, IP: 127.0.0.1
+2025-12-02 20:20:45,018 - app.auth.routes - WARNING - 注册失败 - 用户名已存在: testuser_fix_123, IP: 127.0.0.1
+2025-12-02 20:21:37,736 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser_20251202_202135, 邮箱: testuser_20251202_202135@example.com, IP: 127.0.0.1
+2025-12-02 20:21:37,765 - app.auth.routes - ERROR - 用户注册失败: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "users_phone_key"
+DETAIL:  Key (phone)=(13100001234) already exists.
+
+[SQL: INSERT INTO app_schema.users (user_id, username, email, phone, password_hash, display_name, avatar_url, bio, is_active, is_superuser, failed_login_attempts, locked_until) VALUES (%(user_id)s::UUID, %(username)s, %(email)s, %(phone)s, %(password_hash)s, %(display_name)s, %(avatar_url)s, %(bio)s, %(is_active)s, %(is_superuser)s, %(failed_login_attempts)s, %(locked_until)s) RETURNING app_schema.users.created_at, app_schema.users.updated_at]
+[parameters: {'user_id': UUID('af84c2dd-2517-42f9-9d2f-cedbcc495019'), 'username': 'testuser_20251202_202135', 'email': 'testuser_20251202_202135@example.com', 'phone': '13100001234', 'password_hash': '$pbkdf2-sha256$29000$DGFs7V3L.V/LeW.tdQ6BEA$DHCDSED0hR3TcitqvNCI1XTeXW23xzIh4YXrcOmM950', 'display_name': 'testuser_20251202_202135', 'avatar_url': None, 'bio': None, 'is_active': 'Y', 'is_superuser': False, 'failed_login_attempts': 0, 'locked_until': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj), 用户名: testuser_20251202_202135, IP: 127.0.0.1
+2025-12-02 20:21:37,768 - app.auth.routes - ERROR - 错误堆栈: Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "users_phone_key"
+DETAIL:  Key (phone)=(13100001234) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\backend\app\auth\routes.py", line 86, in register
+    db.commit()
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 1969, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 1256, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 1231, in _prepare_impl
+    self.session.flush()
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 4312, in flush
+    self._flush(objects)
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 4447, in _flush
+    with util.safe_reraise():
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 4408, in _flush
+    flush_context.execute()
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\persistence.py", line 1226, in _emit_insert_statements
+    result = connection.execute(
+             ^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "users_phone_key"
+DETAIL:  Key (phone)=(13100001234) already exists.
+
+[SQL: INSERT INTO app_schema.users (user_id, username, email, phone, password_hash, display_name, avatar_url, bio, is_active, is_superuser, failed_login_attempts, locked_until) VALUES (%(user_id)s::UUID, %(username)s, %(email)s, %(phone)s, %(password_hash)s, %(display_name)s, %(avatar_url)s, %(bio)s, %(is_active)s, %(is_superuser)s, %(failed_login_attempts)s, %(locked_until)s) RETURNING app_schema.users.created_at, app_schema.users.updated_at]
+[parameters: {'user_id': UUID('af84c2dd-2517-42f9-9d2f-cedbcc495019'), 'username': 'testuser_20251202_202135', 'email': 'testuser_20251202_202135@example.com', 'phone': '13100001234', 'password_hash': '$pbkdf2-sha256$29000$DGFs7V3L.V/LeW.tdQ6BEA$DHCDSED0hR3TcitqvNCI1XTeXW23xzIh4YXrcOmM950', 'display_name': 'testuser_20251202_202135', 'avatar_url': None, 'bio': None, 'is_active': 'Y', 'is_superuser': False, 'failed_login_attempts': 0, 'locked_until': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+
+2025-12-02 20:23:11,740 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser_20251202_202309, 邮箱: testuser_20251202_202309@example.com, IP: 127.0.0.1
+2025-12-02 20:23:11,775 - app.auth.routes - INFO - 用户注册成功: testuser_20251202_202309, 用户ID: 0cc81b3c-1224-4a89-abcc-da6b1ad570f7, IP: 127.0.0.1
+2025-12-02 20:23:31,029 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser_20251202_202328, 邮箱: testuser_20251202_202328@example.com, IP: 127.0.0.1
+2025-12-02 20:23:31,062 - app.auth.routes - INFO - 用户注册成功: testuser_20251202_202328, 用户ID: f091469d-6f97-4395-ae94-db3b3287735a, IP: 127.0.0.1
+2025-12-02 20:23:33,124 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser_20251202_202328, 邮箱: testuser_20251202_202328@example.com, IP: 127.0.0.1
+2025-12-02 20:23:33,126 - app.auth.routes - WARNING - 注册失败 - 用户名已存在: testuser_20251202_202328, IP: 127.0.0.1
+2025-12-02 20:23:35,165 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser_20251202_202328_different, 邮箱: testuser_20251202_202328@example.com, IP: 127.0.0.1
+2025-12-02 20:23:35,169 - app.auth.routes - WARNING - 注册失败 - 邮箱已被注册: testuser_20251202_202328@example.com, IP: 127.0.0.1
+2025-12-02 20:23:37,210 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser_20251202_202328_different2, 邮箱: testuser_20251202_202328_different2@example.com, IP: 127.0.0.1
+2025-12-02 20:23:37,244 - app.auth.routes - ERROR - 用户注册失败: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "users_phone_key"
+DETAIL:  Key (phone)=(13391011024) already exists.
+
+[SQL: INSERT INTO app_schema.users (user_id, username, email, phone, password_hash, display_name, avatar_url, bio, is_active, is_superuser, failed_login_attempts, locked_until) VALUES (%(user_id)s::UUID, %(username)s, %(email)s, %(phone)s, %(password_hash)s, %(display_name)s, %(avatar_url)s, %(bio)s, %(is_active)s, %(is_superuser)s, %(failed_login_attempts)s, %(locked_until)s) RETURNING app_schema.users.created_at, app_schema.users.updated_at]
+[parameters: {'user_id': UUID('065dd387-6164-490f-a8d9-71ddc1dfc49c'), 'username': 'testuser_20251202_202328_different2', 'email': 'testuser_20251202_202328_different2@example.com', 'phone': '13391011024', 'password_hash': '$pbkdf2-sha256$29000$yBlDCCHkXOvd29sboxRCyA$PWYEAZ7d.Fa/YAHjtIJQn0LGWhnInFZ6sv4mvWCCzVE', 'display_name': 'testuser_20251202_202328_different2', 'avatar_url': None, 'bio': None, 'is_active': 'Y', 'is_superuser': False, 'failed_login_attempts': 0, 'locked_until': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj), 用户名: testuser_20251202_202328_different2, IP: 127.0.0.1
+2025-12-02 20:23:37,249 - app.auth.routes - ERROR - 错误堆栈: Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "users_phone_key"
+DETAIL:  Key (phone)=(13391011024) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\backend\app\auth\routes.py", line 86, in register
+    )
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 1969, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 1256, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 1231, in _prepare_impl
+    self.session.flush()
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 4312, in flush
+    self._flush(objects)
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 4447, in _flush
+    with util.safe_reraise():
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 4408, in _flush
+    flush_context.execute()
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\persistence.py", line 1226, in _emit_insert_statements
+    result = connection.execute(
+             ^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "users_phone_key"
+DETAIL:  Key (phone)=(13391011024) already exists.
+
+[SQL: INSERT INTO app_schema.users (user_id, username, email, phone, password_hash, display_name, avatar_url, bio, is_active, is_superuser, failed_login_attempts, locked_until) VALUES (%(user_id)s::UUID, %(username)s, %(email)s, %(phone)s, %(password_hash)s, %(display_name)s, %(avatar_url)s, %(bio)s, %(is_active)s, %(is_superuser)s, %(failed_login_attempts)s, %(locked_until)s) RETURNING app_schema.users.created_at, app_schema.users.updated_at]
+[parameters: {'user_id': UUID('065dd387-6164-490f-a8d9-71ddc1dfc49c'), 'username': 'testuser_20251202_202328_different2', 'email': 'testuser_20251202_202328_different2@example.com', 'phone': '13391011024', 'password_hash': '$pbkdf2-sha256$29000$yBlDCCHkXOvd29sboxRCyA$PWYEAZ7d.Fa/YAHjtIJQn0LGWhnInFZ6sv4mvWCCzVE', 'display_name': 'testuser_20251202_202328_different2', 'avatar_url': None, 'bio': None, 'is_active': 'Y', 'is_superuser': False, 'failed_login_attempts': 0, 'locked_until': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+
+2025-12-02 20:24:03,011 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser_20251202_202400, 邮箱: testuser_20251202_202400@example.com, IP: 127.0.0.1
+2025-12-02 20:24:03,043 - app.auth.routes - INFO - 用户注册成功: testuser_20251202_202400, 用户ID: e5cd5e12-7440-4d1e-ae69-a8b4cafd9d3b, IP: 127.0.0.1
+2025-12-02 20:24:05,104 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser_20251202_202400, 邮箱: testuser_20251202_202400@example.com, IP: 127.0.0.1
+2025-12-02 20:24:05,106 - app.auth.routes - WARNING - 注册失败 - 用户名已存在: testuser_20251202_202400, IP: 127.0.0.1
+2025-12-02 20:24:07,168 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser_20251202_202400_different, 邮箱: testuser_20251202_202400@example.com, IP: 127.0.0.1
+2025-12-02 20:24:07,170 - app.auth.routes - WARNING - 注册失败 - 邮箱已被注册: testuser_20251202_202400@example.com, IP: 127.0.0.1
+2025-12-02 20:24:09,211 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser_20251202_202400_different2, 邮箱: testuser_20251202_202400_different2@example.com, IP: 127.0.0.1
+2025-12-02 20:24:09,244 - app.auth.routes - ERROR - 用户注册失败: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "users_phone_key"
+DETAIL:  Key (phone)=(18382664087) already exists.
+
+[SQL: INSERT INTO app_schema.users (user_id, username, email, phone, password_hash, display_name, avatar_url, bio, is_active, is_superuser, failed_login_attempts, locked_until) VALUES (%(user_id)s::UUID, %(username)s, %(email)s, %(phone)s, %(password_hash)s, %(display_name)s, %(avatar_url)s, %(bio)s, %(is_active)s, %(is_superuser)s, %(failed_login_attempts)s, %(locked_until)s) RETURNING app_schema.users.created_at, app_schema.users.updated_at]
+[parameters: {'user_id': UUID('6f47e887-8653-4828-b174-21cdabc442f6'), 'username': 'testuser_20251202_202400_different2', 'email': 'testuser_20251202_202400_different2@example.com', 'phone': '18382664087', 'password_hash': '$pbkdf2-sha256$29000$QMiZ03qPEeL8f09p7X2v9Q$V93UEdRt.q5CuQM8vxAVwbPBBa9CiqyUz45sDFZ4lEU', 'display_name': 'testuser_20251202_202400_different2', 'avatar_url': None, 'bio': None, 'is_active': 'Y', 'is_superuser': False, 'failed_login_attempts': 0, 'locked_until': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj), 用户名: testuser_20251202_202400_different2, IP: 127.0.0.1
+2025-12-02 20:24:09,248 - app.auth.routes - ERROR - 错误堆栈: Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "users_phone_key"
+DETAIL:  Key (phone)=(18382664087) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\backend\app\auth\routes.py", line 86, in register
+    )
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 1969, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 1256, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 1231, in _prepare_impl
+    self.session.flush()
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 4312, in flush
+    self._flush(objects)
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 4447, in _flush
+    with util.safe_reraise():
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 4408, in _flush
+    flush_context.execute()
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\persistence.py", line 1226, in _emit_insert_statements
+    result = connection.execute(
+             ^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "users_phone_key"
+DETAIL:  Key (phone)=(18382664087) already exists.
+
+[SQL: INSERT INTO app_schema.users (user_id, username, email, phone, password_hash, display_name, avatar_url, bio, is_active, is_superuser, failed_login_attempts, locked_until) VALUES (%(user_id)s::UUID, %(username)s, %(email)s, %(phone)s, %(password_hash)s, %(display_name)s, %(avatar_url)s, %(bio)s, %(is_active)s, %(is_superuser)s, %(failed_login_attempts)s, %(locked_until)s) RETURNING app_schema.users.created_at, app_schema.users.updated_at]
+[parameters: {'user_id': UUID('6f47e887-8653-4828-b174-21cdabc442f6'), 'username': 'testuser_20251202_202400_different2', 'email': 'testuser_20251202_202400_different2@example.com', 'phone': '18382664087', 'password_hash': '$pbkdf2-sha256$29000$QMiZ03qPEeL8f09p7X2v9Q$V93UEdRt.q5CuQM8vxAVwbPBBa9CiqyUz45sDFZ4lEU', 'display_name': 'testuser_20251202_202400_different2', 'avatar_url': None, 'bio': None, 'is_active': 'Y', 'is_superuser': False, 'failed_login_attempts': 0, 'locked_until': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+
+2025-12-02 20:24:55,556 - app.auth.routes - INFO - 收到注册请求 - 用户名: user1_20251202_202453, 邮箱: user1_20251202_202453@example.com, IP: 127.0.0.1
+2025-12-02 20:24:55,589 - app.auth.routes - INFO - 用户注册成功: user1_20251202_202453, 用户ID: 8d1711d5-ed70-4edc-9445-d38fa0afeaa6, IP: 127.0.0.1
+2025-12-02 20:24:57,637 - app.auth.routes - INFO - 收到注册请求 - 用户名: user2_20251202_202453, 邮箱: user2_20251202_202453@example.com, IP: 127.0.0.1
+2025-12-02 20:24:57,667 - app.auth.routes - ERROR - 用户注册失败: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "users_phone_key"
+DETAIL:  Key (phone)=(15906619170) already exists.
+
+[SQL: INSERT INTO app_schema.users (user_id, username, email, phone, password_hash, display_name, avatar_url, bio, is_active, is_superuser, failed_login_attempts, locked_until) VALUES (%(user_id)s::UUID, %(username)s, %(email)s, %(phone)s, %(password_hash)s, %(display_name)s, %(avatar_url)s, %(bio)s, %(is_active)s, %(is_superuser)s, %(failed_login_attempts)s, %(locked_until)s) RETURNING app_schema.users.created_at, app_schema.users.updated_at]
+[parameters: {'user_id': UUID('bbc76cea-2418-4dbc-a93c-e3d3c8c52d75'), 'username': 'user2_20251202_202453', 'email': 'user2_20251202_202453@example.com', 'phone': '15906619170', 'password_hash': '$pbkdf2-sha256$29000$IuT8//.fk9Ka857TOmesVQ$e7h4YjqQt1xL2kdYd3enaKD7EDxVnW9FMo8Tu/dYnFQ', 'display_name': 'user2_20251202_202453', 'avatar_url': None, 'bio': None, 'is_active': 'Y', 'is_superuser': False, 'failed_login_attempts': 0, 'locked_until': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj), 用户名: user2_20251202_202453, IP: 127.0.0.1
+2025-12-02 20:24:57,670 - app.auth.routes - ERROR - 错误堆栈: Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "users_phone_key"
+DETAIL:  Key (phone)=(15906619170) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\backend\app\auth\routes.py", line 86, in register
+    )
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 1969, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 1256, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 1231, in _prepare_impl
+    self.session.flush()
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 4312, in flush
+    self._flush(objects)
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 4447, in _flush
+    with util.safe_reraise():
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 4408, in _flush
+    flush_context.execute()
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\persistence.py", line 1226, in _emit_insert_statements
+    result = connection.execute(
+             ^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "users_phone_key"
+DETAIL:  Key (phone)=(15906619170) already exists.
+
+[SQL: INSERT INTO app_schema.users (user_id, username, email, phone, password_hash, display_name, avatar_url, bio, is_active, is_superuser, failed_login_attempts, locked_until) VALUES (%(user_id)s::UUID, %(username)s, %(email)s, %(phone)s, %(password_hash)s, %(display_name)s, %(avatar_url)s, %(bio)s, %(is_active)s, %(is_superuser)s, %(failed_login_attempts)s, %(locked_until)s) RETURNING app_schema.users.created_at, app_schema.users.updated_at]
+[parameters: {'user_id': UUID('bbc76cea-2418-4dbc-a93c-e3d3c8c52d75'), 'username': 'user2_20251202_202453', 'email': 'user2_20251202_202453@example.com', 'phone': '15906619170', 'password_hash': '$pbkdf2-sha256$29000$IuT8//.fk9Ka857TOmesVQ$e7h4YjqQt1xL2kdYd3enaKD7EDxVnW9FMo8Tu/dYnFQ', 'display_name': 'user2_20251202_202453', 'avatar_url': None, 'bio': None, 'is_active': 'Y', 'is_superuser': False, 'failed_login_attempts': 0, 'locked_until': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+
+2025-12-02 20:25:57,383 - app.auth.routes - INFO - 收到注册请求 - 用户名: user1_20251202_202555, 邮箱: user1_20251202_202555@example.com, IP: 127.0.0.1
+2025-12-02 20:25:57,417 - app.auth.routes - INFO - 用户注册成功: user1_20251202_202555, 用户ID: 27938709-d305-4dca-80d9-06c309c56e8e, IP: 127.0.0.1
+2025-12-02 20:25:59,466 - app.auth.routes - INFO - 收到注册请求 - 用户名: user2_20251202_202555, 邮箱: user2_20251202_202555@example.com, IP: 127.0.0.1
+2025-12-02 20:25:59,496 - app.auth.routes - ERROR - 用户注册失败: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "users_phone_key"
+DETAIL:  Key (phone)=(13087492707) already exists.
+
+[SQL: INSERT INTO app_schema.users (user_id, username, email, phone, password_hash, display_name, avatar_url, bio, is_active, is_superuser, failed_login_attempts, locked_until) VALUES (%(user_id)s::UUID, %(username)s, %(email)s, %(phone)s, %(password_hash)s, %(display_name)s, %(avatar_url)s, %(bio)s, %(is_active)s, %(is_superuser)s, %(failed_login_attempts)s, %(locked_until)s) RETURNING app_schema.users.created_at, app_schema.users.updated_at]
+[parameters: {'user_id': UUID('7242b73a-2aec-42fe-af8f-4a6fbace2984'), 'username': 'user2_20251202_202555', 'email': 'user2_20251202_202555@example.com', 'phone': '13087492707', 'password_hash': '$pbkdf2-sha256$29000$MEZIKQUAAKBUKkWotdYa4w$IKfemsNXgU4zQbs.m6bBsX0ILdOpIhmcDukEFQdW9fY', 'display_name': 'user2_20251202_202555', 'avatar_url': None, 'bio': None, 'is_active': 'Y', 'is_superuser': False, 'failed_login_attempts': 0, 'locked_until': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj), 用户名: user2_20251202_202555, IP: 127.0.0.1
+2025-12-02 20:25:59,499 - app.auth.routes - ERROR - 错误堆栈: Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "users_phone_key"
+DETAIL:  Key (phone)=(13087492707) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\backend\app\auth\routes.py", line 86, in register
+    detail="用户名已存在"
+    ^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 1969, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 1256, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 1231, in _prepare_impl
+    self.session.flush()
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 4312, in flush
+    self._flush(objects)
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 4447, in _flush
+    with util.safe_reraise():
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 4408, in _flush
+    flush_context.execute()
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\orm\persistence.py", line 1226, in _emit_insert_statements
+    result = connection.execute(
+             ^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "users_phone_key"
+DETAIL:  Key (phone)=(13087492707) already exists.
+
+[SQL: INSERT INTO app_schema.users (user_id, username, email, phone, password_hash, display_name, avatar_url, bio, is_active, is_superuser, failed_login_attempts, locked_until) VALUES (%(user_id)s::UUID, %(username)s, %(email)s, %(phone)s, %(password_hash)s, %(display_name)s, %(avatar_url)s, %(bio)s, %(is_active)s, %(is_superuser)s, %(failed_login_attempts)s, %(locked_until)s) RETURNING app_schema.users.created_at, app_schema.users.updated_at]
+[parameters: {'user_id': UUID('7242b73a-2aec-42fe-af8f-4a6fbace2984'), 'username': 'user2_20251202_202555', 'email': 'user2_20251202_202555@example.com', 'phone': '13087492707', 'password_hash': '$pbkdf2-sha256$29000$MEZIKQUAAKBUKkWotdYa4w$IKfemsNXgU4zQbs.m6bBsX0ILdOpIhmcDukEFQdW9fY', 'display_name': 'user2_20251202_202555', 'avatar_url': None, 'bio': None, 'is_active': 'Y', 'is_superuser': False, 'failed_login_attempts': 0, 'locked_until': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+
+2025-12-02 20:26:33,028 - app.auth.routes - INFO - 收到注册请求 - 用户名: user1_20251202_202630, 邮箱: user1_20251202_202630@example.com, IP: 127.0.0.1
+2025-12-02 20:26:33,029 - app.auth.routes - INFO - 注册数据完整信息 - username: user1_20251202_202630, email: user1_20251202_202630@example.com, phone: 17639878972
+2025-12-02 20:26:33,029 - app.auth.routes - INFO - 添加用户名过滤条件: user1_20251202_202630
+2025-12-02 20:26:33,030 - app.auth.routes - INFO - 添加邮箱过滤条件: user1_20251202_202630@example.com
+2025-12-02 20:26:33,030 - app.auth.routes - INFO - 添加手机号过滤条件: 17639878972
+2025-12-02 20:26:33,030 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x000002610411C5D0>, <sqlalchemy.sql.elements.BinaryExpression object at 0x0000026104142390>, <sqlalchemy.sql.elements.BinaryExpression object at 0x00000261041723D0>]
+2025-12-02 20:26:33,031 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-02 20:26:33,060 - app.auth.routes - INFO - 查询结果 - existing_user: None
+2025-12-02 20:26:33,060 - app.auth.routes - INFO - 没有找到现有用户
+2025-12-02 20:26:33,094 - app.auth.routes - INFO - 用户注册成功: user1_20251202_202630, 用户ID: 600f3fc2-8db6-4917-a161-ba9bc83cdea8, IP: 127.0.0.1
+2025-12-02 20:26:35,148 - app.auth.routes - INFO - 收到注册请求 - 用户名: user2_20251202_202630, 邮箱: user2_20251202_202630@example.com, IP: 127.0.0.1
+2025-12-02 20:26:35,149 - app.auth.routes - INFO - 注册数据完整信息 - username: user2_20251202_202630, email: user2_20251202_202630@example.com, phone: 17639878972
+2025-12-02 20:26:35,149 - app.auth.routes - INFO - 添加用户名过滤条件: user2_20251202_202630
+2025-12-02 20:26:35,150 - app.auth.routes - INFO - 添加邮箱过滤条件: user2_20251202_202630@example.com
+2025-12-02 20:26:35,150 - app.auth.routes - INFO - 添加手机号过滤条件: 17639878972
+2025-12-02 20:26:35,151 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x0000026104453610>, <sqlalchemy.sql.elements.BinaryExpression object at 0x000002610447EF50>, <sqlalchemy.sql.elements.BinaryExpression object at 0x000002610447F050>]
+2025-12-02 20:26:35,151 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-02 20:26:35,153 - app.auth.routes - INFO - 查询结果 - existing_user: <User(user_id=600f3fc2-8db6-4917-a161-ba9bc83cdea8, username='user1_20251202_202630', email='user1_20251202_202630@example.com')>
+2025-12-02 20:26:35,153 - app.auth.routes - INFO - 找到现有用户 - ID: 600f3fc2-8db6-4917-a161-ba9bc83cdea8, username: user1_20251202_202630, email: user1_20251202_202630@example.com, phone: 17639878972
+2025-12-02 20:26:35,154 - app.auth.routes - WARNING - 注册失败 - 手机号已被注册: 17639878972, IP: 127.0.0.1
+2025-12-02 20:26:46,292 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser_20251202_202644, 邮箱: testuser_20251202_202644@example.com, IP: 127.0.0.1
+2025-12-02 20:26:46,292 - app.auth.routes - INFO - 注册数据完整信息 - username: testuser_20251202_202644, email: testuser_20251202_202644@example.com, phone: 13664575437
+2025-12-02 20:26:46,292 - app.auth.routes - INFO - 添加用户名过滤条件: testuser_20251202_202644
+2025-12-02 20:26:46,293 - app.auth.routes - INFO - 添加邮箱过滤条件: testuser_20251202_202644@example.com
+2025-12-02 20:26:46,293 - app.auth.routes - INFO - 添加手机号过滤条件: 13664575437
+2025-12-02 20:26:46,293 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x00000261042AC810>, <sqlalchemy.sql.elements.BinaryExpression object at 0x0000026104489A90>, <sqlalchemy.sql.elements.BinaryExpression object at 0x0000026104489AD0>]
+2025-12-02 20:26:46,294 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-02 20:26:46,296 - app.auth.routes - INFO - 查询结果 - existing_user: None
+2025-12-02 20:26:46,296 - app.auth.routes - INFO - 没有找到现有用户
+2025-12-02 20:26:46,329 - app.auth.routes - INFO - 用户注册成功: testuser_20251202_202644, 用户ID: c83cf089-49c7-4a8f-8b17-37b48517a240, IP: 127.0.0.1
+2025-12-02 20:26:48,399 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser_20251202_202644, 邮箱: testuser_20251202_202644@example.com, IP: 127.0.0.1
+2025-12-02 20:26:48,399 - app.auth.routes - INFO - 注册数据完整信息 - username: testuser_20251202_202644, email: testuser_20251202_202644@example.com, phone: 13664575437
+2025-12-02 20:26:48,400 - app.auth.routes - INFO - 添加用户名过滤条件: testuser_20251202_202644
+2025-12-02 20:26:48,400 - app.auth.routes - INFO - 添加邮箱过滤条件: testuser_20251202_202644@example.com
+2025-12-02 20:26:48,401 - app.auth.routes - INFO - 添加手机号过滤条件: 13664575437
+2025-12-02 20:26:48,401 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x0000026104468A50>, <sqlalchemy.sql.elements.BinaryExpression object at 0x00000261042553D0>, <sqlalchemy.sql.elements.BinaryExpression object at 0x0000026104489690>]
+2025-12-02 20:26:48,401 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-02 20:26:48,403 - app.auth.routes - INFO - 查询结果 - existing_user: <User(user_id=c83cf089-49c7-4a8f-8b17-37b48517a240, username='testuser_20251202_202644', email='testuser_20251202_202644@example.com')>
+2025-12-02 20:26:48,403 - app.auth.routes - INFO - 找到现有用户 - ID: c83cf089-49c7-4a8f-8b17-37b48517a240, username: testuser_20251202_202644, email: testuser_20251202_202644@example.com, phone: 13664575437
+2025-12-02 20:26:48,404 - app.auth.routes - WARNING - 注册失败 - 用户名已存在: testuser_20251202_202644, IP: 127.0.0.1
+2025-12-02 20:26:50,461 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser_20251202_202644_different, 邮箱: testuser_20251202_202644@example.com, IP: 127.0.0.1
+2025-12-02 20:26:50,463 - app.auth.routes - INFO - 注册数据完整信息 - username: testuser_20251202_202644_different, email: testuser_20251202_202644@example.com, phone: 13085787423
+2025-12-02 20:26:50,464 - app.auth.routes - INFO - 添加用户名过滤条件: testuser_20251202_202644_different
+2025-12-02 20:26:50,464 - app.auth.routes - INFO - 添加邮箱过滤条件: testuser_20251202_202644@example.com
+2025-12-02 20:26:50,464 - app.auth.routes - INFO - 添加手机号过滤条件: 13085787423
+2025-12-02 20:26:50,464 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x000002610448BD50>, <sqlalchemy.sql.elements.BinaryExpression object at 0x000002610448A850>, <sqlalchemy.sql.elements.BinaryExpression object at 0x000002610448BED0>]
+2025-12-02 20:26:50,464 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-02 20:26:50,466 - app.auth.routes - INFO - 查询结果 - existing_user: <User(user_id=c83cf089-49c7-4a8f-8b17-37b48517a240, username='testuser_20251202_202644', email='testuser_20251202_202644@example.com')>
+2025-12-02 20:26:50,466 - app.auth.routes - INFO - 找到现有用户 - ID: c83cf089-49c7-4a8f-8b17-37b48517a240, username: testuser_20251202_202644, email: testuser_20251202_202644@example.com, phone: 13664575437
+2025-12-02 20:26:50,466 - app.auth.routes - WARNING - 注册失败 - 邮箱已被注册: testuser_20251202_202644@example.com, IP: 127.0.0.1
+2025-12-02 20:26:52,511 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser_20251202_202644_different2, 邮箱: testuser_20251202_202644_different2@example.com, IP: 127.0.0.1
+2025-12-02 20:26:52,513 - app.auth.routes - INFO - 注册数据完整信息 - username: testuser_20251202_202644_different2, email: testuser_20251202_202644_different2@example.com, phone: 13664575437
+2025-12-02 20:26:52,513 - app.auth.routes - INFO - 添加用户名过滤条件: testuser_20251202_202644_different2
+2025-12-02 20:26:52,514 - app.auth.routes - INFO - 添加邮箱过滤条件: testuser_20251202_202644_different2@example.com
+2025-12-02 20:26:52,514 - app.auth.routes - INFO - 添加手机号过滤条件: 13664575437
+2025-12-02 20:26:52,514 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x0000026104492510>, <sqlalchemy.sql.elements.BinaryExpression object at 0x00000261044909D0>, <sqlalchemy.sql.elements.BinaryExpression object at 0x0000026104492690>]
+2025-12-02 20:26:52,514 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-02 20:26:52,514 - app.auth.routes - INFO - 查询结果 - existing_user: <User(user_id=c83cf089-49c7-4a8f-8b17-37b48517a240, username='testuser_20251202_202644', email='testuser_20251202_202644@example.com')>
+2025-12-02 20:26:52,514 - app.auth.routes - INFO - 找到现有用户 - ID: c83cf089-49c7-4a8f-8b17-37b48517a240, username: testuser_20251202_202644, email: testuser_20251202_202644@example.com, phone: 13664575437
+2025-12-02 20:26:52,514 - app.auth.routes - WARNING - 注册失败 - 手机号已被注册: 13664575437, IP: 127.0.0.1
+2025-12-02 20:32:31,162 - app.auth.routes - INFO - 收到注册请求 - 用户名: 徐小昌, 邮箱: xxiaochang@qq.com, IP: 127.0.0.1
+2025-12-02 20:32:31,163 - app.auth.routes - INFO - 注册数据完整信息 - username: 徐小昌, email: xxiaochang@qq.com, phone: 13160697108
+2025-12-02 20:32:31,163 - app.auth.routes - INFO - 添加用户名过滤条件: 徐小昌
+2025-12-02 20:32:31,164 - app.auth.routes - INFO - 添加邮箱过滤条件: xxiaochang@qq.com
+2025-12-02 20:32:31,164 - app.auth.routes - INFO - 添加手机号过滤条件: 13160697108
+2025-12-02 20:32:31,164 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x0000026104453390>, <sqlalchemy.sql.elements.BinaryExpression object at 0x0000026104492390>, <sqlalchemy.sql.elements.BinaryExpression object at 0x0000026104493A10>]
+2025-12-02 20:32:31,165 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-02 20:32:31,167 - app.auth.routes - INFO - 查询结果 - existing_user: <User(user_id=1e8d90be-a245-46b2-8db4-aabf5711dec8, username='徐小昌', email='xxiaochang@qq.com')>
+2025-12-02 20:32:31,167 - app.auth.routes - INFO - 找到现有用户 - ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, username: 徐小昌, email: xxiaochang@qq.com, phone: 13160697108
+2025-12-02 20:32:31,168 - app.auth.routes - WARNING - 注册失败 - 用户名已存在: 徐小昌, IP: 127.0.0.1
+2025-12-02 20:32:37,256 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-02 20:32:37,296 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 20:39:00,658 - app.auth.routes - INFO - 收到登录请求 - 标识符: xiaochang, IP: 127.0.0.1
+2025-12-02 20:39:00,691 - app.auth.routes - WARNING - 登录失败 - 用户不存在: xiaochang, IP: 127.0.0.1
+2025-12-02 20:41:02,433 - app.auth.routes - INFO - 收到登录请求 - 标识符: xiaochang, IP: 127.0.0.1
+2025-12-02 20:41:02,467 - app.auth.routes - WARNING - 登录失败 - 用户不存在: xiaochang, IP: 127.0.0.1
+2025-12-02 20:41:53,143 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser, 邮箱: test@example.com, IP: 127.0.0.1
+2025-12-02 20:41:53,143 - app.auth.routes - INFO - 注册数据完整信息 - username: testuser, email: test@example.com, phone: 13800138000
+2025-12-02 20:41:53,143 - app.auth.routes - INFO - 添加用户名过滤条件: testuser
+2025-12-02 20:41:53,144 - app.auth.routes - INFO - 添加邮箱过滤条件: test@example.com
+2025-12-02 20:41:53,144 - app.auth.routes - INFO - 添加手机号过滤条件: 13800138000
+2025-12-02 20:41:53,144 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x000001DB6F68CB10>, <sqlalchemy.sql.elements.BinaryExpression object at 0x000001DB6F68CA90>, <sqlalchemy.sql.elements.BinaryExpression object at 0x000001DB6F68CB50>]
+2025-12-02 20:41:53,145 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-02 20:41:53,147 - app.auth.routes - INFO - 查询结果 - existing_user: <User(user_id=bb7620ec-7bc1-43bd-ab25-8d30bfe88f3c, username='test_user_api', email='test_api@example.com')>
+2025-12-02 20:41:53,147 - app.auth.routes - INFO - 找到现有用户 - ID: bb7620ec-7bc1-43bd-ab25-8d30bfe88f3c, username: test_user_api, email: test_api@example.com, phone: 13800138000
+2025-12-02 20:41:53,147 - app.auth.routes - WARNING - 注册失败 - 手机号已被注册: 13800138000, IP: 127.0.0.1
+2025-12-02 20:44:08,632 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser2, 邮箱: test2@example.com, IP: 127.0.0.1
+2025-12-02 20:44:08,632 - app.auth.routes - INFO - 注册数据完整信息 - username: testuser2, email: test2@example.com, phone: 13900139000
+2025-12-02 20:44:08,633 - app.auth.routes - INFO - 添加用户名过滤条件: testuser2
+2025-12-02 20:44:08,633 - app.auth.routes - INFO - 添加邮箱过滤条件: test2@example.com
+2025-12-02 20:44:08,634 - app.auth.routes - INFO - 添加手机号过滤条件: 13900139000
+2025-12-02 20:44:08,634 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x000001DB6F7B5610>, <sqlalchemy.sql.elements.BinaryExpression object at 0x000001DB6F7B5E10>, <sqlalchemy.sql.elements.BinaryExpression object at 0x000001DB70794150>]
+2025-12-02 20:44:08,634 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-02 20:44:08,637 - app.auth.routes - INFO - 查询结果 - existing_user: None
+2025-12-02 20:44:08,637 - app.auth.routes - INFO - 没有找到现有用户
+2025-12-02 20:44:08,671 - app.auth.routes - INFO - 用户注册成功: testuser2, 用户ID: 82366d78-60f2-4635-8205-9e28821359c3, IP: 127.0.0.1
+2025-12-02 20:44:10,722 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser2, IP: 127.0.0.1
+2025-12-02 20:44:10,756 - app.auth.routes - INFO - 用户登录成功: testuser2, 用户ID: 82366d78-60f2-4635-8205-9e28821359c3, IP: 127.0.0.1
+2025-12-02 20:44:12,801 - app.auth.routes - INFO - 收到登录请求 - 标识符: test2@example.com, IP: 127.0.0.1
+2025-12-02 20:44:12,833 - app.auth.routes - INFO - 用户登录成功: testuser2, 用户ID: 82366d78-60f2-4635-8205-9e28821359c3, IP: 127.0.0.1
+2025-12-02 20:44:14,865 - app.auth.routes - INFO - 收到登录请求 - 标识符: 13900139000, IP: 127.0.0.1
+2025-12-02 20:44:14,896 - app.auth.routes - INFO - 用户登录成功: testuser2, 用户ID: 82366d78-60f2-4635-8205-9e28821359c3, IP: 127.0.0.1
+2025-12-02 20:44:38,738 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser2, IP: 127.0.0.1
+2025-12-02 20:44:38,772 - app.auth.routes - INFO - 用户登录成功: testuser2, 用户ID: 82366d78-60f2-4635-8205-9e28821359c3, IP: 127.0.0.1
+2025-12-02 20:45:08,963 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser2, IP: 127.0.0.1
+2025-12-02 20:45:08,994 - app.auth.routes - INFO - 用户登录成功: testuser2, 用户ID: 82366d78-60f2-4635-8205-9e28821359c3, IP: 127.0.0.1
+2025-12-02 20:46:04,220 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser2, IP: 127.0.0.1
+2025-12-02 20:46:04,251 - app.auth.routes - INFO - 用户登录成功: testuser2, 用户ID: 82366d78-60f2-4635-8205-9e28821359c3, IP: 127.0.0.1
+2025-12-02 20:47:07,605 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser2, IP: 127.0.0.1
+2025-12-02 20:47:07,669 - app.auth.routes - INFO - 用户登录成功: testuser2, 用户ID: 82366d78-60f2-4635-8205-9e28821359c3, IP: 127.0.0.1
+2025-12-02 20:47:48,514 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser2, IP: 127.0.0.1
+2025-12-02 20:47:48,576 - app.auth.routes - INFO - 用户登录成功: testuser2, 用户ID: 82366d78-60f2-4635-8205-9e28821359c3, IP: 127.0.0.1
+2025-12-02 20:49:34,925 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser2, IP: 127.0.0.1
+2025-12-02 20:49:34,989 - app.auth.routes - INFO - 用户登录成功: testuser2, 用户ID: 82366d78-60f2-4635-8205-9e28821359c3, IP: 127.0.0.1
+2025-12-02 20:52:30,655 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 20:52:30,656 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 20:52:30,664 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 20:52:30,664 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 20:52:49,018 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-02 20:52:49,052 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 20:54:58,290 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 20:54:58,290 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 20:54:58,299 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 20:54:58,300 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 20:58:02,286 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-02 20:58:02,318 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 20:58:30,834 - app.auth.routes - INFO - 收到登录请求 - 标识符: 13160697108, IP: 127.0.0.1
+2025-12-02 20:58:30,871 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 20:58:42,419 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 20:58:42,419 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 20:58:42,427 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 20:58:42,427 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 20:58:46,253 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 20:58:46,253 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 20:58:46,261 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 20:58:46,261 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 20:59:29,744 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 20:59:29,751 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 20:59:29,769 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 20:59:29,769 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 21:00:02,344 - app.auth.routes - INFO - 收到登录请求 - 标识符: xxiaochang@qq.com, IP: 127.0.0.1
+2025-12-02 21:00:02,382 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 21:04:35,764 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-02 21:04:35,803 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 21:07:10,623 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 21:07:10,624 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 21:07:10,635 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 21:07:10,636 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 21:10:13,940 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-02 21:10:13,975 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 21:10:47,592 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 21:10:47,593 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 21:10:47,603 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 21:10:47,603 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 22:26:15,855 - app.auth.routes - INFO - 收到登录请求 - 标识符: xxiaochang@qq.com, IP: 127.0.0.1
+2025-12-02 22:26:15,969 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 22:26:58,859 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 22:26:58,860 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 22:26:58,867 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 22:26:58,867 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 22:30:18,592 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 22:30:18,592 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 22:30:18,601 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 22:30:18,603 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 22:33:40,764 - app.auth.routes - INFO - 收到注册请求 - 用户名: test_user_418624da, 邮箱: test_user_418624da@example.com, IP: 127.0.0.1
+2025-12-02 22:33:40,765 - app.auth.routes - INFO - 注册数据完整信息 - username: test_user_418624da, email: test_user_418624da@example.com, phone: 13800138000
+2025-12-02 22:33:40,765 - app.auth.routes - INFO - 添加用户名过滤条件: test_user_418624da
+2025-12-02 22:33:40,766 - app.auth.routes - INFO - 添加邮箱过滤条件: test_user_418624da@example.com
+2025-12-02 22:33:40,766 - app.auth.routes - INFO - 添加手机号过滤条件: 13800138000
+2025-12-02 22:33:40,767 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x000001CB05FBE110>, <sqlalchemy.sql.elements.BinaryExpression object at 0x000001CB06100090>, <sqlalchemy.sql.elements.BinaryExpression object at 0x000001CB0604F150>]
+2025-12-02 22:33:40,767 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-02 22:33:40,772 - app.auth.routes - INFO - 查询结果 - existing_user: <User(user_id=bb7620ec-7bc1-43bd-ab25-8d30bfe88f3c, username='test_user_api', email='test_api@example.com')>
+2025-12-02 22:33:40,773 - app.auth.routes - INFO - 找到现有用户 - ID: bb7620ec-7bc1-43bd-ab25-8d30bfe88f3c, username: test_user_api, email: test_api@example.com, phone: 13800138000
+2025-12-02 22:33:40,773 - app.auth.routes - WARNING - 注册失败 - 手机号已被注册: 13800138000, IP: 127.0.0.1
+2025-12-02 22:33:56,833 - app.auth.routes - INFO - 收到注册请求 - 用户名: test_user_d790269e, 邮箱: test_user_d790269e@example.com, IP: 127.0.0.1
+2025-12-02 22:33:56,834 - app.auth.routes - INFO - 注册数据完整信息 - username: test_user_d790269e, email: test_user_d790269e@example.com, phone: None
+2025-12-02 22:33:56,834 - app.auth.routes - INFO - 添加用户名过滤条件: test_user_d790269e
+2025-12-02 22:33:56,835 - app.auth.routes - INFO - 添加邮箱过滤条件: test_user_d790269e@example.com
+2025-12-02 22:33:56,835 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x000001CB060FBA90>, <sqlalchemy.sql.elements.BinaryExpression object at 0x000001CB05A3D250>]
+2025-12-02 22:33:56,836 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-02 22:33:56,838 - app.auth.routes - INFO - 查询结果 - existing_user: None
+2025-12-02 22:33:56,839 - app.auth.routes - INFO - 没有找到现有用户
+2025-12-02 22:33:56,884 - app.auth.routes - INFO - 用户注册成功: test_user_d790269e, 用户ID: 34e217f7-a69e-4c1b-95e2-d72654b0e398, IP: 127.0.0.1
+2025-12-02 22:33:58,917 - app.auth.routes - INFO - 收到登录请求 - 标识符: test_user_d790269e, IP: 127.0.0.1
+2025-12-02 22:33:58,952 - app.auth.routes - INFO - 用户登录成功: test_user_d790269e, 用户ID: 34e217f7-a69e-4c1b-95e2-d72654b0e398, IP: 127.0.0.1
+2025-12-02 22:36:33,600 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 22:36:33,602 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 22:36:33,614 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 22:36:33,615 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 22:41:59,134 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser@example.com, IP: 127.0.0.1
+2025-12-02 22:41:59,136 - app.auth.routes - WARNING - 登录失败 - 用户不存在: testuser@example.com, IP: 127.0.0.1
+2025-12-02 22:42:50,180 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser_777cb0e5, 邮箱: testuser_506577bd@example.com, IP: 127.0.0.1
+2025-12-02 22:42:50,180 - app.auth.routes - INFO - 注册数据完整信息 - username: testuser_777cb0e5, email: testuser_506577bd@example.com, phone: None
+2025-12-02 22:42:50,180 - app.auth.routes - INFO - 添加用户名过滤条件: testuser_777cb0e5
+2025-12-02 22:42:50,181 - app.auth.routes - INFO - 添加邮箱过滤条件: testuser_506577bd@example.com
+2025-12-02 22:42:50,181 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x000001CB073DBED0>, <sqlalchemy.sql.elements.BinaryExpression object at 0x000001CB07373C50>]
+2025-12-02 22:42:50,182 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-02 22:42:50,184 - app.auth.routes - INFO - 查询结果 - existing_user: None
+2025-12-02 22:42:50,184 - app.auth.routes - INFO - 没有找到现有用户
+2025-12-02 22:42:50,213 - app.auth.routes - INFO - 用户注册成功: testuser_777cb0e5, 用户ID: dc590b2c-705a-447b-a99d-320f9fd82f0e, IP: 127.0.0.1
+2025-12-02 22:42:52,262 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser_777cb0e5, IP: 127.0.0.1
+2025-12-02 22:42:52,298 - app.auth.routes - INFO - 用户登录成功: testuser_777cb0e5, 用户ID: dc590b2c-705a-447b-a99d-320f9fd82f0e, IP: 127.0.0.1
+2025-12-02 22:43:15,144 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser_8ddb5315, 邮箱: testuser_e8c17b2a@example.com, IP: 127.0.0.1
+2025-12-02 22:43:15,144 - app.auth.routes - INFO - 注册数据完整信息 - username: testuser_8ddb5315, email: testuser_e8c17b2a@example.com, phone: None
+2025-12-02 22:43:15,145 - app.auth.routes - INFO - 添加用户名过滤条件: testuser_8ddb5315
+2025-12-02 22:43:15,145 - app.auth.routes - INFO - 添加邮箱过滤条件: testuser_e8c17b2a@example.com
+2025-12-02 22:43:15,146 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x000001CB06221010>, <sqlalchemy.sql.elements.BinaryExpression object at 0x000001CB07373C50>]
+2025-12-02 22:43:15,146 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-02 22:43:15,148 - app.auth.routes - INFO - 查询结果 - existing_user: None
+2025-12-02 22:43:15,148 - app.auth.routes - INFO - 没有找到现有用户
+2025-12-02 22:43:15,179 - app.auth.routes - INFO - 用户注册成功: testuser_8ddb5315, 用户ID: 1bbc88e1-c97b-41a6-b027-ad1e65b79bde, IP: 127.0.0.1
+2025-12-02 22:43:17,219 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser_8ddb5315, IP: 127.0.0.1
+2025-12-02 22:43:17,251 - app.auth.routes - INFO - 用户登录成功: testuser_8ddb5315, 用户ID: 1bbc88e1-c97b-41a6-b027-ad1e65b79bde, IP: 127.0.0.1
+2025-12-02 22:43:47,493 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser_9733a554, 邮箱: testuser_c7ff1838@example.com, IP: 127.0.0.1
+2025-12-02 22:43:47,494 - app.auth.routes - INFO - 注册数据完整信息 - username: testuser_9733a554, email: testuser_c7ff1838@example.com, phone: None
+2025-12-02 22:43:47,495 - app.auth.routes - INFO - 添加用户名过滤条件: testuser_9733a554
+2025-12-02 22:43:47,495 - app.auth.routes - INFO - 添加邮箱过滤条件: testuser_c7ff1838@example.com
+2025-12-02 22:43:47,495 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x000001CB05B3A810>, <sqlalchemy.sql.elements.BinaryExpression object at 0x000001CB073AC750>]
+2025-12-02 22:43:47,495 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-02 22:43:47,497 - app.auth.routes - INFO - 查询结果 - existing_user: None
+2025-12-02 22:43:47,497 - app.auth.routes - INFO - 没有找到现有用户
+2025-12-02 22:43:47,526 - app.auth.routes - INFO - 用户注册成功: testuser_9733a554, 用户ID: 46344b8d-5daa-4926-a52e-f1a39ab8b8d0, IP: 127.0.0.1
+2025-12-02 22:43:49,571 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser_9733a554, IP: 127.0.0.1
+2025-12-02 22:43:49,624 - app.auth.routes - INFO - 用户登录成功: testuser_9733a554, 用户ID: 46344b8d-5daa-4926-a52e-f1a39ab8b8d0, IP: 127.0.0.1
+2025-12-02 22:45:10,555 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser_b30a9cb4, 邮箱: testuser_c4d1820f@example.com, IP: 127.0.0.1
+2025-12-02 22:45:10,556 - app.auth.routes - INFO - 注册数据完整信息 - username: testuser_b30a9cb4, email: testuser_c4d1820f@example.com, phone: None
+2025-12-02 22:45:10,557 - app.auth.routes - INFO - 添加用户名过滤条件: testuser_b30a9cb4
+2025-12-02 22:45:10,557 - app.auth.routes - INFO - 添加邮箱过滤条件: testuser_c4d1820f@example.com
+2025-12-02 22:45:10,557 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x000001CB05AD32D0>, <sqlalchemy.sql.elements.BinaryExpression object at 0x000001CB073D6890>]
+2025-12-02 22:45:10,557 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-02 22:45:10,557 - app.auth.routes - INFO - 查询结果 - existing_user: None
+2025-12-02 22:45:10,557 - app.auth.routes - INFO - 没有找到现有用户
+2025-12-02 22:45:10,593 - app.auth.routes - INFO - 用户注册成功: testuser_b30a9cb4, 用户ID: 47e429b5-2396-46fb-9960-e4832fe894fd, IP: 127.0.0.1
+2025-12-02 22:45:12,628 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser_b30a9cb4, IP: 127.0.0.1
+2025-12-02 22:45:12,661 - app.auth.routes - INFO - 用户登录成功: testuser_b30a9cb4, 用户ID: 47e429b5-2396-46fb-9960-e4832fe894fd, IP: 127.0.0.1
+2025-12-02 22:46:05,998 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser_48976370, 邮箱: testuser_cddbab1e@example.com, IP: 127.0.0.1
+2025-12-02 22:46:05,999 - app.auth.routes - INFO - 注册数据完整信息 - username: testuser_48976370, email: testuser_cddbab1e@example.com, phone: None
+2025-12-02 22:46:05,999 - app.auth.routes - INFO - 添加用户名过滤条件: testuser_48976370
+2025-12-02 22:46:06,000 - app.auth.routes - INFO - 添加邮箱过滤条件: testuser_cddbab1e@example.com
+2025-12-02 22:46:06,000 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x0000024C5C1BAAD0>, <sqlalchemy.sql.elements.BinaryExpression object at 0x0000024C5C4CB210>]
+2025-12-02 22:46:06,001 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-02 22:46:06,030 - app.auth.routes - INFO - 查询结果 - existing_user: None
+2025-12-02 22:46:06,031 - app.auth.routes - INFO - 没有找到现有用户
+2025-12-02 22:46:06,064 - app.auth.routes - INFO - 用户注册成功: testuser_48976370, 用户ID: 39a52518-7501-4f88-9980-c75b02256a19, IP: 127.0.0.1
+2025-12-02 22:46:08,095 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser_48976370, IP: 127.0.0.1
+2025-12-02 22:46:08,133 - app.auth.routes - INFO - 用户登录成功: testuser_48976370, 用户ID: 39a52518-7501-4f88-9980-c75b02256a19, IP: 127.0.0.1
+2025-12-02 22:52:33,415 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 22:52:33,416 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 22:52:33,423 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 22:52:33,424 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 22:52:58,266 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser_c68d0354, 邮箱: testuser_3ed2ba9a@example.com, IP: 127.0.0.1
+2025-12-02 22:52:58,267 - app.auth.routes - INFO - 注册数据完整信息 - username: testuser_c68d0354, email: testuser_3ed2ba9a@example.com, phone: None
+2025-12-02 22:52:58,267 - app.auth.routes - INFO - 添加用户名过滤条件: testuser_c68d0354
+2025-12-02 22:52:58,268 - app.auth.routes - INFO - 添加邮箱过滤条件: testuser_3ed2ba9a@example.com
+2025-12-02 22:52:58,268 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x0000024C5C25F550>, <sqlalchemy.sql.elements.BinaryExpression object at 0x0000024C5D99B3D0>]
+2025-12-02 22:52:58,269 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-02 22:52:58,270 - app.auth.routes - INFO - 查询结果 - existing_user: None
+2025-12-02 22:52:58,270 - app.auth.routes - INFO - 没有找到现有用户
+2025-12-02 22:52:58,300 - app.auth.routes - INFO - 用户注册成功: testuser_c68d0354, 用户ID: 220672f4-2188-483c-9abf-108bf3c3e9d1, IP: 127.0.0.1
+2025-12-02 22:53:00,336 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser_c68d0354, IP: 127.0.0.1
+2025-12-02 22:53:00,370 - app.auth.routes - INFO - 用户登录成功: testuser_c68d0354, 用户ID: 220672f4-2188-483c-9abf-108bf3c3e9d1, IP: 127.0.0.1
+2025-12-02 22:53:56,063 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 22:53:56,065 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 22:53:56,073 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 22:53:56,073 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:08:40,101 - app.auth.routes - INFO - 收到登录请求 - 标识符: xxiaochang@qq.com, IP: 127.0.0.1
+2025-12-02 23:08:40,172 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:10:58,985 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:10:58,985 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:10:58,994 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:10:58,995 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:11:03,830 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:11:03,831 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:11:03,848 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:11:03,848 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:21:07,694 - app.auth.routes - INFO - 收到登录请求 - 标识符: xxiaochang@qq.com, IP: 127.0.0.1
+2025-12-02 23:21:07,762 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:21:48,540 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:21:48,541 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:21:48,557 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:21:48,558 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:21:59,730 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:21:59,731 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:21:59,738 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:21:59,739 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:25:36,506 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:25:36,507 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:25:36,519 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:25:36,520 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:32:29,937 - app.auth.routes - INFO - 收到登录请求 - 标识符: test@example.com, IP: 127.0.0.1
+2025-12-02 23:32:29,971 - app.auth.routes - WARNING - 登录失败 - 用户不存在: test@example.com, IP: 127.0.0.1
+2025-12-02 23:33:16,272 - app.auth.routes - INFO - 收到登录请求 - 标识符: xxiaochang@qq.com, IP: 127.0.0.1
+2025-12-02 23:33:16,330 - app.auth.routes - WARNING - 登录失败 - 密码错误, 失败次数: 1, 标识符: xxiaochang@qq.com, IP: 127.0.0.1
+2025-12-02 23:35:03,369 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser2, IP: 127.0.0.1
+2025-12-02 23:35:03,433 - app.auth.routes - INFO - 用户登录成功: testuser2, 用户ID: 82366d78-60f2-4635-8205-9e28821359c3, IP: 127.0.0.1
+2025-12-02 23:35:54,104 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser2, 邮箱: test2@example.com, IP: 127.0.0.1
+2025-12-02 23:35:54,104 - app.auth.routes - INFO - 注册数据完整信息 - username: testuser2, email: test2@example.com, phone: 13900139000
+2025-12-02 23:35:54,104 - app.auth.routes - INFO - 添加用户名过滤条件: testuser2
+2025-12-02 23:35:54,104 - app.auth.routes - INFO - 添加邮箱过滤条件: test2@example.com
+2025-12-02 23:35:54,104 - app.auth.routes - INFO - 添加手机号过滤条件: 13900139000
+2025-12-02 23:35:54,108 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x0000016556765AD0>, <sqlalchemy.sql.elements.BinaryExpression object at 0x0000016556B1FBD0>, <sqlalchemy.sql.elements.BinaryExpression object at 0x0000016556C46310>]
+2025-12-02 23:35:54,108 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-02 23:35:54,108 - app.auth.routes - INFO - 查询结果 - existing_user: <User(user_id=82366d78-60f2-4635-8205-9e28821359c3, username='testuser2', email='test2@example.com')>
+2025-12-02 23:35:54,108 - app.auth.routes - INFO - 找到现有用户 - ID: 82366d78-60f2-4635-8205-9e28821359c3, username: testuser2, email: test2@example.com, phone: 13900139000
+2025-12-02 23:35:54,112 - app.auth.routes - WARNING - 注册失败 - 用户名已存在: testuser2, IP: 127.0.0.1
+2025-12-02 23:36:05,040 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser2, IP: 127.0.0.1
+2025-12-02 23:36:05,080 - app.auth.routes - INFO - 用户登录成功: testuser2, 用户ID: 82366d78-60f2-4635-8205-9e28821359c3, IP: 127.0.0.1
+2025-12-02 23:36:25,075 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser2, IP: 127.0.0.1
+2025-12-02 23:36:25,111 - app.auth.routes - INFO - 用户登录成功: testuser2, 用户ID: 82366d78-60f2-4635-8205-9e28821359c3, IP: 127.0.0.1
+2025-12-02 23:36:52,306 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser2, IP: 127.0.0.1
+2025-12-02 23:36:52,386 - app.auth.routes - INFO - 用户登录成功: testuser2, 用户ID: 82366d78-60f2-4635-8205-9e28821359c3, IP: 127.0.0.1
+2025-12-02 23:37:14,797 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser2, IP: 127.0.0.1
+2025-12-02 23:37:14,877 - app.auth.routes - INFO - 用户登录成功: testuser2, 用户ID: 82366d78-60f2-4635-8205-9e28821359c3, IP: 127.0.0.1
+2025-12-02 23:44:30,407 - app.auth.routes - INFO - 收到登录请求 - 标识符: xxiaochang@qq.com, IP: 127.0.0.1
+2025-12-02 23:44:30,455 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:50:20,683 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:50:20,687 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:50:20,707 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:50:20,707 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:50:30,689 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:50:30,693 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:50:30,701 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:50:30,701 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:50:44,908 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:50:44,908 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:50:44,920 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:50:44,920 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:51:00,059 - app.auth.routes - INFO - 收到登录请求 - 标识符: 13160697108, IP: 127.0.0.1
+2025-12-02 23:51:00,099 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:51:49,719 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:51:49,719 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:51:49,727 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-02 23:51:49,727 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 13:48:24,037 - app.auth.routes - INFO - 收到登录请求 - 标识符: xxiaochang@qq.com, IP: 127.0.0.1
+2025-12-03 13:48:24,153 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 13:49:36,837 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 13:49:36,838 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 13:49:36,845 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 13:49:36,846 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 14:29:07,117 - app.auth.routes - INFO - 收到登录请求 - 标识符: xxiaochang@qq.com, IP: 127.0.0.1
+2025-12-03 14:29:07,183 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 14:29:48,757 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser, IP: 127.0.0.1
+2025-12-03 14:29:48,758 - app.auth.routes - WARNING - 登录失败 - 用户不存在: testuser, IP: 127.0.0.1
+2025-12-03 14:30:02,325 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser, 邮箱: test@example.com, IP: 127.0.0.1
+2025-12-03 14:30:02,325 - app.auth.routes - INFO - 注册数据完整信息 - username: testuser, email: test@example.com, phone: 13800138000
+2025-12-03 14:30:02,326 - app.auth.routes - INFO - 添加用户名过滤条件: testuser
+2025-12-03 14:30:02,326 - app.auth.routes - INFO - 添加邮箱过滤条件: test@example.com
+2025-12-03 14:30:02,327 - app.auth.routes - INFO - 添加手机号过滤条件: 13800138000
+2025-12-03 14:30:02,327 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x000001DBD4C11590>, <sqlalchemy.sql.elements.BinaryExpression object at 0x000001DBD63F5510>, <sqlalchemy.sql.elements.BinaryExpression object at 0x000001DBD628B3D0>]
+2025-12-03 14:30:02,328 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-03 14:30:02,330 - app.auth.routes - INFO - 查询结果 - existing_user: <User(user_id=bb7620ec-7bc1-43bd-ab25-8d30bfe88f3c, username='test_user_api', email='test_api@example.com')>
+2025-12-03 14:30:02,330 - app.auth.routes - INFO - 找到现有用户 - ID: bb7620ec-7bc1-43bd-ab25-8d30bfe88f3c, username: test_user_api, email: test_api@example.com, phone: 13800138000
+2025-12-03 14:30:02,331 - app.auth.routes - WARNING - 注册失败 - 手机号已被注册: 13800138000, IP: 127.0.0.1
+2025-12-03 14:30:14,319 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser2, 邮箱: test2@example.com, IP: 127.0.0.1
+2025-12-03 14:30:14,319 - app.auth.routes - INFO - 注册数据完整信息 - username: testuser2, email: test2@example.com, phone: 13800138001
+2025-12-03 14:30:14,320 - app.auth.routes - INFO - 添加用户名过滤条件: testuser2
+2025-12-03 14:30:14,320 - app.auth.routes - INFO - 添加邮箱过滤条件: test2@example.com
+2025-12-03 14:30:14,321 - app.auth.routes - INFO - 添加手机号过滤条件: 13800138001
+2025-12-03 14:30:14,321 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x000001DBD6616410>, <sqlalchemy.sql.elements.BinaryExpression object at 0x000001DBD6622F50>, <sqlalchemy.sql.elements.BinaryExpression object at 0x000001DBD63F58D0>]
+2025-12-03 14:30:14,322 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-03 14:30:14,324 - app.auth.routes - INFO - 查询结果 - existing_user: <User(user_id=6e589b65-f5dc-4f8e-bec2-c5f6ecfc4e67, username='test_user_fix', email='test_fix@example.com')>
+2025-12-03 14:30:14,325 - app.auth.routes - INFO - 找到现有用户 - ID: 6e589b65-f5dc-4f8e-bec2-c5f6ecfc4e67, username: test_user_fix, email: test_fix@example.com, phone: 13800138001
+2025-12-03 14:30:14,325 - app.auth.routes - WARNING - 注册失败 - 手机号已被注册: 13800138001, IP: 127.0.0.1
+2025-12-03 14:30:37,522 - app.auth.routes - INFO - 收到登录请求 - 标识符: xxiaochang@qq.com, IP: 127.0.0.1
+2025-12-03 14:30:37,559 - app.auth.routes - WARNING - 登录失败 - 密码错误, 失败次数: 1, 标识符: xxiaochang@qq.com, IP: 127.0.0.1
+2025-12-03 14:31:39,490 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser_d6be1c2988bbe5cd, 邮箱: test_d6be1c2988bbe5cd@example.com, IP: 127.0.0.1
+2025-12-03 14:31:39,490 - app.auth.routes - INFO - 注册数据完整信息 - username: testuser_d6be1c2988bbe5cd, email: test_d6be1c2988bbe5cd@example.com, phone: 13868940043
+2025-12-03 14:31:39,491 - app.auth.routes - INFO - 添加用户名过滤条件: testuser_d6be1c2988bbe5cd
+2025-12-03 14:31:39,491 - app.auth.routes - INFO - 添加邮箱过滤条件: test_d6be1c2988bbe5cd@example.com
+2025-12-03 14:31:39,492 - app.auth.routes - INFO - 添加手机号过滤条件: 13868940043
+2025-12-03 14:31:39,492 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x000001DBD77AB6D0>, <sqlalchemy.sql.elements.BinaryExpression object at 0x000001DBD7824050>, <sqlalchemy.sql.elements.BinaryExpression object at 0x000001DBD6657E10>]
+2025-12-03 14:31:39,493 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-03 14:31:39,494 - app.auth.routes - INFO - 查询结果 - existing_user: None
+2025-12-03 14:31:39,495 - app.auth.routes - INFO - 没有找到现有用户
+2025-12-03 14:31:39,534 - app.auth.routes - INFO - 用户注册成功: testuser_d6be1c2988bbe5cd, 用户ID: 7db61d33-e3fd-40b6-a4f9-10e5ee3e8769, IP: 127.0.0.1
+2025-12-03 14:31:52,980 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser_d6be1c2988bbe5cd, IP: 127.0.0.1
+2025-12-03 14:31:53,012 - app.auth.routes - INFO - 用户登录成功: testuser_d6be1c2988bbe5cd, 用户ID: 7db61d33-e3fd-40b6-a4f9-10e5ee3e8769, IP: 127.0.0.1
+2025-12-03 14:32:17,537 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser_d6be1c2988bbe5cd, IP: 127.0.0.1
+2025-12-03 14:32:17,573 - app.auth.routes - INFO - 用户登录成功: testuser_d6be1c2988bbe5cd, 用户ID: 7db61d33-e3fd-40b6-a4f9-10e5ee3e8769, IP: 127.0.0.1
+2025-12-03 14:32:29,438 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser_d6be1c2988bbe5cd, IP: 127.0.0.1
+2025-12-03 14:32:29,478 - app.auth.routes - INFO - 用户登录成功: testuser_d6be1c2988bbe5cd, 用户ID: 7db61d33-e3fd-40b6-a4f9-10e5ee3e8769, IP: 127.0.0.1
+2025-12-03 14:33:28,199 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser_d6be1c2988bbe5cd, IP: 127.0.0.1
+2025-12-03 14:33:28,231 - app.auth.routes - INFO - 用户登录成功: testuser_d6be1c2988bbe5cd, 用户ID: 7db61d33-e3fd-40b6-a4f9-10e5ee3e8769, IP: 127.0.0.1
+2025-12-03 14:33:59,452 - app.auth.routes - INFO - 收到登录请求 - 标识符: xxiaochang@qq.com, IP: 127.0.0.1
+2025-12-03 14:33:59,491 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 14:36:52,834 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 14:36:52,835 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 14:36:52,845 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 14:36:52,846 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 14:37:09,776 - app.auth.routes - INFO - 收到登录请求 - 标识符: xxiaochang@qq.com, IP: 127.0.0.1
+2025-12-03 14:37:09,809 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 14:38:08,264 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser_d6be1c2988bbe5cd, IP: 127.0.0.1
+2025-12-03 14:38:08,296 - app.auth.routes - INFO - 用户登录成功: testuser_d6be1c2988bbe5cd, 用户ID: 7db61d33-e3fd-40b6-a4f9-10e5ee3e8769, IP: 127.0.0.1
+2025-12-03 14:39:32,699 - app.auth.routes - INFO - 收到登录请求 - 标识符: xxiaochang@qq.com, IP: 127.0.0.1
+2025-12-03 14:39:32,731 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 14:42:07,548 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 14:42:07,548 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 14:42:07,560 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 14:42:07,561 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 14:43:06,032 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser, IP: 127.0.0.1
+2025-12-03 14:43:06,036 - app.auth.routes - WARNING - 登录失败 - 用户不存在: testuser, IP: 127.0.0.1
+2025-12-03 14:44:02,985 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser, 邮箱: test@example.com, IP: 127.0.0.1
+2025-12-03 14:44:02,985 - app.auth.routes - INFO - 注册数据完整信息 - username: testuser, email: test@example.com, phone: None
+2025-12-03 14:44:02,986 - app.auth.routes - INFO - 添加用户名过滤条件: testuser
+2025-12-03 14:44:02,987 - app.auth.routes - INFO - 添加邮箱过滤条件: test@example.com
+2025-12-03 14:44:02,987 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x000001DBD77D8B10>, <sqlalchemy.sql.elements.BinaryExpression object at 0x000001DBD784E410>]
+2025-12-03 14:44:02,988 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-03 14:44:02,990 - app.auth.routes - INFO - 查询结果 - existing_user: None
+2025-12-03 14:44:02,991 - app.auth.routes - INFO - 没有找到现有用户
+2025-12-03 14:44:03,023 - app.auth.routes - INFO - 用户注册成功: testuser, 用户ID: ea1acf64-306f-4326-8e00-6d236da9a2ac, IP: 127.0.0.1
+2025-12-03 14:44:13,804 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser, 邮箱: test@example.com, IP: 127.0.0.1
+2025-12-03 14:44:13,805 - app.auth.routes - INFO - 注册数据完整信息 - username: testuser, email: test@example.com, phone: None
+2025-12-03 14:44:13,805 - app.auth.routes - INFO - 添加用户名过滤条件: testuser
+2025-12-03 14:44:13,805 - app.auth.routes - INFO - 添加邮箱过滤条件: test@example.com
+2025-12-03 14:44:13,806 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x000001DBD64A8910>, <sqlalchemy.sql.elements.BinaryExpression object at 0x000001DBD77C03D0>]
+2025-12-03 14:44:13,806 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-03 14:44:13,808 - app.auth.routes - INFO - 查询结果 - existing_user: <User(user_id=ea1acf64-306f-4326-8e00-6d236da9a2ac, username='testuser', email='test@example.com')>
+2025-12-03 14:44:13,808 - app.auth.routes - INFO - 找到现有用户 - ID: ea1acf64-306f-4326-8e00-6d236da9a2ac, username: testuser, email: test@example.com, phone: None
+2025-12-03 14:44:13,808 - app.auth.routes - WARNING - 注册失败 - 用户名已存在: testuser, IP: 127.0.0.1
+2025-12-03 14:44:25,128 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser, IP: 127.0.0.1
+2025-12-03 14:44:25,170 - app.auth.routes - INFO - 用户登录成功: testuser, 用户ID: ea1acf64-306f-4326-8e00-6d236da9a2ac, IP: 127.0.0.1
+2025-12-03 14:44:55,486 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser, IP: 127.0.0.1
+2025-12-03 14:44:55,520 - app.auth.routes - INFO - 用户登录成功: testuser, 用户ID: ea1acf64-306f-4326-8e00-6d236da9a2ac, IP: 127.0.0.1
+2025-12-03 14:45:25,255 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser, IP: 127.0.0.1
+2025-12-03 14:45:25,294 - app.auth.routes - INFO - 用户登录成功: testuser, 用户ID: ea1acf64-306f-4326-8e00-6d236da9a2ac, IP: 127.0.0.1
+2025-12-03 14:50:03,674 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 14:50:03,675 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 14:50:03,689 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 14:50:03,690 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:39:52,879 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:39:52,884 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:39:52,894 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:39:52,894 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:40:45,118 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:40:45,119 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:40:45,130 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:40:45,131 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:41:42,110 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:41:42,111 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:41:42,119 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:41:42,120 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:41:46,337 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:41:46,337 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:41:46,346 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:41:46,347 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:41:54,834 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:41:54,835 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:41:54,845 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:41:54,845 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:45:54,632 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:45:54,633 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:45:54,645 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:45:54,645 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:46:12,963 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:46:12,964 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:46:12,971 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:46:12,971 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:49:49,758 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:49:49,758 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:49:49,767 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 15:49:49,768 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 20:51:02,590 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 20:51:02,591 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 20:51:02,599 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 20:51:02,599 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 20:51:12,735 - app.auth.routes - INFO - 收到登录请求 - 标识符: xxiaochang@qq.com, IP: 127.0.0.1
+2025-12-03 20:51:12,772 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 20:54:57,097 - app.auth.routes - INFO - 收到登录请求 - 标识符: xxiaochang@qq.com, IP: 127.0.0.1
+2025-12-03 20:54:57,137 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 20:56:55,863 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 20:56:55,864 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 20:56:55,873 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 20:56:55,874 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 21:02:05,629 - app.auth.routes - INFO - 收到注册请求 - 用户名: 徐小伶, 邮箱: 602700708@qq.com, IP: 127.0.0.1
+2025-12-03 21:02:05,630 - app.auth.routes - INFO - 注册数据完整信息 - username: 徐小伶, email: 602700708@qq.com, phone: 15800152125
+2025-12-03 21:02:05,631 - app.auth.routes - INFO - 添加用户名过滤条件: 徐小伶
+2025-12-03 21:02:05,632 - app.auth.routes - INFO - 添加邮箱过滤条件: 602700708@qq.com
+2025-12-03 21:02:05,632 - app.auth.routes - INFO - 添加手机号过滤条件: 15800152125
+2025-12-03 21:02:05,633 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x000002EEB936C090>, <sqlalchemy.sql.elements.BinaryExpression object at 0x000002EEBACCD650>, <sqlalchemy.sql.elements.BinaryExpression object at 0x000002EEBA66A590>]
+2025-12-03 21:02:05,634 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-03 21:02:05,636 - app.auth.routes - INFO - 查询结果 - existing_user: None
+2025-12-03 21:02:05,636 - app.auth.routes - INFO - 没有找到现有用户
+2025-12-03 21:02:05,671 - app.auth.routes - INFO - 用户注册成功: 徐小伶, 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-03 21:02:05,682 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小伶, IP: 127.0.0.1
+2025-12-03 21:02:05,716 - app.auth.routes - INFO - 用户登录成功: 徐小伶, 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-03 21:04:20,065 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小伶, IP: 127.0.0.1
+2025-12-03 21:04:20,141 - app.auth.routes - INFO - 用户登录成功: 徐小伶, 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-03 21:15:40,389 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-03 21:15:40,395 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-03 21:15:40,408 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-03 21:15:40,408 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-03 21:16:05,222 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-03 21:16:05,223 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-03 21:16:05,231 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-03 21:16:05,232 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-03 21:16:17,968 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-03 21:16:17,969 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-03 21:16:17,978 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-03 21:16:17,978 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-03 21:21:54,226 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-03 21:21:54,226 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-03 21:21:54,237 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-03 21:21:54,237 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-03 21:22:07,698 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-03 21:22:07,699 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-03 21:22:07,710 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-03 21:22:07,711 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-03 22:47:45,694 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-03 22:47:45,695 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-03 22:47:45,705 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-03 22:47:45,706 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-03 22:49:36,999 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-03 22:49:36,999 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-03 22:49:37,008 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-03 22:49:37,008 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-03 22:49:44,955 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-03 22:49:45,006 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 22:50:16,075 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 22:50:16,076 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 22:50:16,086 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 22:50:16,086 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 22:50:27,674 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 22:50:27,674 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 22:50:27,684 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 22:50:27,684 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 22:58:13,497 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-03 22:58:13,531 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 23:00:19,435 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 23:00:19,436 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 23:00:19,446 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 23:00:19,446 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 23:00:26,482 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 23:00:26,483 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 23:00:26,493 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-03 23:00:26,493 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 12:26:46,561 - app.auth.routes - INFO - 收到登录请求 - 标识符: ???, IP: 127.0.0.1
+2025-12-04 12:26:46,623 - app.auth.routes - WARNING - 登录失败 - 用户不存在: ???, IP: 127.0.0.1
+2025-12-04 12:26:59,718 - app.auth.routes - INFO - 收到登录请求 - 标识符: xxiaochang, IP: 127.0.0.1
+2025-12-04 12:26:59,721 - app.auth.routes - WARNING - 登录失败 - 用户不存在: xxiaochang, IP: 127.0.0.1
+2025-12-04 12:27:13,283 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser123, 邮箱: test@example.com, IP: 127.0.0.1
+2025-12-04 12:27:13,284 - app.auth.routes - INFO - 注册数据完整信息 - username: testuser123, email: test@example.com, phone: 13812345678
+2025-12-04 12:27:13,285 - app.auth.routes - INFO - 添加用户名过滤条件: testuser123
+2025-12-04 12:27:13,286 - app.auth.routes - INFO - 添加邮箱过滤条件: test@example.com
+2025-12-04 12:27:13,286 - app.auth.routes - INFO - 添加手机号过滤条件: 13812345678
+2025-12-04 12:27:13,287 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x0000014A7CAE3210>, <sqlalchemy.sql.elements.BinaryExpression object at 0x0000014A7CA949D0>, <sqlalchemy.sql.elements.BinaryExpression object at 0x0000014A7C5CDD90>]
+2025-12-04 12:27:13,287 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-04 12:27:13,290 - app.auth.routes - INFO - 查询结果 - existing_user: <User(user_id=ea1acf64-306f-4326-8e00-6d236da9a2ac, username='testuser', email='test@example.com')>
+2025-12-04 12:27:13,290 - app.auth.routes - INFO - 找到现有用户 - ID: ea1acf64-306f-4326-8e00-6d236da9a2ac, username: testuser, email: test@example.com, phone: None
+2025-12-04 12:27:13,291 - app.auth.routes - WARNING - 注册失败 - 邮箱已被注册: test@example.com, IP: 127.0.0.1
+2025-12-04 12:27:24,426 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser456, 邮箱: test456@example.com, IP: 127.0.0.1
+2025-12-04 12:27:24,426 - app.auth.routes - INFO - 注册数据完整信息 - username: testuser456, email: test456@example.com, phone: 13887654321
+2025-12-04 12:27:24,427 - app.auth.routes - INFO - 添加用户名过滤条件: testuser456
+2025-12-04 12:27:24,427 - app.auth.routes - INFO - 添加邮箱过滤条件: test456@example.com
+2025-12-04 12:27:24,428 - app.auth.routes - INFO - 添加手机号过滤条件: 13887654321
+2025-12-04 12:27:24,428 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x0000014A7CB8B710>, <sqlalchemy.sql.elements.BinaryExpression object at 0x0000014A7CB1CB10>, <sqlalchemy.sql.elements.BinaryExpression object at 0x0000014A7CCC1A50>]
+2025-12-04 12:27:24,429 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-04 12:27:24,431 - app.auth.routes - INFO - 查询结果 - existing_user: None
+2025-12-04 12:27:24,431 - app.auth.routes - INFO - 没有找到现有用户
+2025-12-04 12:27:24,471 - app.auth.routes - INFO - 用户注册成功: testuser456, 用户ID: 7fa35932-eab2-4a92-94b4-a7f014c0cca1, IP: 127.0.0.1
+2025-12-04 12:27:35,265 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser456, 邮箱: test456@example.com, IP: 127.0.0.1
+2025-12-04 12:27:35,265 - app.auth.routes - INFO - 注册数据完整信息 - username: testuser456, email: test456@example.com, phone: 13887654321
+2025-12-04 12:27:35,266 - app.auth.routes - INFO - 添加用户名过滤条件: testuser456
+2025-12-04 12:27:35,266 - app.auth.routes - INFO - 添加邮箱过滤条件: test456@example.com
+2025-12-04 12:27:35,267 - app.auth.routes - INFO - 添加手机号过滤条件: 13887654321
+2025-12-04 12:27:35,267 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x0000014A7CCC1550>, <sqlalchemy.sql.elements.BinaryExpression object at 0x0000014A7CAA7090>, <sqlalchemy.sql.elements.BinaryExpression object at 0x0000014A7CCD0F90>]
+2025-12-04 12:27:35,268 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-04 12:27:35,271 - app.auth.routes - INFO - 查询结果 - existing_user: <User(user_id=7fa35932-eab2-4a92-94b4-a7f014c0cca1, username='testuser456', email='test456@example.com')>
+2025-12-04 12:27:35,271 - app.auth.routes - INFO - 找到现有用户 - ID: 7fa35932-eab2-4a92-94b4-a7f014c0cca1, username: testuser456, email: test456@example.com, phone: 13887654321
+2025-12-04 12:27:35,272 - app.auth.routes - WARNING - 注册失败 - 用户名已存在: testuser456, IP: 127.0.0.1
+2025-12-04 12:28:13,003 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser789, 邮箱: test789@example.com, IP: 127.0.0.1
+2025-12-04 12:28:13,003 - app.auth.routes - INFO - 注册数据完整信息 - username: testuser789, email: test789@example.com, phone: 13800000000
+2025-12-04 12:28:13,004 - app.auth.routes - INFO - 添加用户名过滤条件: testuser789
+2025-12-04 12:28:13,004 - app.auth.routes - INFO - 添加邮箱过滤条件: test789@example.com
+2025-12-04 12:28:13,004 - app.auth.routes - INFO - 添加手机号过滤条件: 13800000000
+2025-12-04 12:28:13,005 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x0000014A7CCD3850>, <sqlalchemy.sql.elements.BinaryExpression object at 0x0000014A7CCD3790>, <sqlalchemy.sql.elements.BinaryExpression object at 0x0000014A7CCD3810>]
+2025-12-04 12:28:13,006 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-04 12:28:13,008 - app.auth.routes - INFO - 查询结果 - existing_user: None
+2025-12-04 12:28:13,008 - app.auth.routes - INFO - 没有找到现有用户
+2025-12-04 12:28:13,040 - app.auth.routes - INFO - 用户注册成功: testuser789, 用户ID: 7e264b33-9448-4946-afce-f52800385fa0, IP: 127.0.0.1
+2025-12-04 12:28:22,659 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser789, IP: 127.0.0.1
+2025-12-04 12:28:22,698 - app.auth.routes - INFO - 用户登录成功: testuser789, 用户ID: 7e264b33-9448-4946-afce-f52800385fa0, IP: 127.0.0.1
+2025-12-04 12:31:39,884 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser789, IP: 127.0.0.1
+2025-12-04 12:31:39,919 - app.auth.routes - INFO - 用户登录成功: testuser789, 用户ID: 7e264b33-9448-4946-afce-f52800385fa0, IP: 127.0.0.1
+2025-12-04 12:34:44,195 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser789, IP: 127.0.0.1
+2025-12-04 12:34:44,227 - app.auth.routes - INFO - 用户登录成功: testuser789, 用户ID: 7e264b33-9448-4946-afce-f52800385fa0, IP: 127.0.0.1
+2025-12-04 12:36:18,726 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser789, IP: 127.0.0.1
+2025-12-04 12:36:18,763 - app.auth.routes - INFO - 用户登录成功: testuser789, 用户ID: 7e264b33-9448-4946-afce-f52800385fa0, IP: 127.0.0.1
+2025-12-04 12:36:18,779 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser789, IP: 127.0.0.1
+2025-12-04 12:36:18,818 - app.auth.routes - INFO - 用户登录成功: testuser789, 用户ID: 7e264b33-9448-4946-afce-f52800385fa0, IP: 127.0.0.1
+2025-12-04 13:03:19,754 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-04 13:03:19,822 - app.auth.routes - WARNING - 登录失败 - 密码错误, 失败次数: 1, 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-04 13:03:21,910 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser789, IP: 127.0.0.1
+2025-12-04 13:03:21,942 - app.auth.routes - INFO - 用户登录成功: testuser789, 用户ID: 7e264b33-9448-4946-afce-f52800385fa0, IP: 127.0.0.1
+2025-12-04 13:03:23,988 - app.auth.routes - INFO - 收到登录请求 - 标识符: , IP: 127.0.0.1
+2025-12-04 13:03:23,990 - app.auth.routes - WARNING - 登录失败 - 用户不存在: , IP: 127.0.0.1
+2025-12-04 13:03:26,033 - app.auth.routes - INFO - 收到登录请求 - 标识符:  , IP: 127.0.0.1
+2025-12-04 13:03:26,035 - app.auth.routes - WARNING - 登录失败 - 用户不存在:  , IP: 127.0.0.1
+2025-12-04 13:04:38,914 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-04 13:04:38,948 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:04:53,641 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:04:53,641 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:04:53,672 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:04:53,673 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:05:01,250 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-04 13:05:01,306 - app.auth.routes - WARNING - 登录失败 - 密码错误, 失败次数: 1, 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-04 13:05:17,896 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:05:17,896 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:05:18,006 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:05:18,008 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:05:47,313 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:05:47,313 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:05:47,323 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:05:47,324 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:08:15,848 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:08:15,849 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:08:15,861 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:08:15,862 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:08:33,799 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-04 13:08:33,833 - app.auth.routes - WARNING - 登录失败 - 密码错误, 失败次数: 2, 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-04 13:17:44,067 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:17:44,067 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:17:44,078 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:17:44,079 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:17:46,476 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:17:46,477 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:17:46,500 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:17:46,501 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:17:47,218 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:17:47,218 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:17:47,246 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:17:47,247 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:17:51,517 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-04 13:17:51,550 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:20:24,216 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-04 13:20:24,253 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:20:28,350 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:20:28,354 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:20:28,370 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:20:28,371 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:20:31,918 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:20:31,920 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:20:31,933 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:20:31,934 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:20:34,814 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:20:34,815 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:20:34,830 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 13:20:34,831 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 15:20:35,559 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-04 15:20:35,640 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 15:21:03,285 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 15:21:03,285 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 15:21:03,347 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 15:21:03,347 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 15:30:43,320 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-04 15:30:43,354 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 15:30:50,763 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 15:30:50,763 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 15:30:50,855 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 15:30:50,856 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 15:41:29,408 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 15:41:29,408 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 15:41:29,416 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 15:41:29,416 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 15:59:19,281 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 15:59:19,282 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 15:59:19,300 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 15:59:19,301 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 16:00:13,386 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 16:00:13,388 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 16:00:13,405 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 16:00:13,406 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 16:13:28,887 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-04 16:13:28,964 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 16:13:36,699 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 16:13:36,699 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 16:13:36,711 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 16:13:36,712 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 16:44:06,005 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 16:44:06,006 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 16:44:06,015 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 16:44:06,016 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 16:44:48,505 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 16:44:48,506 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 16:44:48,513 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 16:44:48,514 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:14:50,128 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:14:50,129 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:14:50,259 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:14:50,263 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:23:32,490 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser2, IP: 127.0.0.1
+2025-12-04 17:23:32,556 - app.auth.routes - INFO - 用户登录成功: testuser2, 用户ID: 82366d78-60f2-4635-8205-9e28821359c3, IP: 127.0.0.1
+2025-12-04 17:23:42,457 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser2, IP: 127.0.0.1
+2025-12-04 17:23:42,492 - app.auth.routes - INFO - 用户登录成功: testuser2, 用户ID: 82366d78-60f2-4635-8205-9e28821359c3, IP: 127.0.0.1
+2025-12-04 17:24:12,208 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser2, IP: 127.0.0.1
+2025-12-04 17:24:12,238 - app.auth.routes - INFO - 用户登录成功: testuser2, 用户ID: 82366d78-60f2-4635-8205-9e28821359c3, IP: 127.0.0.1
+2025-12-04 17:24:30,725 - app.auth.routes - INFO - 收到登录请求 - 标识符: testuser2, IP: 127.0.0.1
+2025-12-04 17:24:30,757 - app.auth.routes - INFO - 用户登录成功: testuser2, 用户ID: 82366d78-60f2-4635-8205-9e28821359c3, IP: 127.0.0.1
+2025-12-04 17:28:04,142 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-04 17:28:04,176 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:29:29,118 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:29:29,118 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:29:29,151 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:29:29,152 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:37:37,152 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:37:37,152 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:37:37,163 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:37:37,163 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:42:07,773 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:42:07,774 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:42:07,783 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:42:07,784 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:43:17,488 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:43:17,489 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:43:17,503 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:43:17,504 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:44:08,759 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-04 17:44:08,794 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:47:26,357 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:47:26,358 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:47:26,384 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:47:26,384 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:47:53,627 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:47:53,628 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:47:53,638 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:47:53,639 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:47:57,093 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:47:57,094 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:47:57,110 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:47:57,111 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:47:59,550 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:47:59,554 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:47:59,568 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:47:59,569 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:48:05,408 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:48:05,409 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:48:05,422 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:48:05,423 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:53:43,165 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:53:43,167 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:53:43,188 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-04 17:53:43,188 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 19:09:38,308 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-05 19:09:38,360 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 19:09:42,154 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 19:09:42,159 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 19:09:42,173 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 19:09:42,173 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 19:29:36,907 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-05 19:29:36,939 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 19:29:47,229 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 19:29:47,229 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 19:29:47,240 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 19:29:47,240 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 19:31:24,315 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 19:31:24,316 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 19:31:24,334 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 19:31:24,335 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 19:31:57,078 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 19:31:57,079 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 19:31:57,091 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 19:31:57,092 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 19:40:37,566 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-05 19:40:37,599 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 19:40:40,549 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 19:40:40,553 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 19:40:40,564 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 19:40:40,565 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 20:27:52,343 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-05 20:27:52,416 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 20:36:36,804 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 20:36:36,805 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 20:36:36,859 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 20:36:36,860 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 20:39:51,209 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 20:39:51,211 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 20:39:51,224 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 20:39:51,225 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 20:45:38,708 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小伶, IP: 127.0.0.1
+2025-12-05 20:45:38,742 - app.auth.routes - INFO - 用户登录成功: 徐小伶, 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-05 20:45:55,798 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-05 20:45:55,830 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 20:49:37,624 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 20:49:37,633 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 20:49:37,643 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 20:49:37,644 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 20:50:11,345 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小伶, IP: 127.0.0.1
+2025-12-05 20:50:11,386 - app.auth.routes - INFO - 用户登录成功: 徐小伶, 用户ID: 4e2fe0a0-fa6f-4803-a441-bc1188dd9777, IP: 127.0.0.1
+2025-12-05 20:50:38,607 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-05 20:50:38,643 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 21:31:22,411 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-05 21:31:22,494 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 22:25:27,211 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-05 22:25:27,290 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 1e8d90be-a245-46b2-8db4-aabf5711dec8, IP: 127.0.0.1
+2025-12-05 22:34:22,912 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser, 邮箱: test@example.com, IP: 127.0.0.1
+2025-12-05 22:34:22,912 - app.auth.routes - INFO - 注册数据完整信息 - username: testuser, email: test@example.com, phone: 13800138000
+2025-12-05 22:34:22,912 - app.auth.routes - INFO - 添加用户名过滤条件: testuser
+2025-12-05 22:34:22,913 - app.auth.routes - INFO - 添加邮箱过滤条件: test@example.com
+2025-12-05 22:34:22,913 - app.auth.routes - INFO - 添加手机号过滤条件: 13800138000
+2025-12-05 22:34:22,914 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x0000019E0D560410>, <sqlalchemy.sql.elements.BinaryExpression object at 0x0000019E0D2888D0>, <sqlalchemy.sql.elements.BinaryExpression object at 0x0000019E0D244050>]
+2025-12-05 22:34:22,914 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-05 22:34:22,945 - app.auth.routes - INFO - 查询结果 - existing_user: None
+2025-12-05 22:34:22,946 - app.auth.routes - INFO - 没有找到现有用户
+2025-12-05 22:34:22,981 - app.auth.routes - INFO - 用户注册成功: testuser, 用户ID: 2073ac35-2b3b-42c8-a12a-b24fe85cd2bd, IP: 127.0.0.1
+2025-12-05 22:34:38,507 - app.auth.routes - INFO - 收到注册请求 - 用户名: testuser, 邮箱: test@example.com, IP: 127.0.0.1
+2025-12-05 22:34:38,508 - app.auth.routes - INFO - 注册数据完整信息 - username: testuser, email: test@example.com, phone: 13800138000
+2025-12-05 22:34:38,508 - app.auth.routes - INFO - 添加用户名过滤条件: testuser
+2025-12-05 22:34:38,509 - app.auth.routes - INFO - 添加邮箱过滤条件: test@example.com
+2025-12-05 22:34:38,509 - app.auth.routes - INFO - 添加手机号过滤条件: 13800138000
+2025-12-05 22:34:38,509 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x0000019E0D4C8550>, <sqlalchemy.sql.elements.BinaryExpression object at 0x0000019E0D876E50>, <sqlalchemy.sql.elements.BinaryExpression object at 0x0000019E0D8D9FD0>]
+2025-12-05 22:34:38,510 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-05 22:34:38,511 - app.auth.routes - INFO - 查询结果 - existing_user: <User(user_id=2073ac35-2b3b-42c8-a12a-b24fe85cd2bd, username='testuser', email='test@example.com')>
+2025-12-05 22:34:38,512 - app.auth.routes - INFO - 找到现有用户 - ID: 2073ac35-2b3b-42c8-a12a-b24fe85cd2bd, username: testuser, email: test@example.com, phone: 13800138000
+2025-12-05 22:34:38,512 - app.auth.routes - WARNING - 注册失败 - 用户名已存在: testuser, IP: 127.0.0.1
+2025-12-05 22:37:55,820 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-05 22:37:55,822 - app.auth.routes - WARNING - 登录失败 - 用户不存在: 徐小昌, IP: 127.0.0.1
+2025-12-05 22:38:12,622 - app.auth.routes - INFO - 收到注册请求 - 用户名: 徐小昌, 邮箱: xxiaochang@qq.com, IP: 127.0.0.1
+2025-12-05 22:38:12,622 - app.auth.routes - INFO - 注册数据完整信息 - username: 徐小昌, email: xxiaochang@qq.com, phone: 13160697108
+2025-12-05 22:38:12,622 - app.auth.routes - INFO - 添加用户名过滤条件: 徐小昌
+2025-12-05 22:38:12,626 - app.auth.routes - INFO - 添加邮箱过滤条件: xxiaochang@qq.com
+2025-12-05 22:38:12,626 - app.auth.routes - INFO - 添加手机号过滤条件: 13160697108
+2025-12-05 22:38:12,626 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x0000019E0D91F510>, <sqlalchemy.sql.elements.BinaryExpression object at 0x0000019E0D909AD0>, <sqlalchemy.sql.elements.BinaryExpression object at 0x0000019E0D925290>]
+2025-12-05 22:38:12,626 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-05 22:38:12,626 - app.auth.routes - INFO - 查询结果 - existing_user: None
+2025-12-05 22:38:12,626 - app.auth.routes - INFO - 没有找到现有用户
+2025-12-05 22:38:12,660 - app.auth.routes - INFO - 用户注册成功: 徐小昌, 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-05 22:38:12,671 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-05 22:38:12,708 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-05 22:46:14,968 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-05 22:46:14,969 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-05 22:46:14,981 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-05 22:46:14,982 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-05 22:57:43,005 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-05 22:57:43,075 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-05 22:58:35,487 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-05 22:58:35,488 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-05 22:58:35,497 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-05 22:58:35,498 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-05 22:59:00,249 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-05 22:59:00,249 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-05 22:59:00,257 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-05 22:59:00,258 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-05 22:59:04,114 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-05 22:59:04,115 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-05 22:59:04,126 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-05 22:59:04,127 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-05 22:59:09,640 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-05 22:59:09,674 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-05 22:59:53,577 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-05 22:59:53,577 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-05 22:59:53,587 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-05 22:59:53,588 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-05 23:00:01,049 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-05 23:00:01,050 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-05 23:00:01,059 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-05 23:00:01,060 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1

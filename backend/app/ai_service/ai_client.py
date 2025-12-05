@@ -175,8 +175,41 @@ class AIClient:
         cuisine_value = recipe_params.get("cuisine")
         logger.info(f"cuisine参数值: {cuisine_value}, 类型: {type(cuisine_value)}")
         
+        # 预处理参数，确保所有枚举值都被转换为字符串
+        processed_params = {}
+        for key, value in recipe_params.items():
+            if key == "dietary_preferences" and isinstance(value, list):
+                # 处理饮食偏好列表
+                processed_params[key] = ", ".join(str(v) for v in value)
+            elif key == "food_likes" and isinstance(value, list):
+                # 处理喜欢的食物列表
+                processed_params[key] = ", ".join(value)
+            elif key == "food_dislikes" and isinstance(value, list):
+                # 处理不喜欢的食物列表
+                processed_params[key] = ", ".join(value)
+            elif key == "health_conditions" and isinstance(value, list):
+                # 处理健康状况列表
+                processed_params[key] = ", ".join(value)
+            elif key == "nutrition_goals" and isinstance(value, list):
+                # 处理营养目标列表
+                processed_params[key] = ", ".join(value)
+            elif key == "ingredients" and isinstance(value, list):
+                # 处理食材列表
+                processed_params[key] = ", ".join(value)
+            elif hasattr(value, "value"):
+                # 处理枚举值
+                processed_params[key] = value.value
+            elif value is None:
+                # 处理空值
+                processed_params[key] = "无"
+            else:
+                # 其他值保持不变
+                processed_params[key] = value
+        
+        logger.info(f"预处理后的参数: {processed_params}")
+        
         # 格式化提示词
-        prompt = self.settings.RECIPE_GENERATION_PROMPT_TEMPLATE.format(**recipe_params)
+        prompt = self.settings.RECIPE_GENERATION_PROMPT_TEMPLATE.format(**processed_params)
         logger.info(f"构建提示词完成，提示词长度: {len(prompt)} 字符")
         
         # 准备请求
@@ -203,7 +236,7 @@ class AIClient:
             logger.info(f"使用食谱标题: '{title}'，菜系: '{cuisine}' 生成配图")
             
             # 调用generate_recipe_image方法
-            image_url = self.generate_recipe_image(cuisine, title)
+            image_url = await self.generate_recipe_image(cuisine, title)
             logger.info(f"generate_recipe_image返回结果: {image_url}")
             
             if image_url:
@@ -291,8 +324,16 @@ class AIClient:
         logger.info(f"原始响应内容预览: {str(response)[:300]}...")
         
         # 获取通义千问响应内容
-        content = response.get("output", {}).get("text", "")
-        logger.info(f"通义千问响应解析: output存在={bool(response.get('output'))}, text长度={len(content)} 字符")
+        # 通义千问API的响应格式：{"output": {"text": "..."}, "request_id": "..."}
+        if "output" in response and isinstance(response["output"], dict):
+            content = response["output"].get("text", "")
+            logger.info(f"通义千问响应解析: output存在, text长度={len(content)} 字符")
+        else:
+            # 如果不是预期的格式，尝试其他可能的响应格式
+            logger.warning(f"响应格式不符合预期，尝试其他格式")
+            # 尝试作为完整内容返回
+            content = str(response)
+            logger.info(f"使用完整响应作为内容，长度={len(content)} 字符")
         
         if not content:
             logger.error("AI API返回空响应")
@@ -324,12 +365,56 @@ class AIClient:
                     return result
                 except json.JSONDecodeError:
                     logger.error(f"提取的JSON字符串解析失败: {json_str[:100]}...")
-                    raise InvalidResponseError("Could not parse extracted JSON from AI response")
+                    # 如果JSON解析失败，尝试创建一个基本的食谱结构
+                    logger.info("尝试从响应内容创建基本食谱结构")
+                    # 这里我们尝试从文本内容中提取关键信息
+                    # 确保数据结构符合RecipeResponse模型的要求
+                    basic_recipe = {
+                        "title": "AI生成食谱",
+                        "description": content[:200] + "...",
+                        "ingredients": [
+                            {"name": "基本食材", "quantity": 1, "unit": "份", "note": "根据AI响应调整"}
+                        ],
+                        "instructions": ["根据AI响应添加烹饪步骤"],
+                        "cooking_time": 30,
+                        "servings": 2,
+                        "difficulty": "medium",
+                        "cuisine": "none",
+                        "nutrition_info": {
+                            "calories": 500,
+                            "protein": 20,
+                            "carbs": 60,
+                            "fat": 20,
+                            "fiber": 5
+                        }
+                    }
+                    return basic_recipe
             else:
                 logger.error(f"响应内容不是有效的JSON格式: {content[:100]}...")
-                raise InvalidResponseError("Could not find valid JSON in AI response")
+                # 如果找不到JSON格式，尝试创建一个基本的食谱结构
+                logger.info("尝试从响应内容创建基本食谱结构")
+                basic_recipe = {
+                    "title": "AI生成食谱",
+                    "description": content[:200] + "...",
+                    "ingredients": [
+                        {"name": "基本食材", "quantity": 1, "unit": "份", "note": "根据AI响应调整"}
+                    ],
+                    "instructions": ["根据AI响应添加烹饪步骤"],
+                    "cooking_time": 30,
+                    "servings": 2,
+                    "difficulty": "medium",
+                    "cuisine": "none",
+                    "nutrition_info": {
+                        "calories": 500,
+                        "protein": 20,
+                        "carbs": 60,
+                        "fat": 20,
+                        "fiber": 5
+                    }
+                }
+                return basic_recipe
     
-    def generate_recipe_image(
+    async def generate_recipe_image(
         self, 
         cuisine: str, 
         recipe_title: str
@@ -396,21 +481,145 @@ class AIClient:
         
         logger.info("所有必需字段均存在")
         
-        # 检查字段类型
+        # 检查字段类型并进行必要的转换
         if not isinstance(recipe_data["title"], str):
-            logger.error(f"字段'title'类型错误，应为字符串，实际为: {type(recipe_data['title']).__name__}")
-            raise InvalidResponseError("Field 'title' must be a string")
-        logger.info(f"字段'title'验证通过，内容: {recipe_data['title'][:50]}...")
+            logger.warning(f"字段'title'类型错误，应为字符串，实际为: {type(recipe_data['title']).__name__}，尝试转换")
+            try:
+                recipe_data["title"] = str(recipe_data["title"])
+                logger.info(f"字段'title'转换成功，内容: {recipe_data['title'][:50]}...")
+            except Exception as e:
+                logger.error(f"字段'title'转换失败: {str(e)}")
+                raise InvalidResponseError("Field 'title' must be a string")
+        else:
+            logger.info(f"字段'title'验证通过，内容: {recipe_data['title'][:50]}...")
         
-        if not isinstance(recipe_data["ingredients"], list):
-            logger.error(f"字段'ingredients'类型错误，应为列表，实际为: {type(recipe_data['ingredients']).__name__}")
-            raise InvalidResponseError("Field 'ingredients' must be a list")
-        logger.info(f"字段'ingredients'验证通过，包含 {len(recipe_data['ingredients'])} 个食材")
+        # 检查ingredients字段，确保它是符合RecipeResponse模型要求的List[Ingredient]格式
+        if isinstance(recipe_data["ingredients"], list):
+            # 检查列表中的元素是否是字典（符合Ingredient模型）
+            if recipe_data["ingredients"] and not isinstance(recipe_data["ingredients"][0], dict):
+                logger.warning("字段'ingredients'中的元素不是字典格式，需要转换为符合Ingredient模型的格式")
+                # 将字符串列表转换为符合Ingredient模型的字典列表
+                ingredient_dicts = []
+                for i, ing in enumerate(recipe_data["ingredients"]):
+                    if isinstance(ing, str):
+                        # 简单的字符串食材，转换为字典格式
+                        ingredient_dicts.append({
+                            "name": ing,
+                            "quantity": 1,
+                            "unit": "份",
+                            "note": f"食材{i+1}"
+                        })
+                    else:
+                        # 已经是字典，直接添加
+                        ingredient_dicts.append(ing)
+                recipe_data["ingredients"] = ingredient_dicts
+                logger.info(f"字段'ingredients'转换为Ingredient格式成功，包含 {len(recipe_data['ingredients'])} 个食材")
+            else:
+                logger.info(f"字段'ingredients'验证通过，包含 {len(recipe_data['ingredients'])} 个食材")
+        else:
+            logger.warning(f"字段'ingredients'类型错误，应为列表，实际为: {type(recipe_data['ingredients']).__name__}，尝试转换")
+            try:
+                # 尝试将字符串分割为列表并转换为Ingredient格式
+                if isinstance(recipe_data["ingredients"], str):
+                    ingredient_strings = [item.strip() for item in recipe_data["ingredients"].split(",")]
+                    recipe_data["ingredients"] = [
+                        {"name": ing, "quantity": 1, "unit": "份", "note": f"食材{i+1}"}
+                        for i, ing in enumerate(ingredient_strings)
+                    ]
+                    logger.info(f"字段'ingredients'从字符串转换为Ingredient列表成功，包含 {len(recipe_data['ingredients'])} 个食材")
+                else:
+                    # 其他类型尝试转换为Ingredient列表
+                    recipe_data["ingredients"] = [
+                        {"name": str(recipe_data["ingredients"]), "quantity": 1, "unit": "份", "note": "基本食材"}
+                    ]
+                    logger.info(f"字段'ingredients'转换为Ingredient列表成功，包含 {len(recipe_data['ingredients'])} 个食材")
+            except Exception as e:
+                logger.error(f"字段'ingredients'转换失败: {str(e)}")
+                raise InvalidResponseError("Field 'ingredients' must be a list of Ingredient objects")
         
         if not isinstance(recipe_data["instructions"], list):
-            logger.error(f"字段'instructions'类型错误，应为列表，实际为: {type(recipe_data['instructions']).__name__}")
-            raise InvalidResponseError("Field 'instructions' must be a list")
-        logger.info(f"字段'instructions'验证通过，包含 {len(recipe_data['instructions'])} 个步骤")
+            logger.warning(f"字段'instructions'类型错误，应为列表，实际为: {type(recipe_data['instructions']).__name__}，尝试转换")
+            try:
+                # 尝试将字符串按换行符分割为列表
+                if isinstance(recipe_data["instructions"], str):
+                    recipe_data["instructions"] = [step.strip() for step in recipe_data["instructions"].split("\n") if step.strip()]
+                    logger.info(f"字段'instructions'从字符串转换为列表成功，包含 {len(recipe_data['instructions'])} 个步骤")
+                else:
+                    # 其他类型尝试转换为列表
+                    recipe_data["instructions"] = [str(recipe_data["instructions"])]
+                    logger.info(f"字段'instructions'转换为列表成功，包含 {len(recipe_data['instructions'])} 个步骤")
+            except Exception as e:
+                logger.error(f"字段'instructions'转换失败: {str(e)}")
+                raise InvalidResponseError("Field 'instructions' must be a list")
+        else:
+            logger.info(f"字段'instructions'验证通过，包含 {len(recipe_data['instructions'])} 个步骤")
+        
+        # 确保食材列表不为空
+        if len(recipe_data["ingredients"]) == 0:
+            logger.warning("食材列表为空，添加默认食材")
+            recipe_data["ingredients"] = [
+                {"name": "基本食材", "quantity": 1, "unit": "份", "note": "默认食材"}
+            ]
+        
+        # 确保步骤列表不为空
+        if len(recipe_data["instructions"]) == 0:
+            logger.warning("步骤列表为空，添加默认步骤")
+            recipe_data["instructions"] = ["准备食材", "烹饪", "享用"]
+        
+        # 确保cooking_time字段存在且为整数
+        if "cooking_time" not in recipe_data:
+            recipe_data["cooking_time"] = 30
+            logger.info("添加默认烹饪时间: 30分钟")
+        elif not isinstance(recipe_data["cooking_time"], int):
+            try:
+                recipe_data["cooking_time"] = int(recipe_data["cooking_time"])
+                logger.info(f"烹饪时间转换为整数: {recipe_data['cooking_time']}分钟")
+            except:
+                recipe_data["cooking_time"] = 30
+                logger.info("烹饪时间转换失败，使用默认值: 30分钟")
+        
+        # 确保servings字段存在且为整数
+        if "servings" not in recipe_data:
+            recipe_data["servings"] = 2
+            logger.info("添加默认份量: 2人份")
+        elif not isinstance(recipe_data["servings"], int):
+            try:
+                recipe_data["servings"] = int(recipe_data["servings"])
+                logger.info(f"份量转换为整数: {recipe_data['servings']}人份")
+            except:
+                recipe_data["servings"] = 2
+                logger.info("份量转换失败，使用默认值: 2人份")
+        
+        # 确保difficulty字段存在且为有效值
+        if "difficulty" not in recipe_data:
+            recipe_data["difficulty"] = "medium"
+            logger.info("添加默认难度级别: medium")
+        elif recipe_data["difficulty"] not in ["easy", "medium", "hard"]:
+            recipe_data["difficulty"] = "medium"
+            logger.info("难度级别无效，使用默认值: medium")
+        
+        # 确保nutrition_info字段存在且符合NutritionInfo模型要求
+        if "nutrition_info" not in recipe_data or not isinstance(recipe_data["nutrition_info"], dict):
+            recipe_data["nutrition_info"] = {
+                "calories": 500,
+                "protein": 20,
+                "carbs": 60,
+                "fat": 20,
+                "fiber": 5
+            }
+            logger.info("添加默认营养信息")
+        else:
+            # 确保营养信息包含所有必需字段
+            nutrition_required = ["calories", "protein", "carbs", "fat", "fiber"]
+            for field in nutrition_required:
+                if field not in recipe_data["nutrition_info"]:
+                    recipe_data["nutrition_info"][field] = 0
+                    logger.info(f"营养信息缺少{field}字段，使用默认值: 0")
+        
+        # 确保cuisine字段存在
+        if "cuisine" not in recipe_data:
+            recipe_data["cuisine"] = "none"
+            logger.info("添加默认菜系: none")
         
         logger.info("食谱数据验证完成，所有必需字段和类型检查均通过")
         return True

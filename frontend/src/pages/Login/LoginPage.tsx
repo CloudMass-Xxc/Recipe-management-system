@@ -8,7 +8,7 @@ const LoginPage: React.FC = () => {
   const navigate = useNavigate();
   const { login, loading, error, clearError } = useAuth();
   const [formData, setFormData] = useState({
-    identifier: '',
+    username: '',
     password: ''
   });
 
@@ -66,12 +66,12 @@ const LoginPage: React.FC = () => {
               margin="normal"
               required
               fullWidth
-              id="identifier"
+              id="username"
               label="手机号/邮箱/用户名"
-              name="identifier"
+              name="username"
               autoComplete="username"
               autoFocus
-              value={formData.identifier}
+              value={formData.username}
               onChange={handleChange}
               slotProps={{
                 input: {

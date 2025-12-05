@@ -1,22 +1,23 @@
-import React from 'react';
-import { Box, Typography, Button, Card, CardContent, CardMedia, Chip } from '@mui/material';
-import { LocalFireDepartment as RecipeIcon, Search, Star, AccessTime as ClockIcon, Restaurant as ChefHatIcon, Favorite as HeartIcon, Event as CalendarIcon, ArrowRight, TrendingUp, Shield, Group as UsersIcon } from '@mui/icons-material';
+import React, { useMemo } from 'react';
+import { Box, Typography, Button, Card } from '@mui/material';
+import { LocalFireDepartment as RecipeIcon, Search, Favorite as HeartIcon, Event as CalendarIcon, ArrowRight, TrendingUp, Shield, Group as UsersIcon, Star } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../../components/layout/Layout';
+import RecipeCard from '../../components/recipe/RecipeCard/RecipeCard';
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
 
-  // 快速操作按钮数据
-  const quickActions = [
+  // 快速操作按钮数据 - 使用useMemo缓存
+  const quickActions = useMemo(() => [
     { title: '生成食谱', icon: <RecipeIcon />, path: '/recipe-generate', color: '#4caf50', bgColor: '#e8f5e8' },
     { title: '浏览食谱', icon: <Search />, path: '/recipe-list', color: '#2196f3', bgColor: '#e3f2fd' },
     { title: '我的收藏', icon: <HeartIcon />, path: '/favorites', color: '#f44336', bgColor: '#ffebee' },
     { title: '饮食计划', icon: <CalendarIcon />, path: '/diet-plan', color: '#ff9800', bgColor: '#fff3e0' },
-  ];
+  ], []);
 
-  // 推荐食谱数据 - 固定存储在前端，包含完整详细信息
-  const recommendedRecipes = [
+  // 推荐食谱数据 - 固定存储在前端，包含完整详细信息 - 使用useMemo缓存
+  const recommendedRecipes = useMemo(() => [
     {
       recipe_id: 'recommended-1',
       title: '健康早餐燕麦粥',
@@ -130,7 +131,7 @@ const HomePage: React.FC = () => {
     {
       recipe_id: 'recommended-4',
       title: '蔬菜沙拉',
-      image_url: 'https://images.unsplash.com/photo-1511690656952-34342bb7c2F5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+      image_url: 'https://images.unsplash.com/photo-1511690656952-34342bb7c2f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
       cooking_time: 10,
       time: '10分钟',
       difficulty: '简单',
@@ -166,10 +167,10 @@ const HomePage: React.FC = () => {
         fiber: 8
       }
     }
-  ];
+  ], []);
 
-  // 系统优势数据
-  const systemAdvantages = [
+  // 系统优势数据 - 使用useMemo缓存
+  const systemAdvantages = useMemo(() => [
     {
       icon: <RecipeIcon />,
       title: '智能食谱生成',
@@ -206,15 +207,15 @@ const HomePage: React.FC = () => {
       description: '加入烹饪社区，交流经验，发现更多美食灵感',
       color: '#00bcd4'
     }
-  ];
+  ], []);
 
-  // 系统统计数据
-  const stats = [
+  // 系统统计数据 - 使用useMemo缓存
+  const stats = useMemo(() => [
     { label: '食谱数量', value: '10,000+', icon: <RecipeIcon />, color: '#4caf50' },
     { label: '活跃用户', value: '50,000+', icon: <UsersIcon />, color: '#2196f3' },
     { label: '每日生成', value: '1,000+', icon: <TrendingUp />, color: '#ff9800' },
     { label: '五星评价', value: '98%', icon: <Star />, color: '#f44336' },
-  ];
+  ], []);
 
   return (
     <Layout>
@@ -438,129 +439,21 @@ const HomePage: React.FC = () => {
           gridTemplateColumns: {
             xs: '1fr',
             sm: 'repeat(2, 1fr)',
-            lg: 'repeat(4, 1fr)'
+            lg: 'repeat(4, 1fr)' 
           },
           gap: { xs: 2, sm: 4 }
         }}>
           {recommendedRecipes.map((recipe) => (
-            <Card 
+            <RecipeCard 
               key={recipe.recipe_id} 
-              onClick={() => navigate(`/recipe/${recipe.recipe_id}`)}
-              sx={{ 
-                borderRadius: 3,
-                overflow: 'hidden',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
-                '&:hover': {
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
-                  transform: 'translateY(-5px)',
-                },
-                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                cursor: 'pointer'
-              }}
-            >
-              <CardMedia
-                component="img"
-                height="200"
-                image={recipe.image_url}
-                alt={recipe.title}
-                sx={{ 
-                  objectFit: 'cover',
-                  transition: 'transform 0.3s ease',
-                  height: { xs: '150px', sm: '200px' },
-                  '&:hover': {
-                    transform: 'scale(1.05)',
-                  }
-                }}
-              />
-              <CardContent sx={{ 
-                p: 3,
-                flexGrow: 1,
-                display: 'flex',
-                flexDirection: 'column',
-              }}>
-                <Typography variant="h6" sx={{ 
-                  fontWeight: 700, 
-                  mb: 1.5,
-                  color: '#333',
-                  lineHeight: 1.4,
-                }}>
-                  {recipe.title}
-                </Typography>
-                <Box sx={{ 
-                  display: 'flex', 
-                  gap: 2, 
-                  mb: 2, 
-                  alignItems: 'center',
-                  flexWrap: 'wrap',
-                }}>
-                  <Box sx={{ 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    gap: 0.5, 
-                    fontSize: '0.875rem', 
-                    color: '#666',
-                    backgroundColor: '#f5f5f5',
-                    padding: '4px 8px',
-                    borderRadius: 2,
-                  }}>
-                    <ClockIcon fontSize="small" />
-                    {recipe.time}
-                  </Box>
-                  <Box sx={{ 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    gap: 0.5, 
-                    fontSize: '0.875rem', 
-                    color: '#666',
-                    backgroundColor: '#f5f5f5',
-                    padding: '4px 8px',
-                    borderRadius: 2,
-                  }}>
-                    <ChefHatIcon fontSize="small" />
-                    {recipe.difficulty}
-                  </Box>
-                  <Box sx={{ 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    gap: 0.5, 
-                    fontSize: '0.875rem', 
-                    color: '#ff9800',
-                    backgroundColor: '#fff3e0',
-                    padding: '4px 8px',
-                    borderRadius: 2,
-                  }}>
-                    <Star fontSize="small" sx={{ color: '#ff9800' }} />
-                    {recipe.rating}
-                  </Box>
-                </Box>
-                <Box sx={{ 
-                  display: 'flex', 
-                  gap: 1, 
-                  flexWrap: 'wrap',
-                  mt: 'auto',
-                }}>
-                  {recipe.tags.map((tag, index) => (
-                    <Chip
-                      key={index}
-                      label={tag}
-                      size="small"
-                      sx={{
-                        backgroundColor: '#e3f2fd',
-                        color: '#1976d2',
-                        fontWeight: 600,
-                        fontSize: '0.75rem',
-                        '&:hover': {
-                          backgroundColor: '#bbdefb',
-                        }
-                      }}
-                    />
-                  ))}
-                </Box>
-              </CardContent>
-            </Card>
+              recipe={{
+                ...recipe,
+                author_id: 'system',
+                created_at: new Date().toISOString(),
+                updated_at: new Date().toISOString(),
+                author_name: '系统推荐'
+              }} 
+            />
           ))}
         </Box>
       </Box>
@@ -780,4 +673,5 @@ const HomePage: React.FC = () => {
   );
 };
 
-export default HomePage;
+// 使用React.memo避免不必要的重新渲染
+export default React.memo(HomePage);

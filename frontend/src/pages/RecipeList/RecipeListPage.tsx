@@ -6,7 +6,7 @@ import RecipeCard from '../../components/recipe/RecipeCard/RecipeCard';
 import { useRecipe } from '../../hooks/useRecipe';
 
 const RecipeListPage: React.FC = () => {
-  const { fetchRecipes, recipeList, pagination, loading, error, clearError, deleteRecipe } = useRecipe();
+  const { fetchRecipes, recipeList, pagination, loading, error, clearError } = useRecipe();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -19,16 +19,11 @@ const RecipeListPage: React.FC = () => {
 
   // 当页面加载、页码或标签变化时获取数据
   useEffect(() => {
-    console.log('RecipeListPage useEffect触发:', {
-      currentPage,
-      selectedTags,
-      timestamp: Date.now()
-    });
     // 只在组件挂载或相关依赖变化时获取数据
     fetchRecipes(currentPage, 8, selectedTags.length > 0 ? selectedTags : undefined).catch(() => {
       clearError();
     });
-  }, [currentPage, selectedTags]); // 移除fetchRecipes和clearError，避免因函数引用变化导致的重复执行
+  }, [currentPage, selectedTags, fetchRecipes, clearError]); // 添加fetchRecipes和clearError到依赖数组，确保函数引用正确
 
   // 处理标签切换
   const handleTagToggle = (tag: string) => {
@@ -50,24 +45,7 @@ const RecipeListPage: React.FC = () => {
     setCurrentPage(value);
   };
 
-  // 处理删除食谱
-  const handleDeleteRecipe = async (recipeId: string) => {
-    try {
-      await deleteRecipe(recipeId);
-      setSnackbar({
-        open: true,
-        message: '食谱删除成功！',
-        severity: 'success'
-      });
-    } catch (err) {
-      // 删除失败时不再自动重新加载列表，避免无限循环
-      setSnackbar({
-        open: true,
-        message: '删除失败，请稍后重试或刷新页面',
-        severity: 'error'
-      });
-    }
-  };
+
 
   // 关闭通知
   const handleCloseSnackbar = () => {
@@ -243,7 +221,7 @@ const RecipeListPage: React.FC = () => {
             xs: '1fr',
             sm: 'repeat(2, 1fr)',
             md: 'repeat(3, 1fr)',
-            lg: 'repeat(4, 1fr)',
+            lg: 'repeat(3, 1fr)', // 修改为最多3列
           },
           gap: 4,
         }}>
@@ -257,7 +235,7 @@ const RecipeListPage: React.FC = () => {
                 },
                 transition: 'transform 0.2s ease',
               }}>
-                <RecipeCard recipe={recipe} onDelete={handleDeleteRecipe} />
+                <RecipeCard recipe={recipe} />
               </Box>
             ))
           ) : (

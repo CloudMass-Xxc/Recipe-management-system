@@ -25,5 +25,5 @@ class Recipe(Base):
     # 关系
     author = relationship("User", back_populates="recipes")
     nutrition_info = relationship("NutritionInfo", back_populates="recipe", uselist=False, cascade="all, delete-orphan")
-    favorites = relationship("Favorite", back_populates="recipe", cascade="all, delete-orphan")
     ratings = relationship("Rating", back_populates="recipe", cascade="all, delete-orphan")
+    favorites = relationship("Favorite", back_populates="recipe", cascade="all, delete-orphan")

@@ -6,9 +6,18 @@ def test_full_register():
     print('测试完整的注册功能...')
     
     # 使用全新的用户信息
-    new_username = 'brand_new_user_999'
-    new_email = 'brand_new_email_999@example.com'
-    new_phone = '13100008888'
+    import random
+    import string
+    
+    # 生成随机字符串作为后缀
+    suffix = ''.join(random.choices(string.ascii_lowercase + string.digits, k=6))
+    
+    # 生成随机手机号（以131开头，后面8位随机数字）
+    phone_suffix = ''.join(random.choices(string.digits, k=8))
+    
+    new_username = f"brand_new_user_{suffix}"
+    new_email = f"brand_new_email_{suffix}@example.com"
+    new_phone = f"131{phone_suffix}"
     
     print(f'\n使用全新的用户信息注册:')
     print(f'- 用户名: {new_username}')
@@ -17,7 +26,7 @@ def test_full_register():
     print(f'- 密码: Test@1234')
     
     try:
-        response = requests.post('http://localhost:8001/auth/register', 
+        response = requests.post('http://localhost:8002/auth/register', 
                                 headers={'Content-Type': 'application/json'},
                                 json={
                                     'username': new_username,
@@ -36,7 +45,7 @@ def test_full_register():
             # 测试登录，验证注册的用户可以正常登录
             print('\n\n测试登录，验证注册的用户可以正常登录...')
             try:
-                login_response = requests.post('http://localhost:8001/auth/login',
+                login_response = requests.post('http://localhost:8002/auth/login',
                                              headers={'Content-Type': 'application/json'},
                                              json={
                                                  'identifier': new_email,

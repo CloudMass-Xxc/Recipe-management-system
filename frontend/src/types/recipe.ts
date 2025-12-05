@@ -84,20 +84,22 @@ export interface Recipe {
   created_at: string;
   updated_at: string;
   ingredients?: SimpleIngredient[];
+  rating?: number;
 }
 
 // 食谱列表项类型（简化版）
 export interface RecipeListItem {
   recipe_id: string;
   title: string;
-  description: string;
-  cuisine: string;
-  cooking_time: string;
+  description?: string;
+  cuisine?: string;
+  cooking_time: number;
   difficulty: string;
   created_at: string;
-  image_url: string;
-  author_name: string;
+  image_url?: string;
+  author_name?: string;
   tags?: string[];
+  rating?: number;
 }
 
 // 食谱生成请求类型
@@ -140,14 +142,7 @@ export interface RecipeSearchResponse {
   recipes: Recipe[];
 }
 
-// 收藏响应类型
-export interface FavoriteResponse {
-  favorite_id: string;
-  user_id: string;
-  recipe_id: string;
-  recipe?: RecipeListItem;
-  created_at: string;
-}
+
 
 // 评分创建类型
 export interface RatingCreate {
@@ -165,4 +160,26 @@ export interface RatingResponse {
   comment?: string;
   user_name?: string;
   created_at: string;
+}
+
+// 收藏响应类型
+export interface FavoriteResponse {
+  favorite_id: number;
+  user_id: string;
+  recipe_id: string;
+  recipe: RecipeListItem;
+  created_at: string;
+}
+
+// 收藏状态响应类型
+export interface FavoriteStatusResponse {
+  is_favorite: boolean;
+}
+
+// 用户收藏列表响应类型
+export interface UserFavoritesResponse {
+  recipes: RecipeListItem[];
+  page: number;
+  limit: number;
+  total: number;
 }

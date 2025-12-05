@@ -6,11 +6,16 @@ export const userService = {
   async getUserProfile(): Promise<UserProfile> {
     // 获取用户资料
     try {
+      console.log('正在获取用户资料...');
+      // 确保使用配置了完整认证处理的api实例
       const response = await api.get<UserProfile>('/users/me');
+      console.log('获取用户资料成功:', response.data);
       return response.data;
-    } catch (error) {
+    } catch (error: any) {
       console.error('获取用户资料失败:', error);
-      throw error;
+      console.error('错误详情:', error.response?.data || error.message);
+      // 重新抛出错误，让调用方知道发生了什么
+      throw new Error(error.response?.data?.detail || '获取用户资料失败');
     }
   },
 
@@ -69,37 +74,5 @@ export const userService = {
     }
   },
 
-  async getFavorites(page: number = 1, limit: number = 20): Promise<any> {
-    // 获取收藏的食谱
-    try {
-      const params = { skip: (page - 1) * limit, limit };
-      const response = await api.get('/users/favorites', { params });
-      return response.data;
-    } catch (error) {
-      console.error('获取收藏食谱失败:', error);
-      throw error;
-    }
-  },
 
-  async toggleFavorite(recipeId: string): Promise<{ is_favorite: boolean }> {
-    // 切换收藏状态
-    try {
-      const response = await api.post<{ is_favorite: boolean }>(`/recipes/${recipeId}/favorite`);
-      return response.data;
-    } catch (error) {
-      console.error('切换收藏状态失败:', error);
-      throw error;
-    }
-  },
-
-  async isFavorite(recipeId: string): Promise<{ is_favorite: boolean }> {
-    // 检查是否已收藏
-    try {
-      const response = await api.get<{ is_favorite: boolean }>(`/recipes/${recipeId}/favorite`);
-      return response.data;
-    } catch (error) {
-      console.error('检查收藏状态失败:', error);
-      throw error;
-    }
-  }
 };

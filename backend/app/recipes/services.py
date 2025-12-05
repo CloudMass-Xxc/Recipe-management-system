@@ -2,14 +2,17 @@ from sqlalchemy.orm import Session, joinedload
 from sqlalchemy import or_, and_, func
 from uuid import UUID
 from typing import List, Optional, Dict, Any
+import logging
 from app.models.recipe import Recipe
 from app.models.ingredient import Ingredient
 from app.models.recipe_ingredient import RecipeIngredient
 from app.models.nutrition_info import NutritionInfo
-from app.models.favorite import Favorite
 from app.models.rating import Rating
 from app.models.user import User
 from app.core.utils import generate_recipe_id
+
+# 配置日志记录器
+logger = logging.getLogger(__name__)
 
 class RecipeService:
     """
@@ -181,6 +184,7 @@ class RecipeService:
         skip: int = 0,
         limit: int = 20,
         author_id: Optional[Any] = None,
+        user_id: Optional[Any] = None,  # 当前用户ID，用于排除已收藏的食谱
         search_params: Optional[Dict[str, Any]] = None
     ) -> List[Recipe]:
         """
@@ -191,6 +195,7 @@ class RecipeService:
             skip: 跳过的记录数
             limit: 返回的记录数
             author_id: 作者ID（可选）
+            user_id: 当前用户ID（可选），用于排除已收藏的食谱
             search_params: 搜索参数（可选）
         
         Returns:
@@ -200,13 +205,45 @@ class RecipeService:
             joinedload(Recipe.author)
         )
         
+        # 排除当前用户已收藏的食谱
+        if user_id:
+            from app.models.favorite import Favorite
+            from sqlalchemy import not_
+            
+            try:
+                # 安全地处理user_id
+                from uuid import UUID
+                if isinstance(user_id, UUID):
+                    user_id_uuid = user_id
+                else:
+                    user_id_uuid = UUID(str(user_id))
+                
+                # 子查询：获取用户已收藏的食谱ID列表
+                favorited_recipe_ids = db.query(Favorite.recipe_id).filter(
+                    Favorite.user_id == user_id_uuid
+                ).subquery()
+                
+                # 排除已收藏的食谱
+                query = query.filter(
+                    not_(Recipe.recipe_id.in_(favorited_recipe_ids))
+                )
+                logger.info(f"成功排除用户ID {user_id} 的已收藏食谱")
+            except Exception as e:
+                logger.error(f"处理用户收藏过滤时出错: {str(e)}")
+                # 如果处理用户ID出错，不影响整体查询，继续执行
+        
         # 按作者筛选
         if author_id:
             # 安全地处理author_id
             if isinstance(author_id, UUID):
                 query = query.filter(Recipe.author_id == author_id)
             else:
-                query = query.filter(Recipe.author_id == UUID(str(author_id)))
+                try:
+                    author_id_uuid = UUID(str(author_id))
+                    query = query.filter(Recipe.author_id == author_id_uuid)
+                except Exception as e:
+                    logger.error(f"处理作者ID过滤时出错: {str(e)}")
+                    # 如果处理作者ID出错，不影响整体查询，继续执行
         
         # 应用搜索条件
         if search_params:
@@ -248,6 +285,7 @@ class RecipeService:
     def get_recipes_count(
         db: Session,
         author_id: Optional[Any] = None,
+        user_id: Optional[Any] = None,  # 添加user_id参数，用于排除已收藏的食谱
         search_params: Optional[Dict[str, Any]] = None
     ) -> int:
         """
@@ -256,12 +294,40 @@ class RecipeService:
         Args:
             db: 数据库会话
             author_id: 作者ID（可选）
+            user_id: 当前用户ID（可选），用于排除已收藏的食谱
             search_params: 搜索参数（可选）
         
         Returns:
             食谱总数
         """
         query = db.query(func.count(Recipe.recipe_id))
+        
+        # 排除当前用户已收藏的食谱
+        if user_id:
+            from app.models.favorite import Favorite
+            from sqlalchemy import not_
+            
+            try:
+                # 安全地处理user_id
+                from uuid import UUID
+                if isinstance(user_id, UUID):
+                    user_id_uuid = user_id
+                else:
+                    user_id_uuid = UUID(str(user_id))
+                
+                # 子查询：获取用户已收藏的食谱ID列表
+                favorited_recipe_ids = db.query(Favorite.recipe_id).filter(
+                    Favorite.user_id == user_id_uuid
+                ).subquery()
+                
+                # 排除已收藏的食谱
+                query = query.filter(
+                    not_(Recipe.recipe_id.in_(favorited_recipe_ids))
+                )
+                logger.info(f"成功排除用户ID {user_id} 的已收藏食谱")
+            except Exception as e:
+                logger.error(f"处理用户收藏过滤时出错: {str(e)}")
+                # 如果处理用户ID出错，不影响整体查询，继续执行
         
         # 按作者筛选
         if author_id:
@@ -397,73 +463,7 @@ class RecipeService:
         db.commit()
         return True
     
-    @staticmethod
-    def favorite_recipe(db: Session, user_id: Any, recipe_id: Any) -> Optional[Favorite]:
-        """
-        收藏食谱
-        
-        Args:
-            db: 数据库会话
-            user_id: 用户ID
-            recipe_id: 食谱ID
-        
-        Returns:
-            创建的收藏记录，如果已收藏则返回None
-        """
-        # 安全地转换为UUID类型
-        from uuid import UUID
-        user_id_uuid = user_id if isinstance(user_id, UUID) else UUID(str(user_id))
-        recipe_id_uuid = recipe_id if isinstance(recipe_id, UUID) else UUID(str(recipe_id))
-        
-        # 检查是否已收藏
-        existing = db.query(Favorite).filter(
-            Favorite.user_id == user_id_uuid,
-            Favorite.recipe_id == recipe_id_uuid
-        ).first()
-        
-        if existing:
-            return None
-        
-        # 创建收藏记录
-        favorite = Favorite(
-            user_id=user_id_uuid,
-            recipe_id=recipe_id_uuid
-        )
-        
-        db.add(favorite)
-        db.commit()
-        db.refresh(favorite)
-        return favorite
-    
-    @staticmethod
-    def unfavorite_recipe(db: Session, user_id: Any, recipe_id: Any) -> bool:
-        """
-        取消收藏
-        
-        Args:
-            db: 数据库会话
-            user_id: 用户ID
-            recipe_id: 食谱ID
-        
-        Returns:
-            是否取消成功
-        """
-        # 安全地转换为UUID类型
-        from uuid import UUID
-        user_id_uuid = user_id if isinstance(user_id, UUID) else UUID(str(user_id))
-        recipe_id_uuid = recipe_id if isinstance(recipe_id, UUID) else UUID(str(recipe_id))
-        
-        favorite = db.query(Favorite).filter(
-            Favorite.user_id == user_id_uuid,
-            Favorite.recipe_id == recipe_id_uuid
-        ).first()
-        
-        if not favorite:
-            return False
-        
-        db.delete(favorite)
-        db.commit()
-        return True
+
     
     @staticmethod
     def rate_recipe(db: Session, user_id: Any, recipe_id: Any, score: int, comment: Optional[str] = None) -> Rating:
@@ -504,25 +504,7 @@ class RecipeService:
         db.refresh(rating)
         return rating
     
-    @staticmethod
-    def get_user_favorites(db: Session, user_id: Any, skip: int = 0, limit: int = 20) -> List[Favorite]:
-        """
-        获取用户收藏列表
-        
-        Args:
-            db: 数据库会话
-            user_id: 用户ID
-            skip: 跳过的记录数
-            limit: 返回的记录数
-        
-        Returns:
-            收藏列表
-        """
-        return db.query(Favorite).options(
-            joinedload(Favorite.recipe).joinedload(Recipe.author)
-        ).filter(
-            Favorite.user_id == user_id
-        ).order_by(Favorite.created_at.desc()).offset(skip).limit(limit).all()
+
     
     @staticmethod
     def get_recipe_ratings(db: Session, recipe_id: Any, skip: int = 0, limit: int = 20) -> List[Rating]:
@@ -561,3 +543,153 @@ class RecipeService:
         ).scalar()
         
         return float(result) if result else None
+    
+    @staticmethod
+    def add_favorite(db: Session, user_id: Any, recipe_id: Any) -> Any:
+        """
+        添加食谱到收藏
+        
+        Args:
+            db: 数据库会话
+            user_id: 用户ID
+            recipe_id: 食谱ID
+        
+        Returns:
+            收藏对象，如果添加失败则返回None
+        """
+        from app.models.favorite import Favorite
+        from uuid import UUID
+        import logging
+        logger = logging.getLogger(__name__)
+        
+        try:
+            # 检查是否已经收藏
+            existing_favorite = db.query(Favorite).filter(
+                Favorite.user_id == UUID(str(user_id)),
+                Favorite.recipe_id == UUID(str(recipe_id))
+            ).first()
+            
+            if existing_favorite:
+                logger.info(f"食谱 {recipe_id} 已被用户 {user_id} 收藏")
+                return existing_favorite
+            
+            # 创建新收藏
+            new_favorite = Favorite(
+                user_id=UUID(str(user_id)),
+                recipe_id=UUID(str(recipe_id))
+            )
+            
+            db.add(new_favorite)
+            db.commit()
+            db.refresh(new_favorite)
+            
+            logger.info(f"用户 {user_id} 成功收藏食谱 {recipe_id}")
+            return new_favorite
+        except Exception as e:
+            logger.error(f"添加收藏失败: {str(e)}")
+            db.rollback()
+            return None
+    
+    @staticmethod
+    def remove_favorite(db: Session, user_id: Any, recipe_id: Any) -> bool:
+        """
+        从收藏中移除食谱
+        
+        Args:
+            db: 数据库会话
+            user_id: 用户ID
+            recipe_id: 食谱ID
+        
+        Returns:
+            是否移除成功
+        """
+        from app.models.favorite import Favorite
+        from uuid import UUID
+        import logging
+        logger = logging.getLogger(__name__)
+        
+        try:
+            # 查找收藏记录
+            favorite = db.query(Favorite).filter(
+                Favorite.user_id == UUID(str(user_id)),
+                Favorite.recipe_id == UUID(str(recipe_id))
+            ).first()
+            
+            if not favorite:
+                logger.info(f"用户 {user_id} 未收藏食谱 {recipe_id}")
+                return False
+            
+            # 删除收藏记录
+            db.delete(favorite)
+            db.commit()
+            
+            logger.info(f"用户 {user_id} 成功取消收藏食谱 {recipe_id}")
+            return True
+        except Exception as e:
+            logger.error(f"取消收藏失败: {str(e)}")
+            db.rollback()
+            return False
+    
+    @staticmethod
+    def get_user_favorites(db: Session, user_id: Any, skip: int = 0, limit: int = 100) -> List[Any]:
+        """
+        获取用户的收藏列表
+        
+        Args:
+            db: 数据库会话
+            user_id: 用户ID
+            skip: 跳过的记录数
+            limit: 返回的记录数
+        
+        Returns:
+            收藏列表
+        """
+        from app.models.favorite import Favorite
+        from uuid import UUID
+        import logging
+        logger = logging.getLogger(__name__)
+        
+        try:
+            # 获取用户收藏列表，包含食谱信息
+            favorites = db.query(Favorite).options(
+                joinedload(Favorite.recipe).joinedload(Recipe.author)
+            ).filter(
+                Favorite.user_id == UUID(str(user_id))
+            ).order_by(
+                Favorite.created_at.desc()
+            ).offset(skip).limit(limit).all()
+            
+            logger.info(f"成功获取用户 {user_id} 的收藏列表，共 {len(favorites)} 条记录")
+            return favorites
+        except Exception as e:
+            logger.error(f"获取用户收藏列表失败: {str(e)}")
+            return []
+    
+    @staticmethod
+    def is_favorite(db: Session, user_id: Any, recipe_id: Any) -> bool:
+        """
+        检查食谱是否已被用户收藏
+        
+        Args:
+            db: 数据库会话
+            user_id: 用户ID
+            recipe_id: 食谱ID
+        
+        Returns:
+            是否已收藏
+        """
+        from app.models.favorite import Favorite
+        from uuid import UUID
+        import logging
+        logger = logging.getLogger(__name__)
+        
+        try:
+            favorite = db.query(Favorite).filter(
+                Favorite.user_id == UUID(str(user_id)),
+                Favorite.recipe_id == UUID(str(recipe_id))
+            ).first()
+            
+            return favorite is not None
+        except Exception as e:
+            logger.error(f"检查收藏状态失败: {str(e)}")
+            return False

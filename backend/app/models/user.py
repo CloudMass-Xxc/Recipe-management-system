@@ -33,9 +33,9 @@ class User(Base):
     
     # 关系
     recipes = relationship("Recipe", back_populates="author", cascade="all, delete-orphan")
-    favorites = relationship("Favorite", back_populates="user", cascade="all, delete-orphan")
     ratings = relationship("Rating", back_populates="user", cascade="all, delete-orphan")
     diet_plans = relationship("DietPlan", back_populates="user", cascade="all, delete-orphan")
+    favorites = relationship("Favorite", back_populates="user", cascade="all, delete-orphan")
     
     def __repr__(self):
         return f"<User(user_id={self.user_id}, username='{self.username}', email='{self.email}')>"
@@ -150,4 +150,14 @@ class User(Base):
         db.delete(self)
         db.commit()
         logger.info(f"[DATA_SOURCE_VERIFICATION] User {self} deleted successfully from DATABASE")
+    
+    @property
+    def is_active_boolean(self):
+        """
+        将字符串类型的is_active转换为布尔值，用于Pydantic模型验证
+        
+        Returns:
+            bool: True如果is_active为'Y'，否则为False
+        """
+        return self.is_active == 'Y'
     

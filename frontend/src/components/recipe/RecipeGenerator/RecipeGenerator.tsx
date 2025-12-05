@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Box, Button, Typography, Paper, Alert, CircularProgress } from '@mui/material';
-import { LocalFireDepartment as FireIcon } from '@mui/icons-material';
+import { Box, Button, Typography, Paper, Alert, CircularProgress, Snackbar } from '@mui/material';
+import { LocalFireDepartment as FireIcon, CheckCircle as SuccessIcon } from '@mui/icons-material';
 import IngredientInput from '../IngredientInput/IngredientInput';
 import RestrictionSelector from '../RestrictionSelector/RestrictionSelector';
 import PreferenceSettings, { type Preferences } from '../PreferenceSettings/PreferenceSettings';
@@ -23,7 +23,8 @@ const RecipeGenerator: React.FC<RecipeGeneratorProps> = ({
   const [restrictions, setRestrictions] = useState<string[]>(initialRestrictions);
   const [preferences, setPreferences] = useState<Preferences>(initialPreferences);
   const [error, setError] = useState<string | null>(null);
-  const { generateRecipes, generatedRecipes, loading, favoriteRecipe } = useRecipe();
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const { generateRecipes, generatedRecipes, loading } = useRecipe();
   
   console.log('RecipeGenerator state:', { ingredients, restrictions, preferences, generatedRecipes, loading, error });
 
@@ -35,6 +36,7 @@ const RecipeGenerator: React.FC<RecipeGeneratorProps> = ({
     }
     
     setError(null);
+    setSuccessMessage(null);
     try {
       await generateRecipes({
         ingredients,
@@ -42,10 +44,17 @@ const RecipeGenerator: React.FC<RecipeGeneratorProps> = ({
         preferences
       });
       console.log('Recipes generated successfully');
+      setSuccessMessage('食谱生成成功！');
+      // 3秒后自动隐藏成功消息
+      setTimeout(() => setSuccessMessage(null), 3000);
     } catch (err: any) {
       setError(err.message || '食谱生成失败，请重试');
       console.error('生成食谱失败:', err);
     }
+  };
+
+  const handleCloseSuccessSnackbar = () => {
+    setSuccessMessage(null);
   };
 
   const handleAddIngredient = (ingredient: string) => {
@@ -60,16 +69,7 @@ const RecipeGenerator: React.FC<RecipeGeneratorProps> = ({
 
   // 移除了保存到我的食谱功能，因为现在生成的食谱会自动保存到公共列表
 
-  const handleFavorite = async (recipeId: string) => {
-    try {
-      await favoriteRecipe(recipeId);
-      // 可以添加成功提示
-      console.log('食谱已收藏');
-    } catch (err) {
-      console.error('收藏食谱失败:', err);
-      setError('收藏食谱失败');
-    }
-  };
+  // 收藏功能现在由RecipeCard组件内部处理，不再需要此方法
 
   return (
     <Box sx={{ mt: 3 }}>
@@ -85,10 +85,29 @@ const RecipeGenerator: React.FC<RecipeGeneratorProps> = ({
           <Alert
             severity="error"
             sx={{ mb: 3 }}
+            variant="filled"
           >
             {error}
           </Alert>
         )}
+        
+        {/* 成功提示 */}
+        <Snackbar 
+          open={!!successMessage} 
+          autoHideDuration={3000} 
+          onClose={handleCloseSuccessSnackbar}
+          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        >
+          <Alert
+            severity="success"
+            onClose={handleCloseSuccessSnackbar}
+            variant="filled"
+            sx={{ width: '100%' }}
+            icon={<SuccessIcon />}
+          >
+            {successMessage}
+          </Alert>
+        </Snackbar>
         
         <IngredientInput
           ingredients={ingredients}
@@ -142,7 +161,6 @@ const RecipeGenerator: React.FC<RecipeGeneratorProps> = ({
               <Box key={recipe.recipe_id} sx={{ flex: '1 1 300px', maxWidth: { xs: '100%', sm: 'calc(50% - 12px)', md: 'calc(33.333% - 16px)' } }}>
                 <RecipeCard 
                   recipe={recipe} 
-                  onFavorite={handleFavorite}
                 />
               </Box>
             ))}

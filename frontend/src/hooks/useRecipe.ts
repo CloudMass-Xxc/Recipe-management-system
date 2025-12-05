@@ -6,8 +6,6 @@ import {
   fetchRecipes, 
   fetchRecipeDetail, 
   searchRecipes, 
-  favoriteRecipe, 
-  unfavoriteRecipe, 
   rateRecipe,
   addToMyRecipes,
   deleteRecipe,
@@ -48,13 +46,7 @@ export const useRecipe = () => {
     return dispatch(searchRecipes({ query, cooking_time, difficulty, page, limit })).unwrap();
   }, [dispatch]);
 
-  const handleFavoriteRecipe = useCallback((recipeId: string) => {
-    return dispatch(favoriteRecipe(recipeId)).unwrap();
-  }, [dispatch]);
 
-  const handleUnfavoriteRecipe = useCallback((recipeId: string) => {
-    return dispatch(unfavoriteRecipe(recipeId)).unwrap();
-  }, [dispatch]);
 
   const handleRateRecipe = useCallback((recipeId: string, ratingData: RatingCreate) => {
     return dispatch(rateRecipe({ recipeId, ratingData })).unwrap();
@@ -91,8 +83,6 @@ export const useRecipe = () => {
     fetchRecipes: handleFetchRecipes,
     fetchRecipeDetail: handleFetchRecipeDetail,
     searchRecipes: handleSearchRecipes,
-    favoriteRecipe: handleFavoriteRecipe,
-    unfavoriteRecipe: handleUnfavoriteRecipe,
     rateRecipe: handleRateRecipe,
     addToMyRecipes: handleAddToMyRecipes,
     deleteRecipe: handleDeleteRecipe,

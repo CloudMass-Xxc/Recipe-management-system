@@ -1,60 +1,67 @@
-from pydantic import BaseModel, EmailStr, Field
-from typing import Optional, List
-from datetime import datetime
+from pydantic import BaseModel, EmailStr, Field, field_validator
+from typing import Optional
+import re
 
-# User schemas
 
 class UserBase(BaseModel):
-    """基础用户模型"""
-    username: str = Field(..., min_length=3, max_length=100, description="用户名")
-    email: EmailStr = Field(..., description="邮箱")
-    phone: Optional[str] = Field(None, description="手机号")
+    """用户基础模型"""
+    username: str = Field(..., min_length=3, max_length=50, description="用户名")
+    email: EmailStr = Field(..., description="电子邮箱")
+    phone: Optional[str] = Field(None, description="手机号码")
+
 
 class UserCreate(UserBase):
-    """用户创建请求"""
-    password: str = Field(..., min_length=6, description="密码")
-    display_name: Optional[str] = Field(None, max_length=255, description="显示名称")
+    """用户注册模型"""
+    password: str = Field(..., min_length=6, description="密码，至少6位字符")
+    
+    @field_validator('password')
+    @classmethod
+    def validate_password(cls, v: str) -> str:
+        """验证密码非空且至少6位字符"""
+        if not v or len(v) < 6:
+            raise ValueError('密码不能为空且至少需要6位字符')
+        return v
+    
+    @field_validator('phone')
+    @classmethod
+    def validate_phone(cls, v: Optional[str]) -> Optional[str]:
+        """验证手机号码格式（可选）"""
+        if v and not re.match(r'^1[3-9]\d{9}$', v):
+            raise ValueError('手机号码格式不正确')
+        return v
+
 
 class UserLogin(BaseModel):
-    """用户登录请求"""
-    identifier: str = Field(..., min_length=3, description="登录标识（手机号/邮箱/用户名）")
-    password: str = Field(..., min_length=6, description="密码")
+    """用户登录模型"""
+    username: str = Field(..., description="用户名、邮箱或手机号")
+    password: str = Field(..., description="密码")
 
-class Token(BaseModel):
-    """令牌响应"""
-    access_token: str = Field(..., description="访问令牌")
-    token_type: str = Field(default="bearer", description="令牌类型")
-
-class TokenData(BaseModel):
-    """令牌数据"""
-    user_id: Optional[str] = Field(None, description="用户ID")
-    token_type: Optional[str] = Field(None, description="令牌类型")
 
 class UserResponse(UserBase):
     """用户响应模型"""
-    user_id: str = Field(..., description="用户ID")
-    display_name: Optional[str] = Field(None, description="显示名称")
-    created_at: datetime = Field(..., description="创建时间")
+    user_id: str
+    is_active: bool
     
     class Config:
         from_attributes = True
 
-class UserUpdate(BaseModel):
-    """用户更新请求"""
-    display_name: Optional[str] = Field(None, min_length=1, max_length=255, description="显示名称")
-    phone: Optional[str] = Field(None, description="手机号")
 
-class PasswordUpdate(BaseModel):
-    """密码更新请求"""
-    old_password: str = Field(..., description="旧密码")
-    new_password: str = Field(..., min_length=6, description="新密码")
-
-class LoginResponse(BaseModel):
-    """登录响应"""
-    access_token: str = Field(..., description="访问令牌")
-    token_type: str = Field(default="bearer", description="令牌类型")
+class TokenResponse(BaseModel):
+    """令牌响应模型"""
+    access_token: str
+    token_type: str = "bearer"
     user: UserResponse
 
-class TokenRefresh(BaseModel):
-    """令牌刷新请求"""
-    refresh_token: str = Field(..., description="刷新令牌")
+
+class LoginResponse(BaseModel):
+    """登录响应模型"""
+    message: str
+    success: bool
+    data: Optional[TokenResponse] = None
+
+
+class RegisterResponse(BaseModel):
+    """注册响应模型"""
+    message: str
+    success: bool
+    data: Optional[UserResponse] = None

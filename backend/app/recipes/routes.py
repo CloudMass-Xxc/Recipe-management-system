@@ -2,11 +2,11 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 from typing import List, Optional
 from app.core.database import get_db
-from app.auth.dependencies import get_current_user
+from app.auth.dependencies import get_current_user, optional_get_current_active_user
 from app.models.user import User
 from app.recipes.schemas import (
     RecipeBase, RecipeCreate, RecipeUpdate, RecipeResponse, RecipeListItem,
-    RecipeSearchParams, FavoriteResponse, RatingCreate, RatingResponse,
+    RecipeSearchParams, RatingCreate, RatingResponse,
     NutritionInfoResponse, RecipeListResponse
 )
 from app.recipes.services import RecipeService
@@ -127,7 +127,8 @@ async def get_recipes(
     query: Optional[str] = None,
     difficulty: Optional[str] = None,
     max_cooking_time: Optional[int] = None,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: Optional[User] = Depends(optional_get_current_active_user)
 ):
     """
     获取食谱列表
@@ -147,18 +148,23 @@ async def get_recipes(
     if page is not None:
         skip = (page - 1) * limit
     
+    # 获取当前用户ID（如果已登录）
+    user_id = current_user.user_id if current_user else None
+    
     # 获取食谱列表和总数
     recipes = RecipeService.get_recipes(
         db=db,
         skip=skip,
         limit=limit,
         author_id=author_id,
+        user_id=user_id,  # 传递当前用户ID用于过滤
         search_params=search_params if search_params else None
     )
     
     total = RecipeService.get_recipes_count(
         db=db,
         author_id=author_id,
+        user_id=user_id,  # 传递当前用户ID用于过滤，确保总数也排除已收藏的食谱
         search_params=search_params if search_params else None
     )
     
@@ -340,6 +346,8 @@ async def update_recipe(
     )
 
 
+
+
 @router.delete("/{recipe_id}", status_code=204)
 async def delete_recipe(
     recipe_id: str,
@@ -362,49 +370,6 @@ async def delete_recipe(
     success = RecipeService.delete_recipe(db, recipe_id)
     if not success:
         raise HTTPException(status_code=404, detail="Recipe not found")
-    
-    return None
-
-
-@router.post("/{recipe_id}/favorite", response_model=FavoriteResponse)
-async def favorite_recipe(
-    recipe_id: str,
-    db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user)
-):
-    """
-    收藏食谱
-    """
-    # 检查食谱是否存在
-    recipe = RecipeService.get_recipe_by_id(db, recipe_id)
-    if not recipe:
-        raise HTTPException(status_code=404, detail="Recipe not found")
-    
-    # 收藏食谱
-    favorite = RecipeService.favorite_recipe(db, current_user.user_id, recipe_id)
-    if not favorite:
-        raise HTTPException(status_code=400, detail="Already favorited")
-    
-    return FavoriteResponse(
-        favorite_id=str(favorite.favorite_id),
-        user_id=str(current_user.user_id),
-        recipe_id=recipe_id,
-        created_at=favorite.created_at
-    )
-
-
-@router.delete("/{recipe_id}/favorite", status_code=204)
-async def unfavorite_recipe(
-    recipe_id: str,
-    db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user)
-):
-    """
-    取消收藏食谱
-    """
-    success = RecipeService.unfavorite_recipe(db, current_user.user_id, recipe_id)
-    if not success:
-        raise HTTPException(status_code=404, detail="Not favorited")
     
     return None
 
@@ -477,29 +442,81 @@ async def get_recipe_ratings(
     ]
 
 
-@router.get("/user/favorites", response_model=List[RecipeListItem])
-async def get_user_favorites(
-    skip: int = Query(0, ge=0),
-    limit: int = Query(20, ge=1, le=100),
+@router.post("/{recipe_id}/favorite", response_model=dict)
+async def add_favorite(
+    recipe_id: str,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
     """
-    获取用户收藏的食谱列表
+    添加收藏
     """
-    favorites = RecipeService.get_user_favorites(db, current_user.user_id, skip, limit)
+    # 检查食谱是否存在
+    recipe = RecipeService.get_recipe_by_id(db, recipe_id)
+    if not recipe:
+        raise HTTPException(status_code=404, detail="Recipe not found")
+    
+    # 添加收藏
+    favorite = RecipeService.add_favorite(db, current_user.user_id, recipe_id)
+    
+    if not favorite:
+        raise HTTPException(status_code=500, detail="Failed to add favorite")
     
     # 构建响应
-    return [
-        RecipeListItem(
-            recipe_id=str(favorite.recipe.recipe_id),
-            title=favorite.recipe.title,
-            description=favorite.recipe.description,
-            cooking_time=favorite.recipe.cooking_time,
-            difficulty=favorite.recipe.difficulty,
-            author_name=favorite.recipe.author.username,
-            image_url=favorite.recipe.image_url,
-            created_at=favorite.recipe.created_at
-        )
-        for favorite in favorites
-    ]
+    return {
+        "message": "Recipe added to favorites",
+        "is_favorite": True,
+        "favorite_id": str(favorite.favorite_id)
+    }
+
+
+@router.delete("/{recipe_id}/favorite", response_model=dict)
+async def remove_favorite(
+    recipe_id: str,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """
+    取消收藏
+    """
+    # 检查食谱是否存在
+    recipe = RecipeService.get_recipe_by_id(db, recipe_id)
+    if not recipe:
+        raise HTTPException(status_code=404, detail="Recipe not found")
+    
+    # 取消收藏
+    success = RecipeService.remove_favorite(db, current_user.user_id, recipe_id)
+    
+    if not success:
+        raise HTTPException(status_code=500, detail="Failed to remove favorite")
+    
+    # 构建响应
+    return {
+        "message": "Recipe removed from favorites",
+        "is_favorite": False
+    }
+
+
+@router.get("/{recipe_id}/favorite", response_model=dict)
+async def check_favorite(
+    recipe_id: str,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """
+    检查是否收藏
+    """
+    # 检查食谱是否存在
+    recipe = RecipeService.get_recipe_by_id(db, recipe_id)
+    if not recipe:
+        raise HTTPException(status_code=404, detail="Recipe not found")
+    
+    # 检查收藏状态
+    is_favorite = RecipeService.is_favorite(db, current_user.user_id, recipe_id)
+    
+    # 构建响应
+    return {
+        "is_favorite": is_favorite
+    }
+
+

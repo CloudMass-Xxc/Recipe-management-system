@@ -292,29 +292,7 @@ export const searchRecipes = createAsyncThunk(
   }
 );
 
-export const favoriteRecipe = createAsyncThunk(
-  'recipes/favorite',
-  async (recipeId: string, { rejectWithValue }) => {
-    try {
-      await recipeService.favoriteRecipe(recipeId);
-      return recipeId;
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data?.detail || '收藏食谱失败');
-    }
-  }
-);
 
-export const unfavoriteRecipe = createAsyncThunk(
-  'recipes/unfavorite',
-  async (recipeId: string, { rejectWithValue }) => {
-    try {
-      await recipeService.unfavoriteRecipe(recipeId);
-      return recipeId;
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data?.detail || '取消收藏失败');
-    }
-  }
-);
 
 export const rateRecipe = createAsyncThunk(
   'recipes/rate',
@@ -380,6 +358,28 @@ const recipeSlice = createSlice({
           state.loading = false;
           state.generatedRecipes = action.payload;
           state.error = null;
+          
+          // 将生成的食谱自动添加到用户食谱列表中
+          action.payload.forEach(recipe => {
+            // 检查食谱是否已存在于列表中
+            const exists = state.recipeList.some(r => r.recipe_id === recipe.recipe_id);
+            if (!exists) {
+              // 将Recipe对象转换为RecipeListItem类型
+              const recipeListItem: RecipeListItem = {
+                recipe_id: recipe.recipe_id,
+                title: recipe.title,
+                description: recipe.description || '',
+                cuisine: recipe.cuisine || '',
+                cooking_time: Number(recipe.cooking_time) || 0,
+                difficulty: recipe.difficulty,
+                created_at: recipe.created_at || new Date().toISOString(),
+                image_url: recipe.image_url || '',
+                author_name: recipe.author_name || 'AI',
+                tags: recipe.tags || []
+              };
+              state.recipeList.push(recipeListItem);
+            }
+          });
         })
       .addCase(generateRecipes.rejected, (state, action) => {
         state.loading = false;
@@ -392,7 +392,10 @@ const recipeSlice = createSlice({
       })
       .addCase(fetchRecipes.fulfilled, (state, action: PayloadAction<RecipeListResponse>) => {
         state.loading = false;
+        
+        // 更新状态 - 使用生成的食谱替换现有列表
         state.recipeList = action.payload.recipes;
+        
         state.pagination = {
           page: action.payload.page,
           limit: action.payload.limit,
@@ -418,6 +421,7 @@ const recipeSlice = createSlice({
         state.loading = false;
         state.error = action.payload as string;
       })
+
       // Clear error
       .addCase(clearError, (state) => {
         state.error = null;
@@ -435,7 +439,7 @@ const recipeSlice = createSlice({
           title: action.payload.title,
           description: action.payload.description || '',
           cuisine: action.payload.cuisine || '',
-          cooking_time: action.payload.cooking_time.toString(),
+          cooking_time: Number(action.payload.cooking_time) || 0,
           difficulty: action.payload.difficulty,
           created_at: action.payload.created_at,
           image_url: action.payload.image_url || '',
@@ -456,14 +460,15 @@ const recipeSlice = createSlice({
       })
       .addCase(deleteRecipe.fulfilled, (state, action) => {
         state.loading = false;
+        const recipeId = action.payload;
         // 从食谱列表中移除删除的食谱
-        state.recipeList = state.recipeList.filter(recipe => recipe.recipe_id !== action.payload);
+        state.recipeList = state.recipeList.filter(recipe => recipe.recipe_id !== recipeId);
         // 如果当前食谱被删除，清除当前食谱
-        if (state.currentRecipe && state.currentRecipe.recipe_id === action.payload) {
+        if (state.currentRecipe && state.currentRecipe.recipe_id === recipeId) {
           state.currentRecipe = null;
         }
         // 从生成的食谱中也移除
-        state.generatedRecipes = state.generatedRecipes.filter(recipe => recipe.recipe_id !== action.payload);
+        state.generatedRecipes = state.generatedRecipes.filter(recipe => recipe.recipe_id !== recipeId);
         state.error = null;
       })
       .addCase(deleteRecipe.rejected, (state, action) => {

@@ -1,0 +1,289 @@
+2025-12-02 19:36:04,516 - backend.app.core.config - INFO - 应用配置加载成功，项目名称: 个性化食谱管理系统
+2025-12-02 19:36:04,517 - backend.app.core.config - INFO - 版本: 1.0.0
+2025-12-02 19:36:04,517 - backend.app.core.config - INFO - 访问令牌过期时间: 1440 分钟
+2025-12-02 19:36:04,517 - backend.app.core.config - INFO - 刷新令牌过期时间: 7 天
+2025-12-02 19:36:04,518 - backend.app.core.config - INFO - 算法: HS256
+2025-12-02 19:36:04,518 - backend.app.core.config - INFO - 数据库架构: app_schema
+2025-12-02 19:36:04,518 - backend.app.core.config - INFO - CORS源: ['http://localhost:3000', 'http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175']
+2025-12-02 19:36:04,519 - backend.app.core.config - INFO - 是否使用PgBouncer: False
+2025-12-02 19:36:04,519 - backend.app.core.config - INFO - 限流配置: 60 次/分钟
+2025-12-02 19:36:04,520 - backend.app.core.config - INFO - 数据库URL (已屏蔽密码): postgresql:******@localhost:5432/recipe_system?schema=public&sslmode=prefer
+2025-12-02 19:36:04,520 - backend.app.core.config - INFO - PgBouncer URL (已屏蔽密码): postgresql:******@localhost:6432/recipe_system
+2025-12-02 19:36:04,520 - backend.app.core.config - INFO - 密码策略 - 最小长度: 8
+2025-12-02 19:36:04,521 - backend.app.core.config - INFO - 密码策略 - 需要大写字母: True
+2025-12-02 19:36:04,521 - backend.app.core.config - INFO - 密码策略 - 需要小写字母: True
+2025-12-02 19:36:04,521 - backend.app.core.config - INFO - 密码策略 - 需要数字: True
+2025-12-02 19:36:04,521 - backend.app.core.config - INFO - 密码策略 - 需要特殊字符: True
+2025-12-02 19:36:04,522 - backend.app.core.config - INFO - 最大登录尝试次数: 5
+2025-12-02 19:36:04,522 - backend.app.core.config - INFO - 登录时撤销现有令牌: True
+2025-12-02 19:36:04,522 - backend.app.core.config - INFO - 安全HTTP头配置: True
+2025-12-02 19:36:04,806 - backend.app.core.database - INFO - 正在连接数据库...
+2025-12-02 19:36:04,859 - backend.app.core.database - CRITICAL - 数据库连接失败 - SQLAlchemy错误: (psycopg2.ProgrammingError) invalid dsn: invalid connection option "schema"
+
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-12-02 19:36:04,867 - backend.app.core.database - CRITICAL - 错误堆栈: Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 145, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3292, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 452, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 1269, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 716, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 169, in _do_get
+    with util.safe_reraise():
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 167, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 393, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 678, in __init__
+    self.__connect()
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 902, in __connect
+    with util.safe_reraise():
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 898, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\create.py", line 637, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 616, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\psycopg2\__init__.py", line 121, in connect
+    dsn = _ext.make_dsn(dsn, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\psycopg2\extensions.py", line 167, in make_dsn
+    parse_dsn(dsn)
+psycopg2.ProgrammingError: invalid dsn: invalid connection option "schema"
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\backend\app\core\database.py", line 55, in init_database
+    with engine.connect() as conn:
+         ^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3268, in connect
+    return self._connection_cls(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 147, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2430, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 145, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3292, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 452, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 1269, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 716, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 169, in _do_get
+    with util.safe_reraise():
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 167, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 393, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 678, in __init__
+    self.__connect()
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 902, in __connect
+    with util.safe_reraise():
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 898, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\create.py", line 637, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 616, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\psycopg2\__init__.py", line 121, in connect
+    dsn = _ext.make_dsn(dsn, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\psycopg2\extensions.py", line 167, in make_dsn
+    parse_dsn(dsn)
+sqlalchemy.exc.ProgrammingError: (psycopg2.ProgrammingError) invalid dsn: invalid connection option "schema"
+
+(Background on this error at: https://sqlalche.me/e/20/f405)
+
+2025-12-02 19:36:04,874 - clear_database - INFO - 关闭数据库会话
+2025-12-02 19:36:58,328 - backend.app.core.config - INFO - 应用配置加载成功，项目名称: 个性化食谱管理系统
+2025-12-02 19:36:58,329 - backend.app.core.config - INFO - 版本: 1.0.0
+2025-12-02 19:36:58,329 - backend.app.core.config - INFO - 访问令牌过期时间: 1440 分钟
+2025-12-02 19:36:58,329 - backend.app.core.config - INFO - 刷新令牌过期时间: 7 天
+2025-12-02 19:36:58,329 - backend.app.core.config - INFO - 算法: HS256
+2025-12-02 19:36:58,329 - backend.app.core.config - INFO - 数据库架构: app_schema
+2025-12-02 19:36:58,329 - backend.app.core.config - INFO - CORS源: ['http://localhost:3000', 'http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175']
+2025-12-02 19:36:58,329 - backend.app.core.config - INFO - 是否使用PgBouncer: False
+2025-12-02 19:36:58,329 - backend.app.core.config - INFO - 限流配置: 60 次/分钟
+2025-12-02 19:36:58,329 - backend.app.core.config - INFO - 数据库URL (已屏蔽密码): postgresql:******@localhost:5432/recipe_system?sslmode=prefer
+2025-12-02 19:36:58,333 - backend.app.core.config - INFO - PgBouncer URL (已屏蔽密码): postgresql:******@localhost:6432/recipe_system
+2025-12-02 19:36:58,333 - backend.app.core.config - INFO - 密码策略 - 最小长度: 8
+2025-12-02 19:36:58,333 - backend.app.core.config - INFO - 密码策略 - 需要大写字母: True
+2025-12-02 19:36:58,333 - backend.app.core.config - INFO - 密码策略 - 需要小写字母: True
+2025-12-02 19:36:58,333 - backend.app.core.config - INFO - 密码策略 - 需要数字: True
+2025-12-02 19:36:58,333 - backend.app.core.config - INFO - 密码策略 - 需要特殊字符: True
+2025-12-02 19:36:58,333 - backend.app.core.config - INFO - 最大登录尝试次数: 5
+2025-12-02 19:36:58,333 - backend.app.core.config - INFO - 登录时撤销现有令牌: True
+2025-12-02 19:36:58,333 - backend.app.core.config - INFO - 安全HTTP头配置: True
+2025-12-02 19:36:58,641 - backend.app.core.database - INFO - 正在连接数据库...
+2025-12-02 19:36:58,732 - backend.app.core.database - CRITICAL - 数据库连接失败 - 操作错误: (psycopg2.OperationalError) connection to server at "localhost" (::1), port 5432 failed: FATAL:  password authentication failed for user "app_user"
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-12-02 19:36:58,737 - backend.app.core.database - CRITICAL - 错误堆栈: Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 145, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3292, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 452, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 1269, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 716, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 169, in _do_get
+    with util.safe_reraise():
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 167, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 393, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 678, in __init__
+    self.__connect()
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 902, in __connect
+    with util.safe_reraise():
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 898, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\create.py", line 637, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 616, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "localhost" (::1), port 5432 failed: FATAL:  password authentication failed for user "app_user"
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Homework\LLM\Final_assignment\Vers_4\backend\app\core\database.py", line 55, in init_database
+    with engine.connect() as conn:
+         ^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3268, in connect
+    return self._connection_cls(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 147, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2430, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 145, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3292, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 452, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 1269, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 716, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 169, in _do_get
+    with util.safe_reraise():
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 167, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 393, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 678, in __init__
+    self.__connect()
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 902, in __connect
+    with util.safe_reraise():
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 898, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\create.py", line 637, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 616, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Homework\LLM\Final_assignment\Vers_4\.venv\Lib\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) connection to server at "localhost" (::1), port 5432 failed: FATAL:  password authentication failed for user "app_user"
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+2025-12-02 19:36:58,744 - clear_database - INFO - 关闭数据库会话
+2025-12-02 19:37:14,818 - backend.app.core.config - INFO - 应用配置加载成功，项目名称: 个性化食谱管理系统
+2025-12-02 19:37:14,818 - backend.app.core.config - INFO - 版本: 1.0.0
+2025-12-02 19:37:14,819 - backend.app.core.config - INFO - 访问令牌过期时间: 1440 分钟
+2025-12-02 19:37:14,819 - backend.app.core.config - INFO - 刷新令牌过期时间: 7 天
+2025-12-02 19:37:14,820 - backend.app.core.config - INFO - 算法: HS256
+2025-12-02 19:37:14,820 - backend.app.core.config - INFO - 数据库架构: app_schema
+2025-12-02 19:37:14,820 - backend.app.core.config - INFO - CORS源: ['http://localhost:3000', 'http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175']
+2025-12-02 19:37:14,821 - backend.app.core.config - INFO - 是否使用PgBouncer: False
+2025-12-02 19:37:14,821 - backend.app.core.config - INFO - 限流配置: 60 次/分钟
+2025-12-02 19:37:14,822 - backend.app.core.config - INFO - 数据库URL (已屏蔽密码): postgresql:******@localhost:5432/recipe_system?sslmode=prefer
+2025-12-02 19:37:14,823 - backend.app.core.config - INFO - PgBouncer URL (已屏蔽密码): postgresql:******@localhost:6432/recipe_system
+2025-12-02 19:37:14,823 - backend.app.core.config - INFO - 密码策略 - 最小长度: 8
+2025-12-02 19:37:14,823 - backend.app.core.config - INFO - 密码策略 - 需要大写字母: True
+2025-12-02 19:37:14,824 - backend.app.core.config - INFO - 密码策略 - 需要小写字母: True
+2025-12-02 19:37:14,824 - backend.app.core.config - INFO - 密码策略 - 需要数字: True
+2025-12-02 19:37:14,824 - backend.app.core.config - INFO - 密码策略 - 需要特殊字符: True
+2025-12-02 19:37:14,825 - backend.app.core.config - INFO - 最大登录尝试次数: 5
+2025-12-02 19:37:14,825 - backend.app.core.config - INFO - 登录时撤销现有令牌: True
+2025-12-02 19:37:14,825 - backend.app.core.config - INFO - 安全HTTP头配置: True
+2025-12-02 19:37:15,099 - backend.app.core.database - INFO - 正在连接数据库...
+2025-12-02 19:37:15,187 - backend.app.core.database - INFO - 数据库连接成功
+2025-12-02 19:37:15,187 - backend.app.core.database - INFO - 数据库初始化完成
+2025-12-02 19:37:15,193 - clear_database - INFO - 关闭数据库会话

@@ -24,8 +24,19 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   // 添加全局鼠标事件监听
   useEffect(() => {
+    // 节流函数，限制事件处理频率
+    let lastCall = 0;
+    const THROTTLE_DELAY = 100; // 100ms节流延迟
+
     // 处理鼠标移动事件 - 检测鼠标是否靠近左侧边框
     const handleMouseMove = (e: MouseEvent) => {
+      const now = Date.now();
+      // 节流：只在指定时间间隔后处理事件
+      if (now - lastCall < THROTTLE_DELAY) {
+        return;
+      }
+      lastCall = now;
+
       // 只有在桌面端且侧边栏未打开时，才检测鼠标是否靠近左侧边框
       if (!isMobile && !sidebarOpen && e.clientX <= 10) {
         setSidebarOpen(true);
