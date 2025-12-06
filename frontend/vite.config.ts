@@ -36,7 +36,7 @@ export default defineConfig({
     port: 5174,
     // 启用热模块替换
     hmr: true,
-    // 代理配置 - 只代理/api请求到后端
+    // 代理配置 - 代理/api请求到后端
     proxy: {
       '/api': {
         target: 'http://localhost:8002',

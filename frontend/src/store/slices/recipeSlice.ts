@@ -393,8 +393,21 @@ const recipeSlice = createSlice({
       .addCase(fetchRecipes.fulfilled, (state, action: PayloadAction<RecipeListResponse>) => {
         state.loading = false;
         
-        // 更新状态 - 使用生成的食谱替换现有列表
-        state.recipeList = action.payload.recipes;
+        // 将后端返回的数据与已有的recipeList合并，保留所有食谱
+        // 1. 先获取所有已存在的食谱ID集合
+        const existingRecipeIds = new Set(state.recipeList.map(recipe => recipe.recipe_id));
+        
+        // 2. 从新数据中添加不存在的食谱
+        const newRecipes = action.payload.recipes.filter(recipe => !existingRecipeIds.has(recipe.recipe_id));
+        
+        // 3. 合并食谱列表，保留所有食谱
+        const mergedRecipes = [...state.recipeList, ...newRecipes];
+        
+        // 4. 确保没有重复的食谱（按recipe_id去重）
+        const uniqueRecipes = Array.from(new Map(mergedRecipes.map(recipe => [recipe.recipe_id, recipe])).values());
+        
+        // 更新状态
+        state.recipeList = uniqueRecipes;
         
         state.pagination = {
           page: action.payload.page,

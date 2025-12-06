@@ -1,25 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import {
-  Typography,
-  Grid,
-  Box,
-  CircularProgress,
-  Pagination,
-  TextField,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  Chip,
-  Snackbar,
-  Alert,
-  Paper,
-  Button,
-  Stack
-} from '@mui/material';
+import React from 'react';
+import { Typography, Box, CircularProgress, Pagination, TextField, FormControl, InputLabel, Select, MenuItem, Chip, Snackbar, Alert, Paper, Button, Stack } from '@mui/material';
 import {
   FilterList as FilterListIcon,
-  Sort as SortIcon,
   Refresh as RefreshIcon,
   Favorite as FavoriteIcon
 } from '@mui/icons-material';
@@ -35,24 +17,24 @@ const FavoritesPage: React.FC = () => {
   const { isAuthenticated, user } = useAuth();
   
   // 状态管理
-  const [recipes, setRecipes] = useState<RecipeListItem[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(12);
-  const [total, setTotal] = useState(0);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [sortBy, setSortBy] = useState<'created_at' | 'cooking_time' | 'difficulty'>('created_at');
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
-  const [filterDifficulty, setFilterDifficulty] = useState<string>('');
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [availableTags, setAvailableTags] = useState<string[]>([]);
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState('');
-  const [snackbarSeverity, setSnackbarSeverity] = useState<'success' | 'error' | 'info' | 'warning'>('success');
+  const [recipes, setRecipes] = React.useState<RecipeListItem[]>([]);
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
+  const [page, setPage] = React.useState(1);
+  const [limit] = React.useState(12);
+  const [total, setTotal] = React.useState(0);
+  const [searchQuery, setSearchQuery] = React.useState('');
+  const [sortBy, setSortBy] = React.useState<'created_at' | 'cooking_time' | 'difficulty'>('created_at');
+  const [sortOrder, setSortOrder] = React.useState<'asc' | 'desc'>('desc');
+  const [filterDifficulty, setFilterDifficulty] = React.useState<string>('');
+  const [selectedTags, setSelectedTags] = React.useState<string[]>([]);
+  const [availableTags, setAvailableTags] = React.useState<string[]>([]);
+  const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+  const [snackbarMessage, setSnackbarMessage] = React.useState('');
+  const [snackbarSeverity, setSnackbarSeverity] = React.useState<'success' | 'error' | 'info' | 'warning'>('success');
 
   // 获取收藏列表
-  const fetchFavorites = useCallback(async (pageNum: number = 1) => {
+  const fetchFavorites = React.useCallback(async (pageNum: number = 1) => {
     try {
       setLoading(true);
       setError(null);
@@ -75,8 +57,8 @@ const FavoritesPage: React.FC = () => {
         
         // 提取所有可用标签
         const allTags = new Set<string>();
-        response.recipes.forEach(recipe => {
-          recipe.tags?.forEach(tag => allTags.add(tag));
+        response.recipes.forEach((recipe: RecipeListItem) => {
+          recipe.tags?.forEach((tag: string) => allTags.add(tag));
         });
         setAvailableTags(Array.from(allTags));
       } else {
@@ -84,7 +66,7 @@ const FavoritesPage: React.FC = () => {
         setTotal(0);
         setAvailableTags([]);
       }
-    } catch (err: any) {
+    } catch (err) {
       console.error('获取收藏列表失败:', err);
       setError(err.response?.data?.message || '获取收藏列表失败，请稍后重试');
       setRecipes([]);
@@ -96,7 +78,7 @@ const FavoritesPage: React.FC = () => {
   }, [limit, searchQuery, sortBy, sortOrder, filterDifficulty, selectedTags]);
 
   // 初始加载和依赖变化时获取收藏列表
-  useEffect(() => {
+  React.useEffect(() => {
     if (!isAuthenticated || !user) {
       setError('请先登录查看收藏');
       setLoading(false);
@@ -117,7 +99,7 @@ const FavoritesPage: React.FC = () => {
   };
 
   // 处理排序变化
-  const handleSortChange = (e: React.ChangeEvent<{ value: unknown }>) => {
+  const handleSortChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const [newSortBy, newSortOrder] = (e.target.value as string).split(':');
     setSortBy(newSortBy as 'created_at' | 'cooking_time' | 'difficulty');
     setSortOrder(newSortOrder as 'asc' | 'desc');
@@ -125,7 +107,7 @@ const FavoritesPage: React.FC = () => {
   };
 
   // 处理难度筛选变化
-  const handleDifficultyChange = (e: React.ChangeEvent<{ value: unknown }>) => {
+  const handleDifficultyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilterDifficulty(e.target.value as string);
     setPage(1);
   };
@@ -219,45 +201,41 @@ const FavoritesPage: React.FC = () => {
               size="medium"
             />
 
-            <Grid container spacing={3}>
-              <Grid item xs={12} sm={6} md={4}>
-                <FormControl fullWidth size="medium">
-                  <InputLabel id="sort-by-label">排序方式</InputLabel>
-                  <Select
-                    labelId="sort-by-label"
-                    id="sort-by"
-                    value={`${sortBy}:${sortOrder}`}
-                    label="排序方式"
-                    onChange={handleSortChange}
-                  >
-                    <MenuItem value="created_at:desc">最近收藏</MenuItem>
-                    <MenuItem value="created_at:asc">最早收藏</MenuItem>
-                    <MenuItem value="cooking_time:asc">烹饪时间（从短到长）</MenuItem>
-                    <MenuItem value="cooking_time:desc">烹饪时间（从长到短）</MenuItem>
-                    <MenuItem value="difficulty:asc">难度（从易到难）</MenuItem>
-                    <MenuItem value="difficulty:desc">难度（从难到易）</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
+            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(2, 1fr)' }, gap: 3 }}>
+              <FormControl fullWidth size="medium">
+                <InputLabel id="sort-by-label">排序方式</InputLabel>
+                <Select
+                  labelId="sort-by-label"
+                  id="sort-by"
+                  value={`${sortBy}:${sortOrder}`}
+                  label="排序方式"
+                  onChange={handleSortChange}
+                >
+                  <MenuItem value="created_at:desc">最近收藏</MenuItem>
+                  <MenuItem value="created_at:asc">最早收藏</MenuItem>
+                  <MenuItem value="cooking_time:asc">烹饪时间（从短到长）</MenuItem>
+                  <MenuItem value="cooking_time:desc">烹饪时间（从长到短）</MenuItem>
+                  <MenuItem value="difficulty:asc">难度（从易到难）</MenuItem>
+                  <MenuItem value="difficulty:desc">难度（从难到易）</MenuItem>
+                </Select>
+              </FormControl>
               
-              <Grid item xs={12} sm={6} md={4}>
-                <FormControl fullWidth size="medium">
-                  <InputLabel id="difficulty-filter-label">难度筛选</InputLabel>
-                  <Select
-                    labelId="difficulty-filter-label"
-                    id="difficulty-filter"
-                    value={filterDifficulty}
-                    label="难度筛选"
-                    onChange={handleDifficultyChange}
-                  >
-                    <MenuItem value="">全部难度</MenuItem>
-                    <MenuItem value="简单">简单</MenuItem>
-                    <MenuItem value="中等">中等</MenuItem>
-                    <MenuItem value="困难">困难</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-            </Grid>
+              <FormControl fullWidth size="medium">
+                <InputLabel id="difficulty-filter-label">难度筛选</InputLabel>
+                <Select
+                  labelId="difficulty-filter-label"
+                  id="difficulty-filter"
+                  value={filterDifficulty}
+                  label="难度筛选"
+                  onChange={handleDifficultyChange}
+                >
+                  <MenuItem value="">全部难度</MenuItem>
+                  <MenuItem value="简单">简单</MenuItem>
+                  <MenuItem value="中等">中等</MenuItem>
+                  <MenuItem value="困难">困难</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
 
             {availableTags.length > 0 && (
               <Box>
@@ -294,7 +272,7 @@ const FavoritesPage: React.FC = () => {
 
       {loading ? (
         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '400px' }}>
-          <CircularProgress size={60} sx={{ color: 'primary.main' }} />
+          <CircularProgress size={60} sx={{ color: 'primary.main' }} role="progressbar" aria-label="Loading recipes" />
         </Box>
       ) : error ? (
         <Paper elevation={2} sx={{ p: 6, borderRadius: 2, textAlign: 'center', minHeight: '400px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
@@ -338,28 +316,20 @@ const FavoritesPage: React.FC = () => {
         </Paper>
       ) : (
         <>
-          <Grid container spacing={{ xs: 2, sm: 3, md: 4 }} sx={{ mb: 4 }}>
+          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(3, 1fr)' }, gap: { xs: 2, sm: 3, md: 4 }, mb: 4, justifyContent: 'center' }}>
             {recipes.map((recipe) => (
-              <Grid 
-                item 
-                xs={12} 
-                sm={6} 
-                md={4} 
-                lg={3} 
-                xl={3} 
+              <Box 
                 key={recipe.recipe_id}
-                sx={{ display: 'flex', justifyContent: 'center' }}
+                sx={{ width: '100%', maxWidth: 320, display: 'flex', flexDirection: 'column' }}
               >
-                <Box sx={{ width: '100%', maxWidth: 320, display: 'flex', flexDirection: 'column' }}>
-                  <RecipeCard
-                    recipe={recipe}
-                    onView={handleViewRecipe}
-                    onFavoriteChange={handleFavoriteChange}
-                  />
-                </Box>
-              </Grid>
+                <RecipeCard
+                  recipe={recipe}
+                  onView={handleViewRecipe}
+                  onFavoriteChange={handleFavoriteChange}
+                />
+              </Box>
             ))}
-          </Grid>
+          </Box>
 
           {total > limit && (
             <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>

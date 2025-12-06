@@ -188,6 +188,91 @@ const recommendedRecipes = [
   }
 ];
 
+// 单位转换映射表
+const unitConversionMap: Record<string, string> = {
+  // 体积单位
+  'cup': '杯',
+  'cups': '杯',
+  'tbsp': '汤匙',
+  'tbs': '汤匙',
+  'tablespoon': '汤匙',
+  'tablespoons': '汤匙',
+  'tsp': '茶匙',
+  'teaspoon': '茶匙',
+  'teaspoons': '茶匙',
+  'ml': '毫升',
+  'milliliter': '毫升',
+  'milliliters': '毫升',
+  'l': '升',
+  'liter': '升',
+  'liters': '升',
+  
+  // 重量单位
+  'g': '克',
+  'gram': '克',
+  'grams': '克',
+  'kg': '千克',
+  'kilogram': '千克',
+  'kilograms': '千克',
+  'oz': '盎司',
+  'ounce': '盎司',
+  'ounces': '盎司',
+  'lb': '磅',
+  'pound': '磅',
+  'pounds': '磅',
+  
+  // 数量单位
+  'piece': '个',
+  'pieces': '个',
+  'unit': '个',
+  'units': '个',
+  'slice': '片',
+  'slices': '片',
+  'clove': '瓣',
+  'cloves': '瓣',
+  'leaf': '片',
+  'leaves': '片',
+  'stalk': '根',
+  'stalks': '根',
+  'stick': '根',
+  'sticks': '根',
+  'head': '颗',
+  'heads': '颗',
+  'bunch': '束',
+  'bunches': '束',
+  'packet': '包',
+  'packets': '包',
+  'box': '盒',
+  'boxes': '盒',
+  'can': '罐',
+  'cans': '罐',
+  'jar': '瓶',
+  'jars': '瓶',
+  
+  // 其他单位
+  'pinch': '少许',
+  'dash': '少许',
+  'drop': '滴',
+  'drops': '滴',
+  'sprinkle': '撒',
+  'sprinkles': '撒',
+  'to taste': '适量',
+  'as needed': '适量',
+  'optional': '可选',
+  
+  // 空单位处理
+  '': '',
+  ' ': ''
+};
+
+// 单位转换函数
+const convertUnit = (unit: string): string => {
+  // 转换为小写以匹配映射表
+  const lowerUnit = unit.toLowerCase().trim();
+  // 返回对应的中文单位，如果没有匹配则返回原单位（作为兜底）
+  return unitConversionMap[lowerUnit] || unit;
+};
+
 const RecipeDetailPage: React.FC = () => {
   const { recipeId } = useParams<{ recipeId: string }>();
   const navigate = useNavigate();
@@ -766,7 +851,7 @@ const RecipeDetailPage: React.FC = () => {
                       }
                       secondary={
                         <Typography variant="body2" color="text.secondary">
-                          {ingredient.quantity} {ingredient.unit || ''}
+                          {ingredient.quantity} {convertUnit(ingredient.unit || '')}
                         </Typography>
                       }
                     />

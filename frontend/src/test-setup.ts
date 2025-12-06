@@ -1,35 +1,37 @@
 import { vi } from 'vitest';
 import '@testing-library/jest-dom';
 
-// Mock React Router
-global.window = {
-  ...global.window,
-  location: {
-    pathname: '/',
-    search: '',
-    hash: '',
-  },
-  history: {
-    pushState: vi.fn(),
-    replaceState: vi.fn(),
-  },
-} as any;
-
 // Mock localStorage
-global.localStorage = {
+(global as any).localStorage = {
   getItem: vi.fn(),
   setItem: vi.fn(),
   removeItem: vi.fn(),
   clear: vi.fn(),
-} as any;
+};
 
 // Mock sessionStorage
-global.sessionStorage = {
+(global as any).sessionStorage = {
   getItem: vi.fn(),
   setItem: vi.fn(),
   removeItem: vi.fn(),
   clear: vi.fn(),
-} as any;
+};
+
+// Mock localStorage
+(global as any).localStorage = {
+  getItem: vi.fn(),
+  setItem: vi.fn(),
+  removeItem: vi.fn(),
+  clear: vi.fn(),
+};
+
+// Mock sessionStorage
+(global as any).sessionStorage = {
+  getItem: vi.fn(),
+  setItem: vi.fn(),
+  removeItem: vi.fn(),
+  clear: vi.fn(),
+};
 
 // Mock AuthService for testing
 vi.mock('./services/auth.service', () => ({
