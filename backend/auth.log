@@ -1444,3 +1444,61 @@ DETAIL:  Key (phone)=(13087492707) already exists.
 2025-12-06 11:25:07,645 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
 2025-12-06 11:25:07,681 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
 2025-12-06 11:25:07,682 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-06 15:00:38,418 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-06 15:00:38,535 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-06 15:00:55,033 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-06 15:00:55,034 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-06 15:00:55,046 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-06 15:00:55,046 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-06 15:37:41,911 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-06 15:37:41,987 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-06 15:37:55,535 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-06 15:37:55,536 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-06 15:37:55,548 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-06 15:37:55,549 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-06 15:38:08,590 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-06 15:38:08,590 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-06 15:38:08,602 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-06 15:38:08,602 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-07 13:47:57,943 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-07 13:47:58,063 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-07 13:48:04,763 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-07 13:48:04,764 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-07 13:48:04,775 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-07 13:48:04,776 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-07 13:48:16,442 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-07 13:48:16,442 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-07 13:48:16,454 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-07 13:48:16,455 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-07 13:48:20,301 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-07 13:48:20,302 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-07 13:48:20,312 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-07 13:48:20,313 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-07 13:51:44,001 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小伶, IP: 127.0.0.1
+2025-12-07 13:51:44,001 - app.auth.routes - WARNING - 登录失败 - 用户不存在: 徐小伶, IP: 127.0.0.1
+2025-12-07 13:52:02,099 - app.auth.routes - INFO - 收到注册请求 - 用户名: 徐小伶, 邮箱: 602700708@qq.com, IP: 127.0.0.1
+2025-12-07 13:52:02,099 - app.auth.routes - INFO - 注册数据完整信息 - username: 徐小伶, email: 602700708@qq.com, phone: 15800152125
+2025-12-07 13:52:02,100 - app.auth.routes - INFO - 添加用户名过滤条件: 徐小伶
+2025-12-07 13:52:02,100 - app.auth.routes - INFO - 添加邮箱过滤条件: 602700708@qq.com
+2025-12-07 13:52:02,101 - app.auth.routes - INFO - 添加手机号过滤条件: 15800152125
+2025-12-07 13:52:02,101 - app.auth.routes - INFO - 最终过滤条件列表: [<sqlalchemy.sql.elements.BinaryExpression object at 0x00000293E60C5190>, <sqlalchemy.sql.elements.BinaryExpression object at 0x00000293E58BC850>, <sqlalchemy.sql.elements.BinaryExpression object at 0x00000293E5BAA850>]
+2025-12-07 13:52:02,101 - app.auth.routes - INFO - 执行数据库查询，检查用户是否已存在...
+2025-12-07 13:52:02,103 - app.auth.routes - INFO - 查询结果 - existing_user: None
+2025-12-07 13:52:02,103 - app.auth.routes - INFO - 没有找到现有用户
+2025-12-07 13:52:02,143 - app.auth.routes - INFO - 用户注册成功: 徐小伶, 用户ID: 670af4b3-7871-4e51-90d8-7e4eed1d47fd, IP: 127.0.0.1
+2025-12-07 13:52:02,153 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小伶, IP: 127.0.0.1
+2025-12-07 13:52:02,191 - app.auth.routes - INFO - 用户登录成功: 徐小伶, 用户ID: 670af4b3-7871-4e51-90d8-7e4eed1d47fd, IP: 127.0.0.1
+2025-12-07 13:52:15,923 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 670af4b3-7871-4e51-90d8-7e4eed1d47fd, IP: 127.0.0.1
+2025-12-07 13:52:15,924 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 670af4b3-7871-4e51-90d8-7e4eed1d47fd, IP: 127.0.0.1
+2025-12-07 13:52:15,934 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 670af4b3-7871-4e51-90d8-7e4eed1d47fd, IP: 127.0.0.1
+2025-12-07 13:52:15,935 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 670af4b3-7871-4e51-90d8-7e4eed1d47fd, IP: 127.0.0.1
+2025-12-08 22:32:30,302 - app.auth.routes - INFO - 收到登录请求 - 标识符: 徐小昌, IP: 127.0.0.1
+2025-12-08 22:32:30,408 - app.auth.routes - INFO - 用户登录成功: 徐小昌, 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-08 22:36:04,021 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-08 22:36:04,022 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-08 22:36:04,031 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-08 22:36:04,032 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-08 22:36:49,380 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-08 22:36:49,381 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-08 22:36:49,390 - app.auth.routes - INFO - 收到获取用户信息请求 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1
+2025-12-08 22:36:49,391 - app.auth.routes - INFO - 获取用户信息成功 - 用户ID: 07b99067-1b1e-4e92-b682-971ea48cb77b, IP: 127.0.0.1

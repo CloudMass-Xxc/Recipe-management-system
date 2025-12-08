@@ -205,32 +205,10 @@ class RecipeService:
             joinedload(Recipe.author)
         )
         
-        # 排除当前用户已收藏的食谱
+        # 不再排除当前用户已收藏的食谱，让所有食谱都显示在列表中
+        # 收藏状态由前端通过isFavorite API单独判断
         if user_id:
-            from app.models.favorite import Favorite
-            from sqlalchemy import not_
-            
-            try:
-                # 安全地处理user_id
-                from uuid import UUID
-                if isinstance(user_id, UUID):
-                    user_id_uuid = user_id
-                else:
-                    user_id_uuid = UUID(str(user_id))
-                
-                # 子查询：获取用户已收藏的食谱ID列表
-                favorited_recipe_ids = db.query(Favorite.recipe_id).filter(
-                    Favorite.user_id == user_id_uuid
-                ).subquery()
-                
-                # 排除已收藏的食谱
-                query = query.filter(
-                    not_(Recipe.recipe_id.in_(favorited_recipe_ids))
-                )
-                logger.info(f"成功排除用户ID {user_id} 的已收藏食谱")
-            except Exception as e:
-                logger.error(f"处理用户收藏过滤时出错: {str(e)}")
-                # 如果处理用户ID出错，不影响整体查询，继续执行
+            logger.info(f"获取用户ID {user_id} 的食谱列表，包括已收藏的食谱")
         
         # 按作者筛选
         if author_id:
@@ -304,30 +282,8 @@ class RecipeService:
         
         # 排除当前用户已收藏的食谱
         if user_id:
-            from app.models.favorite import Favorite
-            from sqlalchemy import not_
-            
-            try:
-                # 安全地处理user_id
-                from uuid import UUID
-                if isinstance(user_id, UUID):
-                    user_id_uuid = user_id
-                else:
-                    user_id_uuid = UUID(str(user_id))
-                
-                # 子查询：获取用户已收藏的食谱ID列表
-                favorited_recipe_ids = db.query(Favorite.recipe_id).filter(
-                    Favorite.user_id == user_id_uuid
-                ).subquery()
-                
-                # 排除已收藏的食谱
-                query = query.filter(
-                    not_(Recipe.recipe_id.in_(favorited_recipe_ids))
-                )
-                logger.info(f"成功排除用户ID {user_id} 的已收藏食谱")
-            except Exception as e:
-                logger.error(f"处理用户收藏过滤时出错: {str(e)}")
-                # 如果处理用户ID出错，不影响整体查询，继续执行
+            # 不再排除当前用户已收藏的食谱，让所有食谱都计算在总数中
+            logger.info(f"计算用户ID {user_id} 的食谱总数，包括已收藏的食谱")
         
         # 按作者筛选
         if author_id:
